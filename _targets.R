@@ -29,7 +29,7 @@ analysis_targets <- tar_plan(
 
 viz_targets <- tar_plan(
   base_traffic_counts_map = 
-    graph_traffic_counts(base_traffic_counts, site_map_base)
+    plot_traffic_counts(base_traffic_counts, site_map_base)
   
   
 )

@@ -1,5 +1,5 @@
-# Put traffic counts on site
-graph_traffic_counts <- function(counts, image_file, scale = 0.965){
+# Put traffic counts on site map
+plot_traffic_counts <- function(counts, image_file, scale = 0.965){
   
 p <- counts %>% 
   ggplot() +
