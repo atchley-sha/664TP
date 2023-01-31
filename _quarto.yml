@@ -3,13 +3,14 @@ project:
 
 book:
   title: "664TP"
-  author: "Jane Doe"
-  date: "1/31/2023"
+  author: "Hayden Atchley"
+  date: today
+  date-format: "D MMMM YYYY"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
+    - qmd/intro.qmd
+    - qmd/summary.qmd
+    - qmd/references.qmd
 
 bibliography: references.bib
 
