@@ -3,7 +3,7 @@ library(tarchetypes)
 library(here)
 
 
-package_list <- c("tidyverse", "cowplot")
+package_list <- c("tidyverse", "cowplot", "quarto")
 tar_option_set(packages = package_list)
 
 # Source all files in `R` directory
@@ -14,18 +14,21 @@ lapply(r_files, source)
 ########## List targets ########################################################
 
 data_targets <- tar_plan(
-  development_name = "<><><>PLACEHOLDER_NAME<><><>",
+  development_name = "Dream Town",
   
   tar_target(traffic_counts_file, "data/traffic_counts_long.csv", format = "file"),
+  tar_target(land_use_file, "data/land_use/land_use.csv", format = "file"),
   
   base_traffic_counts = read_csv(traffic_counts_file),
+  land_use = read_csv(land_use_file),
   
   tar_target(site_map_base, "images/site_traffic_base.png", format = "file")
 )
 
 
 analysis_targets <- tar_plan(
-  
+  base_attractions = sum(land_use$trips),
+  base_pm_attractions = sum(land_use$pm_trips)
 )
 
 
@@ -38,7 +41,7 @@ viz_targets <- tar_plan(
 
 
 render_targets <- tar_plan(
-  
+  tar_quarto(quarto, "index.qmd")
 )
 
 

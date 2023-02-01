@@ -8,8 +8,14 @@ book:
   date-format: "D MMMM YYYY"
   chapters:
     - index.qmd
-    - qmd/intro.qmd
-    - qmd/summary.qmd
+    - qmd/01_intro.qmd
+    - qmd/02_development.qmd
+    - qmd/03_study-area.qmd
+    - qmd/04_existing.qmd
+    - qmd/05_projected.qmd
+    - qmd/06_access.qmd
+    - qmd/07_analysis.qmd
+    - qmd/08_conclusions.qmd
     - qmd/references.qmd
 
 bibliography: references.bib
@@ -17,8 +23,10 @@ bibliography: references.bib
 format:
   docx:
     toc: true
-  pdf:
-    documentclass: scrreprt
-
+    reference-doc: reference.docx
+  # pdf:
+  #   documentclass: scrreprt
+  # html:
+  #   toc: true
 
 
