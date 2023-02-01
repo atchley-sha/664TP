@@ -1,0 +1,4 @@
+pad,facility,sqft,code,landuse,trips,pm_trips,pm_generator
+A,Restaurant,8000,932,Sit-Down Restaurant,858,72,131
+B,Office,18000,710,General Office Building,261,40,
+B,Retail,18000,816,Hardware/Paint Store,145,54,20
