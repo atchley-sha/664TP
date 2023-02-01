@@ -14,6 +14,8 @@ lapply(r_files, source)
 ########## List targets ########################################################
 
 data_targets <- tar_plan(
+  development_name = "<><><>PLACEHOLDER_NAME<><><>",
+  
   tar_target(traffic_counts_file, "data/traffic_counts_long.csv", format = "file"),
   
   base_traffic_counts = read_csv(traffic_counts_file),
@@ -29,7 +31,7 @@ analysis_targets <- tar_plan(
 
 viz_targets <- tar_plan(
   base_traffic_counts_map = 
-    plot_traffic_counts(base_traffic_counts, site_map_base)
+    plot_traffic_counts(base_traffic_counts, site_map_base, development_name)
   
   
 )
