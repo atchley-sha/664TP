@@ -14,6 +14,22 @@ knitr::include_graphics(here("images/output/intersections.png"))
 
 ## Street Conditions
 
+Detailed information on the streets in the study are is provided below:
+
+#### 1200 South
+
+
+
+#### University Avenue / US-189
+
+
+
+#### Towne Centre Boulevard
+
+
+
+#### Towne Centre Drive
+
 
 
 ## Adjacent Land Uses
