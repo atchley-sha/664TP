@@ -1,12 +1,56 @@
 # Proposed Development
 
+{{< include setup.qmd >}}
+
+```{r}
+#| label: load-2
+#| include: false
+
+lu <- read_csv(here("data/land_use.csv"))
+```
+
+This section describes the plans for the development, including site location, land use, zoning information, and the the site plan itself.
+
 ## Site Description
 
+The proposed Dream Town development is located in southern Provo, in Utah. The site is located on the west side of University Avenue (US-189), between 1200 S and Towne Centre Drive. This location is just east of the Provo Towne Centre mall, which is a large retail and dining center and a large generator of trips. The location is also near (to the north of) the intersection of I-15 and University Avenue. @fig-sitemap shows a map of the site area. Four intersections are included in the analysis:
 
+-   1200 S / Towne Centre Blvd. (stop-controlled)
+-   1200 S / University Ave. (signalized)
+-   Towne Centre Dr. / Towne Centre Blvd. (signalized)
+-   Towne Centre Dr. / University Ave. (signalized)
 
-## Land Use
+```{r}
+#| label: fig-sitemap
+#| fig-cap: "Map of the site location."
 
+knitr::include_graphics(here("images/site_map.png"))
+```
 
+## Land Use and Zoning Information
+
+The proposed {{< var devname >}} development has two development pads, with one pad containing a sit-down restaurant and the other pad containing a mixed-use office/retail location. The retail location is intended to be a hardware/paint store. @tab-landuse shows these land uses along with their ITE land use codes and respective square footage.
+
+```{r}
+#| label: tab-landuse
+#| tbl-cap: "Proposed Land Use and Sizes"
+
+lu %>% 
+  select(pad, landuse, code, sqft) %>% 
+  `colnames<-`(c("Development Pad", "Proposed Land Use", "ITE Land Use Code", "Area (sqft)")) %>% 
+  flextable() %>%
+  autofit()
+```
+
+The site area is zoned as SC3???, .... *include zone map*
 
 ## Site Plan
 
+@fig-siteplan shows a site plan for the proposed development. Note that Pad C is not included in this analysis, as it has already been developed. This site map is still preliminary, and will be updated in a future draft of this report.
+
+```{r}
+#| label: fig-siteplan
+#| fig-cap: "Site plan for proposed {{< var devname >}} development."
+
+knitr::include_graphics(here("images/site_plan_prelim.png"))
+```

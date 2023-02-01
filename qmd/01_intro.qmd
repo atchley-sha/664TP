@@ -1,10 +1,12 @@
 # Introduction
 
-HSL Developers is proposing the development of Dream Town, a multi-use site containing a restaurant and a mixed-use office/retail building. This section contains information on the purpose of the report and the study level of the proposed development.
+{{< include setup.qmd >}}
+
+HSL Developers is proposing the development of {{< var devname >}}, a multi-use site containing a restaurant and a mixed-use office/retail building. This section contains information on the purpose of the report and the study level of the proposed development.
 
 ## Purpose
 
-This report presents a Traffic Impact Analysis (TIA) for the proposed Dream Town development. This TIA was completed to fulfill requirements from Provo City and the Utah Department of Transportation (UDOT) for new development, and was done in accordance with UDOT guidelines to apply for an access permit [@utahdepartmentoftransportation2019]. The TIA identifies current traffic patterns---including traffic volume counts---in the study area, and projects traffic volumes to opening day and five years after opening (2024 and 2029, respectively).
+This report presents a Traffic Impact Analysis (TIA) for the proposed {{< var devname >}} development. This TIA was completed to fulfill requirements from Provo City and the Utah Department of Transportation (UDOT) for new development, and was done in accordance with UDOT guidelines to apply for an access permit [@utahdepartmentoftransportation2019]. The TIA identifies current traffic patterns---including traffic volume counts---in the study area, and projects traffic volumes to opening day and five years after opening (2024 and 2029, respectively).
 
 ## Study Level
 

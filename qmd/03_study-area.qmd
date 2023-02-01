@@ -1,5 +1,17 @@
 # Study Area Conditions
 
+{{< include setup.qmd >}}
+
+The study area for this analysis includes the streets adjacent to the site as well as their intersections. These streets are 1200 S on the north, University Ave. / US-189 on the east, Towne Centre Blvd. on the west, and Towne Centre Dr. on the south. Note that there is existing development between {{< var devname >}} and Towne Centre Dr. All of the intersections in the TIA are signalized with the exception of the Town Centre Blvd. / 1200 S intersection, which is stop-controlled. This is shown in @fig-intersections.
+
+```{r}
+#| label: fig-intersections
+#| fig-cap: "Map of basic intersection characteristics in TIA area."
+
+knitr::include_graphics(here("images/output/intersections.png"))
+```
+
+
 ## Street Conditions
 
 

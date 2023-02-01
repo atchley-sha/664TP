@@ -1,6 +1,9 @@
 project:
   type: book
 
+execute: 
+  echo: false
+  
 book:
   title: "664TP"
   author: "Hayden Atchley"
@@ -23,6 +26,8 @@ bibliography: references.bib
 format:
   docx:
     toc: true
+    lof: true
+    lot: true
     reference-doc: reference.docx
   # pdf:
   #   documentclass: scrreprt

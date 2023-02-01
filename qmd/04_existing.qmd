@@ -1,5 +1,7 @@
 # Analysis of Existing Conditions
 
+{{< include setup.qmd >}}
+
 ## Physical Characteristics
 
 

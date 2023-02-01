@@ -1,0 +1,14 @@
+```{r}
+#| label: setup
+#| include: false
+
+pacman::p_load(tidyverse, here, flextable)
+
+set_flextable_defaults(
+  font.family = "Gentium Book Basic",
+  font.size = 11,
+  text.align = "center",
+  keep_with_next = TRUE,
+  big.mark = " "
+)
+```
