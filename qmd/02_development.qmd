@@ -1,6 +1,6 @@
 # Proposed Development
 
-{{< include setup.qmd >}}
+{{< include ../setup.qmd >}}
 
 This section describes the plans for the development, including site location, land use, zoning information, and the the site plan itself.
 
