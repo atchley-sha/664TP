@@ -1,10 +1,4 @@
 tar_plan(
-  
-  # Info
-  development_name = "Dream Town",
-  map_name_x = 975,
-  map_name_y = 950,
-  
   # Data files
   tar_target(traffic_counts_file, "data/traffic_counts_long.csv", format = "file"),
   base_traffic_counts = read_csv(traffic_counts_file),
