@@ -8,6 +8,16 @@
 
 ## Traffic Volumes
 
+Traffic turning volume counts were done at the Towne Centre Dr / University Ave and Towne Centre Dr / Towne Center Blvd intersections from 4:15--6:00 PM on January 24 (Tue) and 25 (Wed), 2023, respectively. Scheduling conflicts and limited personnel necessitated that the counts be performed for only two intersections and on different days. However, for the purposes of this report this is not a significant limitation, due to the limited scope of the assignment. The two days are considered similar enough, and volumes were estimated for the other two intersections.
+
+From these counts and projections, 4:30--5:30 PM was determined to be the peak hour, with a peak hour factor (PHF) of 0.92. The volumes for this peak hour are presented in @fig-basevolumes.
+
+```{r}
+#| label: fig-basevolumes
+#| fig-cap: "Peak hour turning volumes on the studied intersections."
+
+knitr::include_graphics("../images/output/traffic_counts_base.png")
+```
 
 
 ## Level of Service
