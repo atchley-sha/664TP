@@ -26,9 +26,8 @@ bibliography: references.bib
 format:
   docx:
     toc: true
-    lof: true
-    lot: true
     reference-doc: reference.docx
+    number-depth: 3
   # pdf:
   #   documentclass: scrreprt
   # html:
