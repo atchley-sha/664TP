@@ -2,13 +2,6 @@
 
 {{< include setup.qmd >}}
 
-```{r}
-#| label: load-2
-#| include: false
-
-lu <- read_csv(here("data/land_use.csv"))
-```
-
 This section describes the plans for the development, including site location, land use, zoning information, and the the site plan itself.
 
 ## Site Description
@@ -20,12 +13,22 @@ The proposed Dream Town development is located in southern Provo, in Utah. The s
 -   Towne Centre Dr. / Towne Centre Blvd. (signalized)
 -   Towne Centre Dr. / University Ave. (signalized)
 
+<!-- ![Map of the site location.]("../images/site_map.png"){#fig-sitemap} -->
+
 ```{r}
 #| label: fig-sitemap
 #| fig-cap: "Map of the site location."
 
-knitr::include_graphics(here("images/site_map.png"))
+magick::image_read("images/site_map.png")
 ```
+
+
+<!-- ```{r} -->
+<!-- #| label: fig-sitemap -->
+<!-- #| fig-cap: "Map of the site location." -->
+
+<!-- knitr::include_graphics("images/site_map.png") -->
+<!-- ``` -->
 
 ## Land Use and Zoning Information
 
@@ -35,11 +38,7 @@ The proposed {{< var devname >}} development has two development pads, with one 
 #| label: tab-landuse
 #| tbl-cap: "Proposed Land Use and Sizes"
 
-lu %>% 
-  select(pad, landuse, code, sqft) %>% 
-  `colnames<-`(c("Development Pad", "Proposed Land Use", "ITE Land Use Code", "Area (sqft)")) %>% 
-  flextable() %>%
-  autofit()
+tar_read(landuse_table)
 ```
 
 The site area is zoned as SC3???, .... *include zone map*
@@ -52,5 +51,5 @@ The site area is zoned as SC3???, .... *include zone map*
 #| label: fig-siteplan
 #| fig-cap: "Site plan for proposed {{< var devname >}} development."
 
-knitr::include_graphics(here("images/site_plan_prelim.png"))
+tar_read(siteplan)
 ```
