@@ -1,6 +1,6 @@
 # Introduction
 
-HSL Developers is proposing the development of {{< var devname >}}, a multi-use site containing a restaurant and a mixed-use office/retail building. This section contains information on the purpose of the report and the study level of the proposed development.
+{{< var companyname >}} is proposing the development of {{< var devname >}}, a multi-use site containing a restaurant and a mixed-use office/retail building. This section contains information on the purpose of the report and the study level of the proposed development.
 
 ## Purpose
 
@@ -8,7 +8,7 @@ This report presents a Traffic Impact Analysis (TIA) for the proposed {{< var de
 
 ## Study Level
 
-UDOT Administrative Rule R930-6-8(4) [@utahdepartmentoftransportation2019] sets forth general requirements for an access permit, including determining the application level. The proposed development will contain an 8,000 ft^2^ high-turnover restaurant (Institute of Transportation Engineers (ITE) land use code 932) and a 32,000 ft^2^ office/retail building, half of which (18,000 ft^2^) will be a general office location (ITE land use code 710), and the remaining half (18,000 ft^2^) will be a hardware store (ITE land use code 816). From the ITE Trip Generation Manual [@instituteoftransportationengineers2021], these locations are expected to generate 1264 weekday trips and 166 PM peak trips. These trip rates, along with the land use and respective development sizes, necessitate a level II application.
+UDOT Administrative Rule R930-6-8(4) [@utahdepartmentoftransportation2019] sets forth general requirements for an access permit, including determining the application level. The proposed development will contain an 8,000 ft^2^ high-turnover restaurant (Institute of Transportation Engineers (ITE) land use code 932) and a 32,000 ft^2^ office/retail building, half of which (18,000 ft^2^) will be a general office location (ITE land use code 710), and the remaining half (18,000 ft^2^) will be a hardware store (ITE land use code 816). From the ITE Trip Generation Manual [@instituteoftransportationengineers2021], these locations are expected to generate 1264 weekday trips and 166 PM peak trips (see @sec-apdx-tripgen). These trip rates, along with the land use and respective development sizes, necessitate a level II application.
 
 A Level II application requires the following:
 
