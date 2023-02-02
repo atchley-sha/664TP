@@ -2,7 +2,9 @@
 #| label: setup
 #| include: false
 
-pacman::p_load(tidyverse, here, flextable)
+pacman::p_load(tidyverse, flextable, targets)
+
+tar_config_set(store = "../_targets")
 
 set_flextable_defaults(
   font.family = "Gentium Book Basic",
