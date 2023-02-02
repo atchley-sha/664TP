@@ -1,0 +1,3 @@
+# Synchro LOS Analysis (Existing) {#sec-synchro-ex}
+
+This appendix contains the results of the Synchro LOS analysis for the existing road volumes, signal timings, and lane configurations.

@@ -1,12 +1,14 @@
 # Analysis of Existing Conditions
 
-{{< include setup.qmd >}}
+{{< include ../setup.qmd >}}
 
 ## Physical Characteristics
 
+The study area contains four intersections: 1200 S / Towne Centre Blvd, a 3-way stop-controlled intersection; 1200 S / University Ave, a 4-way signalized intersection; Towne Centre Dr / Towne Centre Blvd, a 3-way signalized intersection; and Towne Centre Dr / University Ave, a 4-way signalized intersection (see @fig-intersections). 
 
+For reference, a lane configuration diagram is provided in @fig-lane-diagram.
 
-## Traffic Volumes
+## Traffic Volumes {#sec-existingtrafficvols}
 
 Traffic turning volume counts were done at the Towne Centre Dr / University Ave and Towne Centre Dr / Towne Center Blvd intersections from 4:15--6:00 PM on January 24 (Tue) and 25 (Wed), 2023, respectively. Scheduling conflicts and limited personnel necessitated that the counts be performed for only two intersections and on different days. However, for the purposes of this report this is not a significant limitation, due to the limited scope of the assignment. The two days are considered similar enough, and volumes were estimated for the other two intersections.
 
@@ -39,6 +41,16 @@ tar_read(los_signal) %>%
 tar_read(los_unsignal) %>% 
   flextable() %>% 
   autofit()
+```
+
+The existing level of service was determined based on current traffic volumes [@sec-existingtrafficvols] and signal timings (obtained from UDOT), using the Synchro software package [@trafficware2019]. Synchro performs a LOS analysis using these and other inputs, including roadway and lane configuration. @fig-losbase shows the results of this analysis.
+
+```{r}
+#| label: fig-losbase
+#| fig-cap: "Results of existing Synchro LOS analysis for each movement and intersection studied."
+#| fig-scap: "Existing Synchro LOS results"
+
+# knitr::include_graphics("../images/output/traffic_los_base.png")
 ```
 
 
