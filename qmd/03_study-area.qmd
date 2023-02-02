@@ -16,6 +16,14 @@ knitr::include_graphics("../images/output/intersections.png")
 
 Detailed information on the streets in the study area is provided below. This information is summarized in @tab-streetconfig.
 
+```{r}
+#| label: tab-streetconfig
+#| tbl-cap: "Summary of Adjacent Street Configuration"
+
+tar_read(street_config) %>% 
+  flextable()
+```
+
 ###### 1200 South
 
 1200 S is an east-west (E/W) local road which, at least in the vicinity of the study area, exists only to offer a connection between Towne Centre Bvld and University Ave. It runs about 350 feet along the north edge of the proposed {{< var devname >}}, and has 3 eastbound (EB) lanes and 2 westbound (WB) lanes. The two WB lanes offer a left- and right-turning movement, respectively (onto Towne Centre Blvd), and there is no through movement since 1200 S and Towne Centre Bvld form a T intersection. The three EB lanes offer a left, through, and right-turn movement, either onto University Avenue for the turning movements or into a parking lot for the through movement. There is no posted speed limit, and a raised median prevents left turns onto or off of this road.
@@ -31,15 +39,6 @@ Towne Centre Blvd is a local street that circumnavigates the Provo Towne Centre 
 ###### Towne Centre Drive
 
 Towne Centre Dr is an E/W road that runs between Towne Centre Blvd and University Ave, and becomes East Bay Blvd east of University Ave. There is a posted speed limit of 30 mph, and there is a raised median between Towne Centre Blvd and University Ave, though the median breaks about midway, allowing a WB left turn to access the development to the south. There are 2 left- and 1 right-turn bays at the University Ave intersection in both directions, and 2 left-turn lanes and a right-turn free-flow lane at the Towne Centre Blvd intersection.
-
-```{r}
-#| label: tab-streetconfig
-#| tbl-cap: "Summary of Adjacent Street Configuration"
-
-tar_read(street_config) %>% 
-  flextable()
-```
-
 
 ### Additional Information
 
