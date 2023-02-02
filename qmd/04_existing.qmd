@@ -19,9 +19,27 @@ From these counts and projections, 4:30--5:30 PM was determined to be the peak h
 knitr::include_graphics("../images/output/traffic_counts_base.png")
 ```
 
-
 ## Level of Service
 
+A level of service (LOS) measure was used to determine the traffic performance of each intersection (and each movement within each intersection). This LOS is a measurement of average control delay per vehicle, and bins the amount of delay into groups designated by the letters A--F. These designations differ between signalized and unsignalized intersections, and are provided in the Highway Capacity Manual (HCM) [@highway2022]. @tab-los-signal and @tab-los-unsignal summarize these criteria. This analysis assumes a LOS of `D` or better represents acceptable conditions.
+
+```{r}
+#| label: tab-los-signal
+#| tbl-cap: "LOS Criteria for Signalized Intersection"
+
+tar_read(los_signal) %>% 
+  flextable() %>% 
+  autofit()
+```
+
+```{r}
+#| label: tab-los-unsignal
+#| tbl-cap: "LOS Criteria for Unsignalized Intersection"
+
+tar_read(los_unsignal) %>% 
+  flextable() %>% 
+  autofit()
+```
 
 
 ## Transportation Safety

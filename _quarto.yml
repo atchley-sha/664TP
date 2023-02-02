@@ -28,6 +28,7 @@ format:
     toc: true
     reference-doc: reference.docx
     number-depth: 2
+    toc-depth: 2
   # pdf:
   #   documentclass: scrreprt
   # html:
