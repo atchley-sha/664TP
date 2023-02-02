@@ -15,6 +15,9 @@ tar_plan(
   tar_target(land_use_file, "data/land_use.csv", format = "file"),
   land_use = read_csv(land_use_file),
   
+  tar_target(street_config_file, "data/street_config.csv", format = "file"),
+  street_config = read_csv(street_config_file),
+  
   
   # Base images
   tar_target(site_traffic_base, "images/reference/site_traffic_base.png", format = "file"),
