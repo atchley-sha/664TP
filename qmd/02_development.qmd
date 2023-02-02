@@ -13,22 +13,12 @@ The proposed Dream Town development is located in southern Provo, in Utah. The s
 -   Towne Centre Dr. / Towne Centre Blvd. (signalized)
 -   Towne Centre Dr. / University Ave. (signalized)
 
-<!-- ![Map of the site location.]("../images/site_map.png"){#fig-sitemap} -->
-
 ```{r}
 #| label: fig-sitemap
 #| fig-cap: "Map of the site location."
 
-magick::image_read("images/site_map.png")
+knitr::include_graphics("../images/site_map.png")
 ```
-
-
-<!-- ```{r} -->
-<!-- #| label: fig-sitemap -->
-<!-- #| fig-cap: "Map of the site location." -->
-
-<!-- knitr::include_graphics("images/site_map.png") -->
-<!-- ``` -->
 
 ## Land Use and Zoning Information
 
@@ -38,7 +28,11 @@ The proposed {{< var devname >}} development has two development pads, with one 
 #| label: tab-landuse
 #| tbl-cap: "Proposed Land Use and Sizes"
 
-tar_read(landuse_table)
+tar_read(land_use) %>% 
+  select(pad, landuse, code, sqft) %>% 
+    `colnames<-`(c("Development Pad", "Proposed Land Use", "ITE Land Use Code", "Area (sqft)")) %>% 
+    flextable() %>% 
+    autofit()
 ```
 
 The site area is zoned as SC3???, .... *include zone map*
@@ -51,5 +45,5 @@ The site area is zoned as SC3???, .... *include zone map*
 #| label: fig-siteplan
 #| fig-cap: "Site plan for proposed {{< var devname >}} development."
 
-tar_read(siteplan)
+knitr::include_graphics("../images/site_plan_prelim.png")
 ```

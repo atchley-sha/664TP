@@ -8,7 +8,7 @@ The study area for this analysis includes the streets adjacent to the site as we
 #| label: fig-intersections
 #| fig-cap: "Map of basic intersection characteristics in TIA area."
 
-magick::image_read("images/output/intersections.png")
+knitr::include_graphics("../images/output/intersections.png")
 ```
 
 

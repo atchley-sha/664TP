@@ -6,12 +6,4 @@ tar_plan(
   
   # base_los_map = plot_los(los_base, los_int_base, site_traffic_base, development_name, "images/output/traffic_los_base.png")
   
-  
-  # Flextables
-  landuse_table = land_use |>
-    dplyr::select(pad, landuse, code, sqft) |>
-    `colnames<-`(c("Development Pad", "Proposed Land Use", "ITE Land Use Code", "Area (sqft)")) |>
-    flextable::flextable() |>
-    flextable::autofit()
-  
 )

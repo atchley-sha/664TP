@@ -4,6 +4,8 @@
 
 pacman::p_load(tidyverse, flextable, targets)
 
+tar_config_set(store = "../_targets")
+
 set_flextable_defaults(
   font.family = "Gentium Book Basic",
   font.size = 11,

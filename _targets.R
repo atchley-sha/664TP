@@ -1,9 +1,8 @@
 library(targets)
 library(tarchetypes)
 library(readr)
-library(magick)
 
-package_list <- c("tidyverse", "cowplot", "quarto", "magick")
+package_list <- c("tidyverse", "magick")
 tar_option_set(packages = package_list)
 
 # Source all files in `R` directory
@@ -18,9 +17,9 @@ analysis_targets <- source("targets/analysis_targets.R")
 
 viz_targets <- source("targets/viz_targets.R")
 
-render_targets <- tar_plan(
-  tar_quarto(quarto)
-)
+# render_targets <- tar_plan(
+#   tar_quarto(quarto)
+# )
 
 ########## Run all targets #####################################################
 
@@ -28,5 +27,5 @@ tar_plan(
   data_targets,
   analysis_targets,
   viz_targets,
-  render_targets
+  # render_targets
 )
