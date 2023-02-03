@@ -24,9 +24,9 @@ analysis_targets <- source("targets/analysis_targets.R")
 
 viz_targets <- source("targets/viz_targets.R")
 
-render_targets <- tar_plan(
-  tar_quarto(quarto)
-)
+# render_targets <- tar_plan(
+#   tar_quarto(quarto)
+# )
 
 ########## Run all targets #####################################################
 

@@ -13,7 +13,7 @@ Much of the information regarding lane striping and turning movements for these 
 #| fig-cap: "Intersection lane diagram of the study area."
 #| fig-scap: "Intersection lane diagram"
 
-# knitr::include_graphics("../images/reference/lane_diagram.png")
+knitr::include_graphics("../images/output/lane_diagram.png")
 ```
 
 
@@ -59,7 +59,7 @@ The existing level of service was determined based on current traffic volumes [@
 #| fig-cap: "Results of existing Synchro LOS analysis for each movement and intersection studied."
 #| fig-scap: "Existing Synchro LOS results"
 
-# knitr::include_graphics("../images/output/traffic_los_base.png")
+knitr::include_graphics("../images/output/traffic_los_base.png")
 ```
 
 
