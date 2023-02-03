@@ -22,7 +22,7 @@ book:
     - qmd/references.qmd
   appendices: 
     - qmd/appendix/apdx_tripgen.qmd
-    - qmd/appendix/apdx_lanes.qmd
+    - qmd/appendix/apdx_ex_synchro.qmd
 
 bibliography: references.bib
 

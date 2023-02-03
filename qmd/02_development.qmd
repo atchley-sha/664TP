@@ -35,7 +35,7 @@ tar_read(land_use) %>%
     autofit()
 ```
 
-The site area is zoned as SC3, which is a Regional Shopping Center. The primary use of this land is for commercial and service uses to serve needs of people living in an entire region. It is located close to freeways & major arterials for easy access [@provocitycode, Chapter 14.20]. @fig-zoningmap provides a section of the Provo zoning map with the site location marked.
+The site area is zoned as SC3, which is a Regional Shopping Center. The primary use of this land is for commercial and service uses to serve needs of people living in an entire region. It is located close to freeways & major arterials for easy access [@provocitycode, Chapter 14.20]. @fig-zoningmap provides a section of the Provo zoning map [@provocityutah2022] with the site location marked.
 
 ```{r}
 #| label: fig-zoningmap
@@ -43,7 +43,6 @@ The site area is zoned as SC3, which is a Regional Shopping Center. The primary 
 
 knitr::include_graphics("../images/zoning_map.png")
 ```
-
 
 ## Site Plan
 

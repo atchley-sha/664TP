@@ -54,7 +54,8 @@ knitr::include_graphics("../images/output/bus.png")
 
 ## Adjacent Land Uses
 
-
+As can be seen in @fig-zoningmap, much of the nearby land is in the same zoning category as {{< var devname >}} (SC3). This is borne out by the actual land use: there are several suburban commercial sites in this area. The most notable of these is the Provo Towne Centre mall to the east, but other locations include a Sam's Club, several fast-food and sit-down restaurants, and multiple small hotels and gas stations.
 
 ## Site Accessibility
 
+University Ave provides direct access to {{< var devname >}} from I-15, as well as from downtown Provo. This is the most major road with direct access to the site, but several other roads provide access as well. Towne Centre Blvd has connections to a neighborhood northwest of the site, and East Bay Blvd provides access to University Ave near the site from southeast Provo, and has a connection to Springville via Lakeview Pkwy and I-89.
