@@ -20,7 +20,7 @@ plot_los <- function(LOS, LOS_int, image_file, development_name, out_file, dev_x
     geom_text(aes(x = dev_x, y = dev_y, label = development_name), size = 3) +
     geom_text(data = LOS, aes(x = x, y = y, label = los), size = 3) +
     geom_label(data = LOS_int, size = 5, mapping = aes(
-      x = x, y = y, labes = los, fill = "black", color = "white"))
+      x = x, y = y, label = los), fill = "black", color = "white")
   
   ggsave(out_file, plot = p)
   
