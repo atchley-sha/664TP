@@ -5,7 +5,8 @@ execute:
   echo: false
   
 book:
-  title: "664TP"
+  title: "Dream Town"
+  subtitle: "Traffic Impact Analysis"
   author: "Hayden Atchley"
   date: today
   date-format: "D MMMM YYYY"
@@ -32,6 +33,7 @@ format:
     reference-doc: reference.docx
     number-depth: 2
     toc-depth: 2
+    csl: asce.csl
   # pdf:
   #   documentclass: scrreprt
   # html:
