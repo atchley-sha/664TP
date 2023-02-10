@@ -14,10 +14,10 @@ knitr::include_graphics("../images/output/intersections.png")
 
 ## Street Conditions
 
-Detailed information on the streets in the study area is provided below. This information is summarized in @tab-streetconfig.
+Detailed information on the streets in the study area is provided below. This information is summarized in @tbl-streetconfig.
 
 ```{r}
-#| label: tab-streetconfig
+#| label: tbl-streetconfig
 #| tbl-cap: "Summary of Adjacent Street Configuration"
 
 tar_read(street_config) %>% 

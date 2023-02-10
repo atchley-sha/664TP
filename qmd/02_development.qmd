@@ -22,10 +22,10 @@ knitr::include_graphics("../images/site_map.png")
 
 ## Land Use and Zoning Information
 
-The proposed {{< var devname >}} development has two development pads, with one pad containing a sit-down restaurant and the other pad containing a mixed-use office/retail location. The retail location is intended to be a hardware/paint store. @tab-landuse shows these land uses along with their ITE land use codes and respective square footage.
+The proposed {{< var devname >}} development has two development pads, with one pad containing a sit-down restaurant and the other pad containing a mixed-use office/retail location. The retail location is intended to be a hardware/paint store. @tbl-landuse shows these land uses along with their ITE land use codes and respective square footage.
 
 ```{r}
-#| label: tab-landuse
+#| label: tbl-landuse
 #| tbl-cap: "Proposed Land Use and Sizes"
 
 tar_read(land_use) %>% 

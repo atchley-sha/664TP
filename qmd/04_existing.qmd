@@ -6,7 +6,7 @@
 
 The study area contains four intersections: 1200 S / Towne Centre Blvd, a 3-way stop-controlled intersection; 1200 S / University Ave, a 4-way signalized intersection; Towne Centre Dr / Towne Centre Blvd, a 3-way signalized intersection; and Towne Centre Dr / University Ave, a 4-way signalized intersection (see @fig-intersections). 
 
-Much of the information regarding lane striping and turning movements for these intersections is given in @tab-streetconfig. It is additionally worth noting that the east leg of the 1200 S / University Ave intersection is a parking lot access, and the WB lane has a designated left-turn lane and a shared right/through lane. For reference, a lane configuration diagram of these intersections is provided in @fig-lanediagram.
+Much of the information regarding lane striping and turning movements for these intersections is given in @tbl-streetconfig. It is additionally worth noting that the east leg of the 1200 S / University Ave intersection is a parking lot access, and the WB lane has a designated left-turn lane and a shared right/through lane. For reference, a lane configuration diagram of these intersections is provided in @fig-lanediagram.
 
 ```{r}
 #| label: fig-lanediagram
@@ -32,10 +32,10 @@ knitr::include_graphics("../images/output/traffic_counts_base.png")
 
 ## Level of Service
 
-A level of service (LOS) measure was used to determine the traffic performance of each intersection (and each movement within each intersection). This LOS is a measurement of average control delay per vehicle, and bins the amount of delay into groups designated by the letters A--F. These designations differ between signalized and unsignalized intersections, and are provided in the Highway Capacity Manual (HCM) [@highway2022]. @tab-los-signal and @tab-los-unsignal summarize these criteria. This analysis assumes a LOS of `D` or better represents acceptable conditions.
+A level of service (LOS) measure was used to determine the traffic performance of each intersection (and each movement within each intersection). This LOS is a measurement of average control delay per vehicle, and bins the amount of delay into groups designated by the letters A--F. These designations differ between signalized and unsignalized intersections, and are provided in the Highway Capacity Manual (HCM) [@highway2022]. @tbl-los-signal and @tbl-los-unsignal summarize these criteria. This analysis assumes a LOS of `D` or better represents acceptable conditions.
 
 ```{r}
-#| label: tab-los-signal
+#| label: tbl-los-signal
 #| tbl-cap: "LOS Criteria for Signalized Intersection"
 
 tar_read(los_signal) %>% 
@@ -44,7 +44,7 @@ tar_read(los_signal) %>%
 ```
 
 ```{r}
-#| label: tab-los-unsignal
+#| label: tbl-los-unsignal
 #| tbl-cap: "LOS Criteria for Unsignalized Intersection"
 
 tar_read(los_unsignal) %>% 
