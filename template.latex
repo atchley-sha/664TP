@@ -892,7 +892,7 @@ $else$
 $if(titlepage)$
 \begin{titlepage}
 $if(titlepage-background)$
-\newgeometry{top=2cm, right=4cm, bottom=3cm, left=4cm}
+\newgeometry{top=2cm, right=3cm, bottom=3cm, left=4cm}
 $else$
 \newgeometry{left=6cm}
 $endif$
@@ -904,28 +904,35 @@ $if(titlepage-background)$
 \tikz[remember picture,overlay] \node[inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{$titlepage-background$}};
 $endif$
 \newcommand{\colorRule}[3][black]{\textcolor[HTML]{#1}{\rule{#2}{#3}}}
-\begin{flushleft}
+\begin{flushright}
 \noindent
 \\[-1em]
 \color[HTML]{$if(titlepage-text-color)$$titlepage-text-color$$else$5F5F5F$endif$}
-\makebox[0pt][l]{\colorRule[$if(titlepage-rule-color)$$titlepage-rule-color$$else$435488$endif$]{1.3\textwidth}{$if(titlepage-rule-height)$$titlepage-rule-height$$else$4$endif$pt}}
+% \makebox[0pt][l]{\colorRule[$if(titlepage-rule-color)$$titlepage-rule-color$$else$435488$endif$]{1.3\textwidth}{$if(titlepage-rule-height)$$titlepage-rule-height$$else$4$endif$pt}}
 \par
 \noindent
 
 $if(titlepage-background)$
 % The titlepage with a background image has other text spacing and text size
 {
-  \setstretch{2}
+  \setstretch{1}
+  \noindent{\huge \textrm{\MakeUppercase{$date$}}}
   \vfill
-  \vskip -8em
-  \noindent {\huge \textbf{\textsf{$title$}}}
+  \noindent {\Huge \textbf{\textrm{\MakeUppercase{$title$}}}}
   $if(subtitle)$
-  \vskip 1em
-  {\Large \textsf{$subtitle$}}
+  \vskip 0.2em
+  \noindent {\LARGE \textsc{$subtitle$}}
   $endif$
-  \vskip 2em
-  \noindent {\Large \textsf{$for(author)$$author$$sep$, $endfor$} \vskip 0.6em \textsf{$date$}}
-  \vfill
+  \vskip 1em
+  \noindent {\large \textrm{$for(author)$$author$$sep$, $endfor$}}
+  $if(firm)$
+  \\
+  \noindent {\normalsize \textrm{$firm$}}
+  $endif$
+  $if(class)$
+  \\
+  \noindent {\small \textrm{$class$}}
+  $endif$
 }
 $else$
 {
@@ -951,7 +958,7 @@ $if(titlepage-background)$
 $else$
 \textsf{$date$}
 $endif$
-\end{flushleft}
+\end{flushright}
 \end{titlepage}
 \restoregeometry
 \pagenumbering{arabic} 

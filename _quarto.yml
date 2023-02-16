@@ -6,11 +6,11 @@ execute:
   freeze: auto
   
 book:
-  title: "Dream Town"
+  title: "Dream Town Development"
   subtitle: "Traffic Impact Analysis"
   author: "Hayden Atchley"
   date: today
-  date-format: "D MMMM YYYY"
+  date-format: "MMMM D, YYYY"
   chapters:
     - index.qmd
     - qmd/01_intro.qmd
@@ -26,6 +26,8 @@ book:
     - qmd/appendix/apdx_ex_synchro.qmd
     - qmd/appendix/apdx_tripgen.qmd
 
+class: "CE 664"
+firm: "HSL Developers"
 bibliography: references.bib
 toc: true
 lof: true
@@ -33,12 +35,10 @@ lot: true
 toc-depth: 2
 number-depth: 1
 csl: asce.csl
-filters:
-  - abstract-section
 
 format:
-  docx:
-    reference-doc: reference.docx
+  # docx:
+  #   reference-doc: reference.docx
   pdf:
     template: template.latex
     titlepage: true
