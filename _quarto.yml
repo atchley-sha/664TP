@@ -3,6 +3,7 @@ project:
 
 execute: 
   echo: false
+  freeze: auto
   
 book:
   title: "Dream Town"
@@ -22,20 +23,37 @@ book:
     # - qmd/08_conclusions.qmd
     - qmd/references.qmd
   appendices: 
-    - qmd/appendix/apdx_tripgen.qmd
     - qmd/appendix/apdx_ex_synchro.qmd
+    - qmd/appendix/apdx_tripgen.qmd
 
 bibliography: references.bib
+toc: true
+lof: true
+lot: true
+toc-depth: 2
+number-depth: 1
+csl: asce.csl
+filters:
+  - abstract-section
 
 format:
   docx:
-    toc: true
     reference-doc: reference.docx
-    number-depth: 2
-    toc-depth: 2
-    csl: asce.csl
-  # pdf:
-  #   documentclass: scrreprt
+  pdf:
+    template: template.latex
+    titlepage: true
+    book: true
+    titlepage-background: background.pdf
+    float-placement-figure: htbp
+    toc-own-page: true
+    footer-left: \hfill
+    footer-right: \hfill
+    footer-center: \thepage
+    classoption: openany
+    top-level-division: chapter
+    mainfont: "Gentium Book Basic"
+    sansfont: "Alte Haas Grotesk"
+    monofont: "SauceCodePro NF"
   # html:
   #   toc: true
 
