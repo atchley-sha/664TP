@@ -43,7 +43,7 @@ format:
     template: template.latex
     titlepage: true
     book: true
-    titlepage-background: background.pdf
+    titlepage-background: title_page_background.pdf
     float-placement-figure: htbp
     toc-own-page: true
     footer-left: \hfill
