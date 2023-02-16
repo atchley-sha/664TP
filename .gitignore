@@ -6,3 +6,5 @@
 
 /.quarto/
 /_targets/
+/_freeze/
+/_book/
