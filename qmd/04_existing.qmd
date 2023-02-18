@@ -31,7 +31,7 @@ knitr::include_graphics("../images/output/traffic_counts_base.png")
 
 ## Level of Service
 
-A \acr{LOS} measure was used to determine the traffic performance of each intersection (and each movement within each intersection). This \acr{LOS} is a measurement of average control delay per vehicle, and bins the amount of delay into groups designated by the letters A--F. These designations differ between signalized and unsignalized intersections, and are provided in the \acr{HCM} [@highway2022]. @tbl-los-intersections summarizes these criteria. This analysis assumes a \acr{LOS} of `D` or better represents acceptable conditions.
+A \acr{LOS} measure was used to determine the traffic performance of each intersection (and each movement within each intersection). This \acr{LOS} is a measurement of average control delay per vehicle, and bins the amount of delay into groups designated by the letters A--F. These designations differ between signalized and unsignalized intersections, and are provided in the \acr{HCM} [@highway2022]. Tables [-@tbl-los-signal] and [-@tbl-los-unsignal] summarize these criteria. This analysis assumes a \acr{LOS} of `D` or better represents acceptable conditions.
 
 ```{r}
 #| label: tbl-los-signal
