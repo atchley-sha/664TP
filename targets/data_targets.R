@@ -12,12 +12,8 @@ tar_plan(
   tar_target(street_config_file, "data/street_config.csv", format = "file"),
   street_config = read_csv(street_config_file),
   
-  tar_target(los_signal_file, "data/los_signal.csv", format = "file"),
-  los_signal = read_csv(los_signal_file),
-  
-  tar_target(los_unsignal_file, "data/los_unsignal.csv", format = "file"),
-  los_unsignal = read_csv(los_unsignal_file),
-  
+  tar_target(los_criteria_file, "data/los_criteria.csv", format = "file"),
+  los_criteria = read_csv(los_criteria_file),
   
   # Base images
   tar_target(site_traffic_base, "images/reference/site_traffic_base.png", format = "file"),
