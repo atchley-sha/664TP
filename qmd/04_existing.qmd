@@ -34,18 +34,19 @@ knitr::include_graphics("../images/output/traffic_counts_base.png")
 A \acr{LOS} measure was used to determine the traffic performance of each intersection (and each movement within each intersection). This \acr{LOS} is a measurement of average control delay per vehicle, and bins the amount of delay into groups designated by the letters A--F. These designations differ between signalized and unsignalized intersections, and are provided in the \acr{HCM} [@highway2022]. @tbl-los-intersections summarizes these criteria. This analysis assumes a \acr{LOS} of `D` or better represents acceptable conditions.
 
 ```{r}
-#| label: tbl-los-intersections
-#| tbl-cap: "LOS Criteria for Intersections"
-#| tbl-subcap:
-#|   - "Signalized"
-#|   - "Unsignalized"
-#| layout-ncol: 2
+#| label: tbl-los-signal
+#| tbl-cap: "LOS Criteria for Signalized Intersections"
 
 tar_read(los_signal) %>% 
   flextable() %>% 
   set_header_labels(delay = "Average Control\nDelay (sec/veh)", los = "LOS\nDesignation") %>% 
   autofit() %>% 
   align(align = "center", part = "all")
+```
+
+```{r}
+#| label: tbl-los-unsignal
+#| tbl-cap: "LOS Criteria for Unsignalized Intersections"
 
 tar_read(los_unsignal) %>% 
   flextable() %>% 
