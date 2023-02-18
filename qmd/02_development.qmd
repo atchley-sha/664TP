@@ -30,9 +30,10 @@ The proposed {{< var devname >}} development has two development pads, with one 
 
 tar_read(land_use) %>% 
   select(pad, landuse, code, sqft) %>% 
-    `colnames<-`(c("Development Pad", "Proposed Land Use", "ITE Land Use Code", "Area (sqft)")) %>% 
-    flextable() %>% 
-    autofit()
+  `colnames<-`(c("Development Pad", "Proposed Land Use", "ITE Land Use Code", "Area (sqft)")) %>% 
+  flextable() %>% 
+  autofit() %>% 
+  align(align = "center", part = "all")
 ```
 
 The site area is zoned as SC3, which is a Regional Shopping Center. The primary use of this land is for commercial and service uses to serve needs of people living in an entire region. It is located close to freeways & major arterials for easy access [@provocitycode, Chapter 14.20]. @fig-zoningmap provides a section of the Provo zoning map [@provocityutah2022] with the site location marked.

@@ -40,7 +40,8 @@ A \acr{LOS} measure was used to determine the traffic performance of each inters
 
 tar_read(los_signal) %>% 
   flextable() %>% 
-  autofit()
+  autofit() %>% 
+  align(align = "center", part = "all")
 ```
 
 ```{r}
@@ -49,10 +50,19 @@ tar_read(los_signal) %>%
 
 tar_read(los_unsignal) %>% 
   flextable() %>% 
-  autofit()
+  autofit() %>% 
+  align(align = "center", part = "all")
 ```
 
 The existing level of service was determined based on current traffic volumes [@sec-existingtrafficvols] and signal timings (obtained from \acr{UDOT}), using the Synchro software package [@trafficware2019]. Synchro performs a \acr{LOS} analysis using these and other inputs, including roadway and lane configuration. @fig-losbasenumbers shows the average control delay for each movement and intersection, and @fig-losbaseletters shows the \acr{LOS} of the same.
+
+```{r}
+#| label: fig-losbasenumbers
+#| fig-cap: "Results of existing Synchro LOS analysis for each movement and intersection studied."
+#| fig-scap: "Existing Synchro LOS results"
+
+knitr::include_graphics("../images/output/traffic_los_base.png")
+```
 
 ```{r}
 #| label: fig-losbaseletters
@@ -62,5 +72,6 @@ The existing level of service was determined based on current traffic volumes [@
 knitr::include_graphics("../images/output/traffic_los_base.png")
 ```
 
-
 ## Transportation Safety
+
+Crashes are bad, and we want less of them
