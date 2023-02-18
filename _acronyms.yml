@@ -1,14 +1,12 @@
-```yaml
 ---
 acronyms:
   keys:
-    # Define your keys here
     - shortname: TIA
       longname: Traffic Impact Analysis
     - shortname: UDOT
       longname: Utah Department of Transportation
     - shortname: ITE
-      longmane: Institute of Transportation Engineers
+      longname: Institute of Transportation Engineers
     - shortname: N/S
       longname: north-south
     - shortname: E/W
@@ -32,4 +30,3 @@ acronyms:
     - shortname: AWSC
       longname: all-way--stop-controlled
 ---
-```

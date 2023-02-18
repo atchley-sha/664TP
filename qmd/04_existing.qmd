@@ -4,9 +4,9 @@
 
 ## Physical Characteristics
 
-The study area contains four intersections: 1200 S / Towne Centre Blvd, a 3-way stop-controlled intersection; 1200 S / University Ave, a 4-way signalized intersection; Towne Centre Dr / Towne Centre Blvd, a 3-way signalized intersection; and Towne Centre Dr / University Ave, a 4-way signalized intersection (see @fig-intersections). 
+The study area contains four intersections: 1200 South / Towne Centre Blvd., a 3-way stop-controlled intersection; 1200 South / University Ave., a 4-way signalized intersection; Towne Centre Dr. / Towne Centre Blvd., a 3-way signalized intersection; and Towne Centre Dr. / University Ave., a 4-way signalized intersection (see @fig-intersections). 
 
-Much of the information regarding lane striping and turning movements for these intersections is given in @tbl-streetconfig. It is additionally worth noting that the east leg of the 1200 S / University Ave intersection is a parking lot access, and the WB lane has a designated left-turn lane and a shared right/through lane. For reference, a lane configuration diagram of these intersections is provided in @fig-lanediagram.
+Much of the information regarding lane striping and turning movements for these intersections is given in @tbl-streetconfig. It is additionally worth noting that the east leg of the 1200 South / University Ave. intersection is a parking lot access, and the \acr{WB} lane has a designated left-turn lane and a shared right/through lane. For reference, a lane configuration diagram of these intersections is provided in @fig-lanediagram.
 
 ```{r}
 #| label: fig-lanediagram
@@ -19,9 +19,9 @@ knitr::include_graphics("../images/output/lane_diagram.png")
 
 ## Traffic Volumes {#sec-existingtrafficvols}
 
-Traffic turning volume counts were done at the Towne Centre Dr / University Ave and Towne Centre Dr / Towne Center Blvd intersections from 4:15--6:00 PM on January 24 (Tue) and 25 (Wed), 2023, respectively. Scheduling conflicts and limited personnel necessitated that the counts be performed for only two intersections and on different days. However, for the purposes of this report this is not a significant limitation, due to the limited scope of the assignment. The two days are considered similar enough, and volumes were estimated for the other two intersections.
+Traffic turning volume counts were done at the Towne Centre Dr. / University Ave. and Towne Centre Dr. / Towne Center Blvd. intersections from 4:15--6:00 PM on January 24 (Tue) and 25 (Wed), 2023, respectively. Scheduling conflicts and limited personnel necessitated that the counts be performed for only two intersections and on different days. However, for the purposes of this report this is not a significant limitation, due to the limited scope of the assignment. The two days are considered similar enough, and volumes were estimated for the other two intersections based on these counts and historical data.
 
-From these counts and projections, 4:30--5:30 PM was determined to be the peak hour, with a peak hour factor (PHF) of 0.92. The volumes for this peak hour are presented in @fig-basevolumes.
+From these traffic volumes, 4:30--5:30 PM was determined to be the peak hour, with a peak hour factor (PHF) of 0.92. The volumes for this peak hour are presented in @fig-basevolumes.
 
 ```{r}
 #| label: fig-basevolumes
@@ -32,7 +32,7 @@ knitr::include_graphics("../images/output/traffic_counts_base.png")
 
 ## Level of Service
 
-A level of service (LOS) measure was used to determine the traffic performance of each intersection (and each movement within each intersection). This LOS is a measurement of average control delay per vehicle, and bins the amount of delay into groups designated by the letters A--F. These designations differ between signalized and unsignalized intersections, and are provided in the Highway Capacity Manual (HCM) [@highway2022]. @tbl-los-signal and @tbl-los-unsignal summarize these criteria. This analysis assumes a LOS of `D` or better represents acceptable conditions.
+A \acr{LOS} measure was used to determine the traffic performance of each intersection (and each movement within each intersection). This \acr{LOS} is a measurement of average control delay per vehicle, and bins the amount of delay into groups designated by the letters A--F. These designations differ between signalized and unsignalized intersections, and are provided in the \acr{HCM} [@highway2022]. @tbl-los-signal and @tbl-los-unsignal summarize these criteria. This analysis assumes a \acr{LOS} of `D` or better represents acceptable conditions.
 
 ```{r}
 #| label: tbl-los-signal
@@ -52,10 +52,10 @@ tar_read(los_unsignal) %>%
   autofit()
 ```
 
-The existing level of service was determined based on current traffic volumes [@sec-existingtrafficvols] and signal timings (obtained from UDOT), using the Synchro software package [@trafficware2019]. Synchro performs a LOS analysis using these and other inputs, including roadway and lane configuration. @fig-losbase shows the results of this analysis.
+The existing level of service was determined based on current traffic volumes [@sec-existingtrafficvols] and signal timings (obtained from \acr{UDOT}), using the Synchro software package [@trafficware2019]. Synchro performs a \acr{LOS} analysis using these and other inputs, including roadway and lane configuration. @fig-losbasenumbers shows the average control delay for each movement and intersection, and @fig-losbaseletters shows the \acr{LOS} of the same.
 
 ```{r}
-#| label: fig-losbase
+#| label: fig-losbaseletters
 #| fig-cap: "Results of existing Synchro LOS analysis for each movement and intersection studied."
 #| fig-scap: "Existing Synchro LOS results"
 

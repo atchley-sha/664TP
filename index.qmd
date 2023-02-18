@@ -1,1 +1,7 @@
-# {.unnumbered .unlisted}
+::: {.content-hidden when-format="html"}
+
+# List of Acronyms {.unnumbered .unlisted}
+
+\printacronyms
+
+:::

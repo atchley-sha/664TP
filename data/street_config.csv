@@ -1,5 +1,5 @@
-﻿Road Name,Direction,NB/EB Lanes,SB/WB Lanes,Speed Limit (mph),Median/TWLTL
-1200 S,E/W,2,2,,Median
-University Ave / US-189,N/S,3,3,35,TWLTL
-Towne Centre Blvd,N/S,1,2,25,TWLTL
-Towne Centre Dr,E/W,2,2,30,Median
+road,dir,ne,sw,mph,notes
+1200 South,E/W,2,2,---,Median
+University Ave. (US-189),N/S,3,3,35,TWLTL
+Towne Centre Blvd.,N/S,1,2,25,TWLTL
+Towne Centre Dr.,E/W,2,2,30,Median

@@ -4,26 +4,26 @@
 
 ## Purpose
 
-This report presents a Traffic Impact Analysis (TIA) for the proposed {{< var devname >}} development. This TIA was completed to fulfill requirements from Provo City and the Utah Department of Transportation (UDOT) for new development, and was done in accordance with UDOT guidelines to apply for an access permit [@utahdepartmentoftransportation2019]. The TIA identifies current traffic patterns---including traffic volume counts---in the study area, and projects traffic volumes to opening day and five years after opening (2024 and 2029, respectively).
+This report presents a \acr{TIA} for the proposed {{< var devname >}} development. This \acr{TIA} was completed to fulfill requirements from Provo City and the \acr{UDOT} for new development, and was done in accordance with \acr{UDOT} guidelines to apply for an access permit [@utahdepartmentoftransportation2019]. The \acr{TIA} identifies current traffic patterns---including traffic volume counts---in the study area, and projects traffic volumes to opening day and 5 years after opening (2024 and 2029, respectively).
 
 ## Study Level
 
-UDOT Administrative Rule R930-6-8(4) [@utahdepartmentoftransportation2019] sets forth general requirements for an access permit, including determining the application level. The proposed development will contain an 8,000 ft^2^ high-turnover restaurant (Institute of Transportation Engineers (ITE) land use code 932) and a 32,000 ft^2^ office/retail building, half of which (18,000 ft^2^) will be a general office location (ITE land use code 710), and the remaining half (18,000 ft^2^) will be a hardware store (ITE land use code 816). From the ITE Trip Generation Manual [@instituteoftransportationengineers2021], these locations are expected to generate 1264 weekday trips and 166 PM peak trips (see @sec-apdx-tripgen). These trip rates, along with the land use and respective development sizes, necessitate a level II application.
+\acr{UDOT} Administrative Rule R930-6-8(4) [@utahdepartmentoftransportation2019] sets forth general requirements for an access permit, including determining the application level. The proposed development will contain an 8,000 ft^2^ high-turnover restaurant (\acr{ITE} land use code 932) and a 32,000 ft^2^ office/retail building, half of which (18,000 ft^2^) will be a general office location (\acr{ITE} land use code 710), and the remaining half (18,000 ft^2^) will be a hardware store (\acr{ITE} land use code 816). From the \acr{ITE} Trip Generation Manual [@instituteoftransportationengineers2021], these locations are expected to generate 1264 weekday trips and 166 PM peak trips (see @sec-apdx-tripgen). These trip rates, along with the land use and respective development sizes, necessitate a level II application.
 
 A Level II application requires the following:
 
 - Analysis area includes intersection of site access drives with state highways and any signalized and un-signalized intersection within access category distance of property line
-- Design years are opening day and five years after project completion
+- Design years are opening day and 5 years after project completion
 - Traffic is identified for weekday AM and PM peak, and special peak hour as necessary
-  - **N.B. This analysis only includes PM peak traffic due to the scope of the assignment**
+    - **N.B. This analysis only includes PM peak traffic due to the scope of the assignment**
 - Data collection includes:
-  - Daily and turning movement counts
-  - Site and adjacent roadway/intersection geometrics
-  - Information on traffic control devices
-  - Crash data
-- Trip generation following the ITE Trip Generation Manual or other ITE procedures
-- Trip distributions and assignment (existing, site, background, and future volumes in analysis area)
-- Conflict and capacity analysis
+- Daily and turning movement counts
+- Site and adjacent roadway/intersection geometrics
+- Information on traffic control devices
+    - Crash data
+    - Trip generation following the \acr{ITE} Trip Generation Manual or other \acr{ITE} procedures
+    - Trip distributions and assignment (existing, site, background, and future volumes in analysis area)
+    - Conflict and capacity analysis
 - Traffic signal impacts
 - Right-of-way identified, including no- and limited-access control lines
 - Includes safe operational design needs and concerns with accompanying mitigation measures

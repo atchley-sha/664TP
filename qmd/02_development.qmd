@@ -6,10 +6,10 @@ This section describes the plans for the development, including site location, l
 
 ## Site Description
 
-The proposed Dream Town development is located in southern Provo, in Utah. The site is located on the west side of University Avenue (US-189), between 1200 S and Towne Centre Drive. This location is just east of the Provo Towne Centre mall, which is a large retail and dining center and a large generator of trips. The location is also near (to the north of) the intersection of I-15 and University Avenue. @fig-sitemap shows a map of the site area. Four intersections are included in the analysis:
+The proposed Dream Town development is located in southern Provo, in Utah. The site is located on the west side of University Ave. (US-189), between 1200 South and Towne Centre Dr. This location is just east of the Provo Towne Centre mall, which is a large retail and dining center and a large generator of trips. The location is also near (to the north of) the intersection of I-15 and University Ave. @fig-sitemap shows a map of the site area. Four intersections are included in the analysis:
 
--   1200 S / Towne Centre Blvd. (stop-controlled)
--   1200 S / University Ave. (signalized)
+-   1200 South / Towne Centre Blvd. (\acr{AWSC})
+-   1200 South / University Ave. (signalized)
 -   Towne Centre Dr. / Towne Centre Blvd. (signalized)
 -   Towne Centre Dr. / University Ave. (signalized)
 
@@ -22,7 +22,7 @@ knitr::include_graphics("../images/site_map.png")
 
 ## Land Use and Zoning Information
 
-The proposed {{< var devname >}} development has two development pads, with one pad containing a sit-down restaurant and the other pad containing a mixed-use office/retail location. The retail location is intended to be a hardware/paint store. @tbl-landuse shows these land uses along with their ITE land use codes and respective square footage.
+The proposed {{< var devname >}} development has two development pads, with one pad containing a sit-down restaurant and the other pad containing a mixed-use office/retail location. The retail location is intended to be a hardware/paint store. @tbl-landuse shows these land uses along with their \acr{ITE} land use codes and respective square footage.
 
 ```{r}
 #| label: tbl-landuse

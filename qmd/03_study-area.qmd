@@ -2,7 +2,7 @@
 
 {{< include ../setup.qmd >}}
 
-The study area for this analysis includes the streets adjacent to the site as well as their intersections. These streets are 1200 S on the north, University Ave. / US-189 on the east, Towne Centre Blvd. on the west, and Towne Centre Dr. on the south. Note that there is existing development between {{< var devname >}} and Towne Centre Dr. All of the intersections in the TIA are signalized with the exception of the Town Centre Blvd. / 1200 S intersection, which is stop-controlled. This is shown in @fig-intersections.
+The study area for this analysis includes the streets adjacent to the site as well as their intersections. These streets are 1200 South on the north, University Ave. (US-189) on the east, Towne Centre Blvd. on the west, and Towne Centre Dr. on the south. Note that there is existing development between {{< var devname >}} and Towne Centre Dr. All of the intersections in the \acr{TIA} are signalized with the exception of the Town Centre Blvd. / 1200 South intersection, which is stop-controlled. This is shown in @fig-intersections.
 
 ```{r}
 #| label: fig-intersections
@@ -14,35 +14,41 @@ knitr::include_graphics("../images/output/intersections.png")
 
 ## Street Conditions
 
-Detailed information on the streets in the study area is provided below. This information is summarized in @tbl-streetconfig.
+Detailed information on each street in the study area is provided in the following sections. This information is also summarized in @tbl-streetconfig.
 
 ```{r}
 #| label: tbl-streetconfig
 #| tbl-cap: "Summary of Adjacent Street Configuration"
 
 tar_read(street_config) %>% 
-  flextable()
+  flextable() %>% 
+  set_header_labels(road = "Road Name", mph = "Speed Limit\n(mph)", dir = "Direction", ne = "NB/EB\nLanes", sw = "SB/WB\nLanes", notes = "Meridian/\nTWLTL") %>% 
+  mk_par(i = 1, j = ~mph, as_paragraph(.), use_dot = TRUE) %>% 
+  footnote(i = 1, j = 6, ref_symbols = "1", value = as_paragraph("Two-way--left-turn lane"), part = "header") %>% 
+  autofit() %>% 
+  align(j = -1, align = "center", part = "all") %>% 
+  align(align = "left", part = "footer")
 ```
 
 ###### 1200 South
 
-1200 S is an east-west (E/W) local road which, at least in the vicinity of the study area, exists only to offer a connection between Towne Centre Bvld and University Ave. It runs about 350 feet along the north edge of the proposed {{< var devname >}}, and has 3 eastbound (EB) lanes and 2 westbound (WB) lanes. The two WB lanes offer a left- and right-turning movement, respectively (onto Towne Centre Blvd), and there is no through movement since 1200 S and Towne Centre Bvld form a T intersection. The three EB lanes offer a left, through, and right-turn movement, either onto University Avenue for the turning movements or into a parking lot for the through movement. There is no posted speed limit, and a raised median prevents left turns onto or off of this road.
+1200 South is an \acr{E/W} local road which, at least in the vicinity of the study area, exists only to offer a connection between Towne Centre Bvld. and University Ave. It runs about 350 feet along the north edge of the proposed {{< var devname >}}, and has 3 \acr{EB} lanes and 2 \acr{WB} lanes. The 2 \acr{WB} lanes offer a left- and right-turning movement, respectively (onto Towne Centre Blvd.), and there is no through movement since 1200 South and Towne Centre Bvld. form a T intersection. The 3 \acr{EB} lanes offer a left, through, and right-turn movement, either onto University Ave. for the turning movements or into a parking lot for the through movement. There is no posted speed limit, and a raised median prevents left turns onto or off of this road.
 
-###### University Avenue / US-189
+###### University Avenue (US-189)
 
-University Ave is also designated as US-189, and is a major arterial running north-south (N/S) through Provo. University Ave connects with I-15 roughly 3000 feet south of the study area and has connections to many commercial developments on either side of the road. There are 3 through lanes in both directions in the study area, with 2 additional left- and 1 additional right-turn lanes/bays in both directions at the Towne Centre Dr intersection and 1 additional left- and right-turn lane/bay each in both directions at the 1200 S intersection. The posted speed limit is 35 mph, and there is a Two-Way Left Turn Lane (TWLTL) on this road for the length of the study area. There is also an appreciable shoulder on the west side of the road, and there are sidewalks on both sides, though the sidewalk on the east is separated from the road by a grassy curb strip, and the sidewalk on the west is not.
+University Ave. is also designated as US-189, and is a major arterial running \acr{N/S} through Provo. University Ave. connects with I-15 roughly 3000 feet south of the study area and has connections to many commercial developments on either side of the road. There are 3 through lanes in both directions in the study area, with 2 additional left- and 1 additional right-turn lanes/bays in both directions at the Towne Centre Dr. intersection and 1 additional left- and right-turn lane/bay each in both directions at the 1200 South intersection. The posted speed limit is 35 mph, and there is a \acr{TWLTL} on this road for the length of the study area. There is also an appreciable shoulder on the west side of the road, and there are sidewalks on both sides, though the sidewalk on the east is separated from the road by a grassy curb strip, and the sidewalk on the west is not.
 
 ###### Towne Centre Boulevard
 
-Towne Centre Blvd is a local street that circumnavigates the Provo Towne Centre mall. Within the study area this road runs N/S, and has 1 northbound (NB) and 2 southbound (SB) through lanes. A TWLTL runs the length of this road, though it is broken up by a bus stop located in the center of the road near the southern end of {{< var devname >}}. The TWLTL becomes two SB left turn bays at the Towne Centre Dr intersection, and there is a NB free-flow right-turn bay at the same. This road has a posted speed limit of 25 mph.
+Towne Centre Blvd. is a local street that circumnavigates the Provo Towne Centre mall. Within the study area this road runs \acr{N/S}, and has 1 \acr{NB} and 2 \acr{SB} through lanes. A \acr{TWLTL} runs the length of this road, though it is broken up by a bus stop located in the center of the road near the southern end of {{< var devname >}}. The \acr{TWLTL} becomes two \acr{SB} left turn bays at the Towne Centre Dr. intersection, and there is a \acr{NB} free-flow right-turn bay at the same. This road has a posted speed limit of 25 mph.
 
 ###### Towne Centre Drive
 
-Towne Centre Dr is an E/W road that runs between Towne Centre Blvd and University Ave, and becomes East Bay Blvd east of University Ave. There is a posted speed limit of 30 mph, and there is a raised median between Towne Centre Blvd and University Ave, though the median breaks about midway, allowing a WB left turn to access the development to the south. There are 2 left- and 1 right-turn bays at the University Ave intersection in both directions, and 2 left-turn lanes and a right-turn free-flow lane at the Towne Centre Blvd intersection.
+Towne Centre Dr. is an \acr{E/W} road that runs between Towne Centre Blvd. and University Ave., and becomes East Bay Blvd. east of University Ave. There is a posted speed limit of 30 mph, and there is a raised median between Towne Centre Blvd. and University Ave., though the median breaks about midway, allowing a \acr{WB} left turn to access the development to the south. There are 2 left- and 1 right-turn bays at the University Ave. intersection in both directions, and 2 left-turn lanes and a right-turn free-flow lane at the Towne Centre Blvd. intersection.
 
 ### Additional Information
 
-There are several bus stops in the study area, as shown in @fig-busmap. Towne Centre Blvd is elevated relative to {{< var devname >}}, but there is a staircase next to the bus stop that allows for pedestrian access.
+There are several bus stops in the study area, as shown in @fig-busmap. Towne Centre Blvd. is elevated relative to {{< var devname >}}, but there is a staircase next to the bus stop that allows for pedestrian access.
 
 ```{r}
 #| label: fig-busmap
@@ -58,4 +64,4 @@ As can be seen in @fig-zoningmap, much of the nearby land is in the same zoning 
 
 ## Site Accessibility
 
-University Ave provides direct access to {{< var devname >}} from I-15, as well as from downtown Provo. This is the most major road with direct access to the site, but several other roads provide access as well. Towne Centre Blvd has connections to a neighborhood northwest of the site, and East Bay Blvd provides access to University Ave near the site from southeast Provo, and has a connection to Springville via Lakeview Pkwy and I-89.
+University Ave. provides direct access to {{< var devname >}} from I-15, as well as from downtown Provo. This is the most major road with direct access to the site, but several other roads provide access as well. Towne Centre Blvd. has connections to a neighborhood northwest of the site, and East Bay Blvd. provides access to University Ave. near the site from southeast Provo, and has a connection to Springville via Lakeview Pkwy. and I-89.

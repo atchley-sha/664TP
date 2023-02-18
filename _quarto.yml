@@ -4,7 +4,11 @@ project:
 execute: 
   echo: false
   freeze: auto
-  
+
+# knitr:
+#   opts_chunk: 
+#     ft.keepnext: true
+    
 book:
   title: "Dream Town Development"
   subtitle: "Traffic Impact Analysis"
@@ -38,7 +42,11 @@ csl: asce.csl
 filters:
   - lua/acronyms/parse-acronyms.lua
 acronyms:
-  fromfile: _acronyms.yml
+  fromfile: "_acronyms.yml"
+  insert_loa: false
+  loa_title: ""
+  include_unused: false
+  insert_links: false
 
 format:
   # docx:

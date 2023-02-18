@@ -1,6 +1,6 @@
 # Synchro LOS Analysis (Existing) {#sec-synchro-ex}
 
-This appendix contains the results of the Synchro LOS analysis for the existing road volumes, signal timings, and lane configurations. The analysis of the all-way-stop-controlled (AWSC) 1200 S / Towne Centre Blvd intersection is given first, followed by the analysis for the remaining (signalized) intersections.
+This appendix contains the results of the Synchro \acr{LOS} analysis for the existing road volumes, signal timings, and lane configurations. The analysis of the \acr{AWSC} 1200 South / Towne Centre Blvd intersection is given first, followed by the analysis for the remaining (signalized) intersections.
 
 ![](../../data/reference/Synchro Analysis 1200TCB.pdf)
 ![](../../data/reference/Synchro Analysis 1200UA.pdf)
