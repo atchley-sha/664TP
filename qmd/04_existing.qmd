@@ -36,20 +36,12 @@ A \acr{LOS} measure was used to determine the traffic performance of each inters
 ```{r}
 #| label: tbl-los-intersections
 #| tbl-cap: "LOS Criteria for Intersections"
-#| tbl-subcap:
-#|   - "Signalized"
-#|   - "Unsignalized"
-#| layout-ncol: 2
 
-tar_read(los_signal) %>% 
+tar_read(los_criteria) %>% 
   flextable() %>% 
-  set_header_labels(delay = "Average Control\nDelay (sec/veh)", los = "LOS\nDesignation") %>% 
-  autofit() %>% 
-  align(align = "center", part = "all")
-
-tar_read(los_unsignal) %>% 
-  flextable() %>% 
-  set_header_labels(delay = "Average Control\nDelay (sec/veh)", los = "LOS\nDesignation") %>%
+  set_header_labels(los = "LOS\nDesignation", signal = "Signalized", unsignal = "Unsignalized") %>% 
+  add_header_row(values = c("LOS\nDesignation", "Average Control Delay (sec/veh)"), colwidths = c(1,2)) %>% 
+  merge_v(j = 1, part = "header") %>% 
   autofit() %>% 
   align(align = "center", part = "all")
 ```
