@@ -30,8 +30,6 @@ book:
     - qmd/appendix/apdx_ex_synchro.qmd
     - qmd/appendix/apdx_tripgen.qmd
 
-crossref: 
-  appendix-delim: "."
 class: "CE 664"
 firm: "HSL Developers"
 bibliography: references.bib
@@ -49,6 +47,8 @@ acronyms:
   loa_title: ""
   include_unused: false
   insert_links: false
+crossref: 
+  appendix-delim: "."
 
 format:
   # docx:
