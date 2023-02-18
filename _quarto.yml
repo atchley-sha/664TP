@@ -35,6 +35,10 @@ lot: true
 toc-depth: 2
 number-depth: 1
 csl: asce.csl
+filters:
+  - lua/acronyms/parse-acronyms.lua
+acronyms:
+  fromfile: _acronyms.yml
 
 format:
   # docx:

@@ -1,0 +1,35 @@
+```yaml
+---
+acronyms:
+  keys:
+    # Define your keys here
+    - shortname: TIA
+      longname: Traffic Impact Analysis
+    - shortname: UDOT
+      longname: Utah Department of Transportation
+    - shortname: ITE
+      longmane: Institute of Transportation Engineers
+    - shortname: N/S
+      longname: north-south
+    - shortname: E/W
+      longname: east-west
+    - shortname: NB
+      longname: northbound
+    - shortname: EB
+      longname: eastbound
+    - shortname: SB
+      longname: southbound
+    - shortname: WB
+      longname: westbound
+    - shortname: TWLTL
+      longname: two-way--left-turn lane
+    - shortname: PHF
+      longname: peak hour factor
+    - shortname: LOS
+      longname: level of service
+    - shortname: HCM
+      longname: Highway Capacity Manual
+    - shortname: AWSC
+      longname: all-way--stop-controlled
+---
+```
