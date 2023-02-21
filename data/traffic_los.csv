@@ -3,10 +3,10 @@ TCB1200,sb,A,A,,
 TCB1200,wb,A,,A,
 TCB1200,nb,,A,A,
 TCB1200,intersection,,,,A
-TCBTCD,sb,F,F,,
-TCBTCD,wb,A,,F,
-TCBTCD,nb,,F,F,
-TCBTCD,intersection,,,,F
+TCBTCD,sb,B,A,,
+TCBTCD,wb,B,,-,
+TCBTCD,nb,,B,-,
+TCBTCD,intersection,,,,B
 UA1200,sb,A,A,A,
 UA1200,wb,E,A,E,
 UA1200,nb,A,A,A,

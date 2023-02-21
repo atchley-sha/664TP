@@ -20,6 +20,10 @@ plot_on_intersection_map <- function(data, image_file, development_name, out_fil
       size = 3,
       mapping = aes(x = x, y = y, label = value))
   
+  ggsave(out_file, plot = p)
+  
+  p
+  
 }
 
 # Put development name on site map

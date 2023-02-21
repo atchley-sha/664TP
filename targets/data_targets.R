@@ -6,8 +6,8 @@ tar_plan(
   tar_target(traffic_los_base_file, "data/traffic_los.csv", format = "file"),
   base_los = read_csv(traffic_los_base_file),
   
-  # tar_target(traffic_delay_base_file, "data/traffic_delay.csv", format = "file"),
-  # base_delay = read_csv(traffic_delay_base_file),
+  tar_target(traffic_delay_base_file, "data/traffic_delay.csv", format = "file"),
+  base_delay = read_csv(traffic_delay_base_file),
   
   tar_target(land_use_file, "data/land_use.csv", format = "file"),
   land_use = read_csv(land_use_file),
