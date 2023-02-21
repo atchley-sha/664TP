@@ -30,8 +30,9 @@ The proposed {{< var devname >}} development has two development pads, with one 
 
 tar_read(land_use) %>% 
   select(pad, landuse, code, sqft) %>% 
-  `colnames<-`(c("Development Pad", "Proposed Land Use", "ITE Land Use Code", "Area (sqft)")) %>% 
   flextable() %>% 
+  set_header_labels(pad = "Development Pad", landuse = "Proposed Land Use", code = "ITE Land Use Code", sqft = "Area (ft^2^)") %>% 
+  colformat_md(j = sqft, part = "header") %>% 
   autofit() %>% 
   align(align = "center", part = "all")
 ```
