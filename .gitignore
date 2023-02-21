@@ -3,6 +3,7 @@
 .RData
 .Ruserdata
 *.DS_Store
+.~lock*
 
 /.quarto/
 /_targets/
