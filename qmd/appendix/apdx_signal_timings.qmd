@@ -1,0 +1,7 @@
+# Signalized Intersection Signal Timings {#sec-apdx-signal-timings}
+
+This appendix provides signal timings for the three signalized intersections in the study area (University Ave. / 1200 South, University Ave. / Towne Center Dr. (East Bay Blvd.), and Towne Center Blvd. / Towne Center Dr.). It is worth noting that Phases 1/5, 2/6, 3/7, and 4/8 are active simultaneously (in pairs), and the non--left-turn phases include both the through and right-turn movements.
+
+![](../../images/signal_timings/UA1200S.png)
+![](../../images/signal_timings/UATCD.png)
+![](../../images/signal_timings/TCBTCD.png)

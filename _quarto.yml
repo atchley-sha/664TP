@@ -28,6 +28,7 @@ book:
     - qmd/references.qmd
   appendices: 
     - qmd/appendix/apdx_ex_synchro.qmd
+    - qmd/appendix/apdx_signal_timings.qmd
     - qmd/appendix/apdx_tripgen.qmd
 
 class: "CE 664"
