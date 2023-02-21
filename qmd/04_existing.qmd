@@ -4,7 +4,7 @@
 
 The study area contains four intersections: 1200 South / Towne Centre Blvd., a 3-way stop-controlled intersection; 1200 South / University Ave., a 4-way signalized intersection; Towne Centre Dr. / Towne Centre Blvd., a 3-way signalized intersection; and Towne Centre Dr. / University Ave., a 4-way signalized intersection (see @fig-intersections).
 
-Much of the information regarding lane striping and turning movements for these intersections is given in @tbl-streetconfig. It is additionally worth noting that the east leg of the 1200 South / University Ave. intersection is a parking lot access, and the \acr{WB} lane has a designated left-turn lane and a shared right/through lane. For reference, a lane configuration diagram of these intersections is provided in @fig-lanediagram.
+Much of the information regarding lane striping and turning movements for these intersections is given in @tbl-streetconfig. It is additionally worth noting that the east leg of the 1200 South / University Ave. intersection is a parking lot access, and the \acr{WB} lane has a designated left-turn lane and a shared right/through lane. For reference, a lane configuration diagram of these intersections is provided in @fig-lanediagram, and timings for the signalized intersections are provided in @sec-apdx-signal-timings.
 
 ```{r}
 #| label: fig-lanediagram
@@ -44,14 +44,14 @@ tar_read(los_criteria) %>%
   align(align = "center", part = "all")
 ```
 
-The existing level of service was determined based on current traffic volumes [@sec-existingtrafficvols] and signal timings (obtained from \acr{UDOT}), using the Synchro software package [@trafficware2019]. Synchro performs a \acr{LOS} analysis using these and other inputs, including roadway and lane configuration. @fig-losbasenumbers shows the average control delay for each movement and intersection, and @fig-losbaseletters shows the \acr{LOS} of the same.
+The existing level of service was determined based on current traffic volumes [@sec-existingtrafficvols] and signal timings (obtained from \acr{UDOT}), using the Synchro software package [@trafficware2019]. Synchro performs a \acr{LOS} analysis using these and other inputs, including roadway and lane configuration. @fig-losbasenumbers shows the average control delay for each movement and intersection, and @fig-losbaseletters shows the \acr{LOS} of the same. The full results of the Synchro analysis are available in @sec-synchro-ex.
 
 ```{r}
 #| label: fig-losbasenumbers
 #| fig-cap: "Results of existing Synchro LOS analysis for each movement and intersection studied: control delay values."
-#| fig-scap: "Existing Synchro LOS results (delay)."
+#| fig-scap: "Existing Synchro LOS results (control delay in seconds per vehicle)."
 
-knitr::include_graphics("../images/output/traffic_los_base.png")
+knitr::include_graphics("../images/output/traffic_delay_base.png")
 ```
 
 ```{r}
@@ -61,6 +61,10 @@ knitr::include_graphics("../images/output/traffic_los_base.png")
 
 knitr::include_graphics("../images/output/traffic_los_base.png")
 ```
+
+It is unsurprising that the Towne Centre Blvd. intersections perform so well, since the traffic volumes at these intersections are relatively low (see @fig-basevolumes). It also makes sense that the through and right-turn movements on University Ave. perform well, as this is a major arterial and these movements have relatively long phase lengths (see @sec-apdx-signal-timings). The \acr{EB} and \acr{WB} movements at the University Ave. intersections, however, generally perform much worse. This is for the same reason: the phase lengths on these movements are significantly shorter compared to the conflicting phase lengths. However, these movements do not have an enormous impact on the overall intersection delay(s), as the volumes are much lower than those *on* University Ave.
+
+The overall \acr{LOS} is generally good, though there are several movements with worse than \acr{LOS} `D` (generally acceptable conditions) performance. However, these are relatively minor movements, and the intersections themselves perform much better, so this is not too much cause for concern. It is possible that something as simple as a change in signal timings may do much to improve these under-performing movements. However, further analysis into the coordination of signals on University Ave. is warranted before implementing any signal timing changes.
 
 ## Transportation Safety
 
