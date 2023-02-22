@@ -68,4 +68,73 @@ The overall \acr{LOS} is generally good, though there are several movements with
 
 ## Transportation Safety
 
-Crashes are bad, and we want less of them
+As part of the analysis for this proposed development, a crash analysis was performed for University Ave. near the site. Recent crash data (obtained from \\acr{UDOT} for 2019\--2022) was used, and crashes between mileposts 0.5 and 1.0 were included in the analysis. This includes the intersections of University Ave. with both Towne Center Dr. and 1200 South, as well as the roadway segments between and either side of the intersections. Crashes occurring within `r tar_read(crash_influence_radius)` miles of an intersection are considered as "belonging" to that intersection, and all other crashes are counted on their respective roadway segments.
+
+@eq-intersection-crash-rate gives the crash rate of an intersection, and @eq-segment-crash-rate gives the crash rate of a segment, where `AADT` is average annual daily traffic, `MEV` is million entering vehicles, and `MVMT` is million vehicle-miles traveled. The AADT was provided by \acr{UDOT} for this stretch of University Ave., and is given as `r tar_read(UA_AADT)` vehicles per day.
+
+$$
+Crash\ Rate_{Intersection} = \frac{1000000 \times crashes}{365.25 \times years \times AADT}\ \text{crashes per MEV}
+$$ {#eq-intersection-crash-rate}
+
+$$
+Crash\ Rate_{Segment} = \frac{1000000 \times crashes}{365.25 \times years \times AADT \times length}\; \text{crashes per MVMT}
+$$ {#eq-segment-crash-rate}
+
+@tbl-crashes-intersections provides the two intersections and their crash rates, and @tbl-crashes-segments provides the crash rates on each segment of the roadway (as calculated by Equations [-@eq-intersection-crash-rate] and [-@eq-segment-crash-rate]).
+
+```{r}
+#| label: tbl-crashes-intersections
+#| tbl-cap: "University Ave. Crash Rates (Intersections)"
+
+tar_read(crash_rates) %>% 
+  filter(type == "intersection") %>% 
+  select(name, mp, n, rate) %>% 
+  flextable() %>% 
+  set_header_labels(name = "Intersection", mp = "Milepost", n = "Number of\nCrashes", rate = "Crash Rate\n(per MEV)") %>% 
+  colformat_double(j = "rate", digits = 2) %>% 
+  autofit() %>% 
+  align(j = -1, align = "center", part = "all")
+
+```
+
+```{r}
+#| label: tbl-crashes-segments
+#| tbl-cap: "University Ave. Crash Rates (Segments)"
+
+tar_read(crash_rates) %>% 
+  filter(type == "segment") %>% 
+  select(name, min, max, length, n, rate) %>% 
+  flextable() %>% 
+  set_header_labels(name = "Intersection", min = "Milepost\nStart", max = "Milepost\nEnd", length = "Segment\nLength", n = "Number of\nCrashes", rate = "Crash Rate\n(per MVMT)") %>% 
+  colformat_double(j = "rate", digits = 2) %>% 
+  colformat_md(j = 1) %>% 
+  autofit() %>% 
+  align(j = -1, align = "center", part = "all")
+
+```
+
+For the purposes of this assignment, the critical crash rate for intersection analysis is assumed to be 2 crashes per MEV, and the critical crash rate for the roadway segment analysis is assumed to be 8 crashes per MVMT. None of the crash rates approach these values, and so this roadway segment is deemed to be safe. However, it is also important to examine the severity of the crashes. @tbl-crash-levels provides the \acr{UDOT} crash severity scale, and @tbl-count-crashes-by-level gives the number and proportion of crashes at each level. From @tbl-count-crashes-by-level it is clear that the vast majority of crashes are \acr{PDO} crashes, with around 10% with confirmed injury and none fatal. This gives further evidence for the safety of the roadway corridor.
+
+```{r}
+#| label: tbl-crash-levels
+#| tbl-cap: "Crash Severity Levels (UDOT)"
+
+tar_read(crash_severity) %>% 
+  flextable() %>% 
+  set_header_labels(level = "Crash Severity\nLevel", type = "Description") %>%
+  autofit() %>% 
+  align(align = "center", part = "all")
+```
+
+```{r}
+#| label: tbl-count-crashes-by-level
+#| tbl-cap: "Crashes By Severity"
+
+tar_read(crash_severity) %>% 
+  flextable() %>% 
+  set_header_labels(level = "Crash Severity\nLevel", type = "Description", n = "Number of\nCrashes", pct = "Proportion of\nCrashes") %>% 
+  colformat_double(j = "pct", digits = 3) %>% 
+  autofit() %>% 
+  align(align = "center", part = "all")
+```
+

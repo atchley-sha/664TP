@@ -21,9 +21,22 @@ tar_plan(
   tar_target(intersection_coords_file, "data/intersection_coords.csv", format = "file"),
   intersection_coords = read_csv(intersection_coords_file),
   
+  tar_target(crash_file, "data/reference/2011-2013 Crashes (University Ave).xlsx", format = "file"),
+  crashes = readxl::read_excel(crash_file),
+  
   # Base images
   tar_target(site_traffic_base, "images/reference/site_traffic_base.png", format = "file"),
   tar_target(site_bus_base, "images/reference/site_bus.png", format = "file"),
   tar_target(site_intersection_base, "images/reference/site_intersections.png", format = "file"),
-  tar_target(lane_config_base, "images/reference/lane_diagram.png", format = "file")
+  tar_target(lane_config_base, "images/reference/lane_diagram.png", format = "file"),
+  tar_target(crash_diagram, "images/reference/crash_diagram.png", format = "file"),
+  
+  crash_severity_table = tribble(
+    ~level, ~type,
+    5, "Fatal",
+    4, "Incapacitating Injury",
+    3, "Non-incapacitating Injury",
+    2, "Possible Injury",
+    1, "Property Damage Only"
+  )
 )

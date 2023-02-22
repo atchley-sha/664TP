@@ -33,17 +33,25 @@ tar_read(street_config) %>%
 
 1200 South is an \acr{E/W} local road which, at least in the vicinity of the study area, exists only to offer a connection between Towne Centre Bvld. and University Ave. It runs about 350 feet along the north edge of the proposed {{< var devname >}}, and has 3 \acr{EB} lanes and 2 \acr{WB} lanes. The 2 \acr{WB} lanes offer a left- and right-turning movement, respectively (onto Towne Centre Blvd.), and there is no through movement since 1200 South and Towne Centre Bvld. form a T-intersection. The 3 \acr{EB} lanes offer a left, through, and right-turn movement, either onto University Ave. for the turning movements or into a parking lot for the through movement. There is no posted speed limit, and a raised median prevents left turns onto or off of this road.
 
+<!-- ***Add sidewalks and bikes*** -->
+
 ###### University Avenue (US-189)
 
 University Ave. is also designated as US-189, and is a minor arterial running \acr{N/S} through Provo [@utahdepartmentoftransportation2023a]. It is assigned an access category of 5, which is described as "Regional priority---urban importance" [@utahdepartmentoftransportation2023]. University Ave. connects with I-15 roughly 3000 feet south of the study area and has connections to many commercial developments on either side of the road. There are 3 through lanes in both directions in the study area, with 2 additional left- and 1 additional right-turn lanes/bays in both directions at the Towne Centre Dr. intersection and 1 additional left- and right-turn lane/bay each in both directions at the 1200 South intersection. The posted speed limit is 35 mph, and there is a \acr{TWLTL} on this road for the length of the study area. There is also a 10-foot shoulder on the west side of the road, and there are sidewalks on both sides, though the sidewalk on the east is separated from the road by a grassy curb strip, and the sidewalk on the west is not.
+
+<!-- ***Add buses and bikes*** -->
 
 ###### Towne Centre Boulevard
 
 Towne Centre Blvd. is a local street that circumnavigates the Provo Towne Centre mall. Within the study area this road runs \acr{N/S}, and has 1 \acr{NB} and 2 \acr{SB} through lanes. A \acr{TWLTL} runs the length of this road, though it is broken up by a bus stop located in the center of the road near the southern end of {{< var devname >}}. This bus stop serves the UVX/830X route, which is a BRT route running from the Towne Centre mall to Utah Valley University [@utahdepartmentoftransportation]. The \acr{TWLTL} becomes two \acr{SB} left turn bays at the Towne Centre Dr. intersection, and there is a \acr{NB} free-flow right-turn bay at the same. This road has a posted speed limit of 25 mph.
 
+<!-- ***Add sidewalks and bikes*** -->
+
 ###### Towne Centre Drive
 
 Towne Centre Dr. is an \acr{E/W} road that runs between Towne Centre Blvd. and University Ave., and becomes East Bay Blvd. east of University Ave. There is a posted speed limit of 30 mph, and there is a raised median between Towne Centre Blvd. and University Ave., though the median breaks about midway, allowing a \acr{WB} left turn to access the development to the south. There are 2 left- and 1 right-turn bays at the University Ave. intersection in both directions, and 2 left-turn lanes and a right-turn free-flow lane at the Towne Centre Blvd. intersection.
+
+<!-- ***Add sidewalks and bikes*** -->
 
 ### Additional Information
 
@@ -59,6 +67,10 @@ knitr::include_graphics("../images/reference/site_bus.png")
 ## Adjacent Land Uses
 
 As can be seen in @fig-zoningmap, much of the nearby land is in the same zoning category as {{< var devname >}} (SC3). This is borne out by the actual land use: there are several suburban commercial sites in this area. The most notable of these is the Provo Towne Centre mall to the east, but other locations include a Sam's Club, several fast-food and sit-down restaurants, and multiple small hotels and gas stations.
+
+<!-- ***Grant Schultz: -->
+
+<!-- Be a little more thorough on this section. There are many other adjacent developments not discussed. Although you don't need to hit on every one, you should list some of the other larger developments.*** -->
 
 ## Site Accessibility
 

@@ -29,4 +29,6 @@ acronyms:
       longname: Highway Capacity Manual
     - shortname: AWSC
       longname: all-way--stop-controlled
+    - shortname: PDO
+      longname: Property damage only
 ---

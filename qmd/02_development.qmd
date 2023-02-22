@@ -46,6 +46,8 @@ The site area is zoned as SC3, which is a Regional Shopping Center. The primary 
 knitr::include_graphics("../images/zoning_map.png")
 ```
 
+***Add key***
+
 ## Site Plan
 
 @fig-siteplan shows a site plan for the proposed development. Note that Pad C is not included in this analysis, as it has already been developed. This site map is still preliminary, and will be updated in a future draft of this report.

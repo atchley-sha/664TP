@@ -1,1 +1,11 @@
 # Projected Traffic
+
+## Trip Generation
+
+### Base Trip Generation
+
+### Multi-use Reduction
+
+### Pass-by Reduction
+
+## Modal Split

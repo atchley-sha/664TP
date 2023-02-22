@@ -16,6 +16,11 @@ info_targets <- tar_plan(
   development_name = "Dream Town",
   map_name_x = 975,
   map_name_y = 950,
+  
+  crash_range = c(min = 0.5, max = 1.0),
+  intersections_mp = c("Towne Center Blvd." = 0.66, "1200 South" = 0.82),
+  crash_influence_radius = 0.05,
+  UA_AADT = 30550
 )
 
 data_targets <- source("targets/data_targets.R")
