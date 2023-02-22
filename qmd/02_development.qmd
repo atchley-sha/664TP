@@ -46,7 +46,7 @@ The site area is zoned as SC3, which is a Regional Shopping Center. The primary 
 knitr::include_graphics("../images/zoning_map.png")
 ```
 
-***Add key***
+<!-- ***Add key*** -->
 
 ## Site Plan
 

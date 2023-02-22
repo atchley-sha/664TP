@@ -28,7 +28,7 @@ tar_read(tripgen) %>%
 
 ### Multi-use Reduction
 
-Since these land uses share a development site, a multi-use trip reduction may be applied. This accounts for trips that are made from one location in the development site to another, and thus do not use the adjacent roadways. Information on the multi-use capture rates was obtained from the \acr{ITE} Trip Generation Handbook [@instituteoftransportationengineers2014], and the relevant information is summarized in @tbl-ite-multi-use-rates. The new trip rates are given in @tbl-tripgen-multiuse, and @sec-apdx-tripgen contains more detailed calculations.
+Since these land uses share a development site, a multi-use trip reduction may be applied. This accounts for trips that are made from one location in the development site to another, and thus do not use the adjacent roadways. Information on the multi-use capture rates was obtained from the \acr{ITE} Trip Generation Handbook [@instituteoftransportationengineers2014], and the relevant information is summarized in @tbl-ite-multi-use-rates. The reduced trip rates are given in @tbl-tripgen-multiuse, and @sec-apdx-tripgen contains more detailed calculations.
 
 ```{r}
 #| label: tbl-ite-multi-use-rates
