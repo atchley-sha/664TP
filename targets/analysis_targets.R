@@ -10,4 +10,6 @@ tar_plan(
   sorted_crashes = sort_crashes(crashes, crash_ranges),
   crash_rates = get_crash_rates(sorted_crashes, crash_ranges, UA_AADT),
   crash_severity = get_crash_severity(sorted_crashes, crash_severity_table)
+  
+  
 )

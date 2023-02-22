@@ -4,8 +4,57 @@
 
 ### Base Trip Generation
 
+The initial estimates for trip generation are given from the \acr{ITE} Trip Generation Manual [@instituteoftransportationengineers2021]. For this report, only an analysis of the weekday PM peak period is performed, due to the scope of the assignment. @tbl-base-tripgen gives the baseline trip generation as provided by the Manual. These initial estimates seem reasonable, noting that these are the trips in the peak hour. See @sec-apdx-tripgen for the Manual references used in these calculations.
+
+```{r}
+#| label: tbl-base-tripgen
+#| tbl-cap: "ITE Trip Generation (Baseline)"
+
+tar_read(tripgen) %>% 
+  select(-(mu_enter:last_col())) %>% 
+  flextable() %>% 
+  colformat_md(j = "xvar") %>% 
+  mk_par(j = "eqn", value = as_paragraph(as_equation(.)), use_dot = TRUE) %>% 
+  set_header_labels(desc = "Description", pad = "Pad", code = "ITE Land\nUse Code", xval = "Variable\nValue", xvar = "Variable\nUnit", eqn = "Trip Generation\nEquation", trips_enter = "Entering\nTrips", trips_exit = "Exiting\nTrips", trips_tot = "Total\nTrips") %>% 
+  autofit() %>% 
+  align(align = "c", part = "a")
+```
+
 ### Multi-use Reduction
 
+Since these land uses share a development site, a multi-use trip reduction may be applied. This accounts for trips that are made from one location in the development site to another, and thus do not use the adjacent roadways. Information on the multi-use capture rates was obtained from the \acr{ITE} Trip Generation Handbook, and the relevant information is summarized in @tbl-ite-multi-use-rates. The new trip rates are given in @tbl-tripgen-multiuse, and @sec-apdx-tripgen contains more detailed calculations.
+
+```{r}
+#| label: tbl-ite-multi-use-rates
+#| tbl-cap: "ITE Multi-use Capture Rates"
+
+tribble(
+  ~trips, ~rate,
+  "From Office to Retail", "23%",
+  "From Retail to Office", "3%",
+  "To Office from Retail", "31%",
+  "To Retail from Office", "2%"
+) %>% 
+  flextable() %>% 
+  set_header_labels(trips = "Trip Movement", rate = "Capture Rate") %>% 
+  autofit() %>% 
+  align(align = "c", part = "a")
+```
+
+```{r}
+#| label: tbl-tripgen-multiuse
+#| tbl-cap: "Trips After Multi-use Reduction"
+
+tar_read(tripgen) %>% 
+  select(desc, code, mu_enter, mu_exit, mu_tot) %>% 
+  flextable() %>% 
+  set_header_labels(desc = "Description", code = "ITE Land\nUse Code", mu_enter = "Entering\nTrips", mu_exit = "Exiting\nTrips", mu_tot = "Total\nTrips") %>% 
+  autofit() %>% 
+  align(align = "c", part = "a")
+```
+
 ### Pass-by Reduction
+
+The \acr{ITE} Trip Generation Manual also provides information on pass-by trip reductions. These indicate trips that otherwise would have passed the development, and are "stopping by" the site rather than making a dedicated "new" trip to the site. 
 
 ## Modal Split

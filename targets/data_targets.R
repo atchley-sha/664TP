@@ -24,6 +24,11 @@ tar_plan(
   tar_target(crash_file, "data/reference/2011-2013 Crashes (University Ave).xlsx", format = "file"),
   crashes = readxl::read_excel(crash_file),
   
+  tar_target(trips_file, "data/tripgen.csv", format = "file"),
+  tripgen = read_csv(trips_file),
+  
+  
+  
   # Base images
   tar_target(site_traffic_base, "images/reference/site_traffic_base.png", format = "file"),
   tar_target(site_bus_base, "images/reference/site_bus.png", format = "file"),

@@ -52,8 +52,8 @@ crossref:
   appendix-delim: "."
 
 format:
-  # docx:
-  #   reference-doc: reference.docx
+  docx:
+    reference-doc: reference.docx
   pdf:
     template: template.latex
     titlepage: true
