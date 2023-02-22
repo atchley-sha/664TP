@@ -1,5 +1,7 @@
 # Projected Traffic
 
+{{< include ../setup.qmd >}}
+
 Part of this analysis involves determining the number of trips that are expected to visit the site. This includes trips made with the express purpose of visiting a location in the development, as well as "pass-by" trips where the ultimate destination is somewhere else. Each of the separate land uses has distinct baseline trip rates, as well as different parameters for adjusting these rates to obtain final projected trips.
 
 ## Trip Generation
