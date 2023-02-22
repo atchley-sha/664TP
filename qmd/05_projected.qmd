@@ -1,10 +1,14 @@
 # Projected Traffic
 
+Part of this analysis involves determining the number of trips that are expected to visit the site. This includes trips made with the express purpose of visiting a location in the development, as well as "pass-by" trips where the ultimate destination is somewhere else. Each of the separate land uses has distinct baseline trip rates, as well as different parameters for adjusting these rates to obtain final projected trips.
+
 ## Trip Generation
+
+\acr{ITE} provides several resources for estimating trip generation of new developments. The primary of these is the Trip Generation Manual [@instituteoftransportationengineers2021], but these baseline trip generation rates do not account for trips internal to the site, or for "pass-by" trips. The following section discusses the baseline \acr{ITE}-provided trip rates along with the trip reductions due to these factors. @tbl-tripgen-passby provides the trip rates after the reductions.
 
 ### Base Trip Generation
 
-The initial estimates for trip generation are given from the \acr{ITE} Trip Generation Manual [@instituteoftransportationengineers2021]. For this report, only an analysis of the weekday PM peak period is performed, due to the scope of the assignment. @tbl-base-tripgen gives the baseline trip generation as provided by the Manual. These initial estimates seem reasonable, noting that these are the trips in the peak hour. See @sec-apdx-tripgen for the Manual references used in these calculations.
+The initial estimates for trip generation are given from the \acr{ITE} Trip Generation Manual. For this report, only an analysis of the weekday PM peak period is performed, due to the scope of the assignment. @tbl-base-tripgen gives the baseline trip generation as provided by the Manual. These initial estimates seem reasonable, noting that these are the trips in the peak hour. See @sec-apdx-tripgen for the Manual references used in these calculations.
 
 ```{r}
 #| label: tbl-base-tripgen
@@ -22,7 +26,7 @@ tar_read(tripgen) %>%
 
 ### Multi-use Reduction
 
-Since these land uses share a development site, a multi-use trip reduction may be applied. This accounts for trips that are made from one location in the development site to another, and thus do not use the adjacent roadways. Information on the multi-use capture rates was obtained from the \acr{ITE} Trip Generation Handbook, and the relevant information is summarized in @tbl-ite-multi-use-rates. The new trip rates are given in @tbl-tripgen-multiuse, and @sec-apdx-tripgen contains more detailed calculations.
+Since these land uses share a development site, a multi-use trip reduction may be applied. This accounts for trips that are made from one location in the development site to another, and thus do not use the adjacent roadways. Information on the multi-use capture rates was obtained from the \acr{ITE} Trip Generation Handbook [@instituteoftransportationengineers2014], and the relevant information is summarized in @tbl-ite-multi-use-rates. The new trip rates are given in @tbl-tripgen-multiuse, and @sec-apdx-tripgen contains more detailed calculations.
 
 ```{r}
 #| label: tbl-ite-multi-use-rates
@@ -55,6 +59,24 @@ tar_read(tripgen) %>%
 
 ### Pass-by Reduction
 
-The \acr{ITE} Trip Generation Manual also provides information on pass-by trip reductions. These indicate trips that otherwise would have passed the development, and are "stopping by" the site rather than making a dedicated "new" trip to the site. 
+The \acr{ITE} Trip Generation Manual also provides information on pass-by trip reductions. These indicate trips that otherwise would have passed the development, and are "stopping by" the site rather than making a dedicated "new" trip to the site. Two of the proposed land uses---the restaurant and the hardware store---are given pass-by reduction rates of 43% and 26%, respectively. The office land use has no pass-by reduction, which is logical as most office trips would be for employment and not leisure. @tbl-tripgen-passby presents the new calculated trips after these reductions.
 
-## Modal Split
+```{r}
+#| label: tbl-tripgen-passby
+#| tbl-cap: "Trips After Pass-by Reduction"
+
+tar_read(tripgen) %>% 
+  select(desc, code, mu_enter, mu_exit, mu_tot) %>% 
+  mutate(pb_rate = c(0.43, 0, 0.26),
+         pb_enter = round(mu_enter*(1-pb_rate)),
+         pb_exit = round(mu_exit*(1-pb_rate)), 
+         pb_tot = pb_enter + pb_exit
+  ) %>% 
+  select(-mu_enter, -mu_exit, -mu_tot) %>% 
+  flextable() %>% 
+  set_header_labels(desc = "Description", code = "ITE Land\nUse Code", pb_rate = "Pass-by\nReduction Rate", pb_enter = "Entering\nTrips", pb_exit = "Exiting\nTrips", pb_tot = "Total\nTrips") %>% 
+  autofit() %>% 
+  align(align = "c", part = "a")
+```
+
+<!-- ## Modal Split -->
