@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
   <info>
-    <title>American Society of Civil Engineers</title>
+    <title>American Society of Civil Engineers, Custom</title>
     <title-short>ASCE</title-short>
-    <id>http://www.zotero.org/styles/american-society-of-civil-engineers</id>
+    <id>http://www.zotero.org/styles/american-society-of-civil-engineers-custom</id>
     <link href="http://www.zotero.org/styles/american-society-of-civil-engineers" rel="self"/>
     <link href="https://ascelibrary.org/doi/book/10.1061/9780784479018" rel="documentation"/>
     <link href="https://ascelibrary.org/doi/pdf/10.1061/9780784479018" rel="documentation"/>
@@ -83,9 +83,9 @@
       <if type="article-magazine article-newspaper" match="none">
         <group delimiter=". ">
           <text variable="genre"/>
-          <group delimiter=": ">
-            <text variable="publisher-place"/>
+          <group delimiter=", ">
             <text variable="publisher"/>
+            <text variable="publisher-place"/>
           </group>
         </group>
       </if>
@@ -94,10 +94,10 @@
   <macro name="issued">
     <choose>
       <if variable="issued">
-        <date date-parts="year" form="text" variable="issued"/>
+        <date date-parts="year" form="text" variable="issued" prefix="(" suffix=")"/>
       </if>
       <else>
-        <text term="no date" form="short"/>
+        <text term="no date" form="short" prefix="(" suffix=")"/>
       </else>
     </choose>
   </macro>
