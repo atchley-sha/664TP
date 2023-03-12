@@ -68,16 +68,16 @@ The overall \acr{LOS} is generally good, though there are several movements with
 
 ## Transportation Safety
 
-As part of the analysis for this proposed development, a crash analysis was performed for University Ave. near the site. Recent crash data (obtained from \\acr{UDOT} for 2019\--2022) was used, and crashes between mileposts 0.5 and 1.0 were included in the analysis. This includes the intersections of University Ave. with both Towne Center Dr. and 1200 South, as well as the roadway segments between and either side of the intersections. Crashes occurring within `r tar_read(crash_influence_radius)` miles of an intersection are considered as "belonging" to that intersection, and all other crashes are counted on their respective roadway segments.
+As part of the analysis for this proposed development, a crash analysis was performed for University Ave. near the site. Recent crash data (obtained from \acr{UDOT} for 2019--2022) was used, and crashes between mileposts 0.5 and 1.0 were included in the analysis. This includes the intersections of University Ave. with both Towne Center Dr. and 1200 South, as well as the roadway segments between and either side of the intersections. Crashes occurring within `r tar_read(crash_influence_radius)` miles of an intersection are considered as "belonging" to that intersection, and all other crashes are counted on their respective roadway segments.
 
-@eq-intersection-crash-rate gives the crash rate of an intersection, and @eq-segment-crash-rate gives the crash rate of a segment, where `AADT` is average annual daily traffic, `MEV` is million entering vehicles, and `MVMT` is million vehicle-miles traveled. The AADT was provided by \acr{UDOT} for this stretch of University Ave., and is given as 30550 vehicles per day.
+@eq-intersection-crash-rate gives the crash rate of an intersection, and @eq-segment-crash-rate gives the crash rate of a segment, where `VEH` is the number of vehicles entering the intersection or segment, `MEV` is million entering vehicles, and `MVMT` is million vehicle-miles traveled. The AADT was provided by \acr{UDOT} for this stretch of University Ave., and is given as 30550 vehicles per day.
 
 $$
-Crash\ Rate_{Intersection} = \frac{1000000 \times crashes}{365.25 \times years \times AADT}\ \text{crashes per MEV}
+Crash\ Rate_{Intersection} = \frac{1000000 \times crashes}{365 \times years \times VEH}\ \text{crashes per MEV}
 $$ {#eq-intersection-crash-rate}
 
 $$
-Crash\ Rate_{Segment} = \frac{1000000 \times crashes}{365.25 \times years \times AADT \times length}\; \text{crashes per MVMT}
+Crash\ Rate_{Segment} = \frac{1000000 \times crashes}{365 \times years \times VEH \times length}\; \text{crashes per MVMT}
 $$ {#eq-segment-crash-rate}
 
 @tbl-crashes-intersections provides the two intersections and their crash rates, and @tbl-crashes-segments provides the crash rates on each segment of the roadway (as calculated by Equations [-@eq-intersection-crash-rate] and [-@eq-segment-crash-rate]).
@@ -105,7 +105,7 @@ tar_read(crash_rates) %>%
   filter(type == "segment") %>% 
   select(name, min, max, length, n, rate) %>% 
   flextable() %>% 
-  set_header_labels(name = "Intersection", min = "Milepost\nStart", max = "Milepost\nEnd", length = "Segment\nLength", n = "Number of\nCrashes", rate = "Crash Rate\n(per MVMT)") %>% 
+  set_header_labels(name = "Segment", min = "Milepost\nStart", max = "Milepost\nEnd", length = "Segment\nLength", n = "Number of\nCrashes", rate = "Crash Rate\n(per MVMT)") %>% 
   colformat_double(j = "rate", digits = 2) %>% 
   colformat_md(j = 1) %>% 
   autofit() %>% 

@@ -65,20 +65,16 @@ The \acr{ITE} Trip Generation Manual also provides information on pass-by trip r
 
 ```{r}
 #| label: tbl-tripgen-passby
-#| tbl-cap: "Trips After Pass-by Reduction"
+#| tbl-cap: "Pass-By Trips"
 
 tar_read(tripgen) %>% 
-  select(desc, code, mu_enter, mu_exit, mu_tot) %>% 
-  mutate(pb_rate = c(0.43, 0, 0.26),
-         pb_enter = round(mu_enter*(1-pb_rate)),
-         pb_exit = round(mu_exit*(1-pb_rate)), 
-         pb_tot = pb_enter + pb_exit
-  ) %>% 
-  select(-mu_enter, -mu_exit, -mu_tot) %>% 
+  select(desc, code, pb_rate, pb_enter, pb_exit, pb_tot) %>% 
   flextable() %>% 
   set_header_labels(desc = "Description", code = "ITE Land\nUse Code", pb_rate = "Pass-by\nReduction Rate", pb_enter = "Entering\nTrips", pb_exit = "Exiting\nTrips", pb_tot = "Total\nTrips") %>% 
   autofit() %>% 
   align(align = "c", part = "a")
 ```
 
-<!-- ## Modal Split -->
+## Modal Split
+
+This analysis will be done in full in the future, but a mode split reduction of 1% is assumed. This will be used to calculate trip numbers for trip assignment on new trips, but not pass-by trips as those are assumed (almost by definition) to all be vehicular.
