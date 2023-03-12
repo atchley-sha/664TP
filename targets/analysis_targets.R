@@ -9,7 +9,9 @@ tar_plan(
   crash_ranges = create_ranges(crash_range, intersections_mp, crash_influence_radius),
   sorted_crashes = sort_crashes(crashes, crash_ranges),
   crash_rates = get_crash_rates(sorted_crashes, crash_ranges, UA_AADT),
-  crash_severity = get_crash_severity(sorted_crashes, crash_severity_table)
+  crash_severity = get_crash_severity(sorted_crashes, crash_severity_table),
   
+  tripgen = tripgen_reductions(tripgen_base),
+  site_trips = tripgen_sums(tripgen)
   
 )

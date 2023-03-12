@@ -16,4 +16,6 @@ assign_movement_coords <- function(data, coords){
   
   assigned <- long_data %>% 
     left_join(long_coords, by = c("intersection", "direction", "movement"))
+  
+  assigned
 }

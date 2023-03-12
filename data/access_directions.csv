@@ -1,0 +1,17 @@
+intersection,direction,l,t,r
+TCB1200,sb,en_nw,en_nw,
+TCB1200,wb,ex_sw,,ex_nw
+TCB1200,nb,,ex_nw,en_sw
+TCB1200,eb,,,
+TCBTCD,sb,internal,ex_sw,
+TCBTCD,wb,ex_sw,,internal
+TCBTCD,nb,,en_sw,en_sw
+TCBTCD,eb,,,
+UA1200,sb,en_n,en_n,none
+UA1200,wb,none,none,none
+UA1200,nb,ex_nw,ex_n,none
+UA1200,eb,ex_n,none,en_nw
+UATCD,sb,ex_se,ex_s,ex_sw
+UATCD,wb,none,ex_se,en_se
+UATCD,nb,en_s,en_s,none
+UATCD,eb,en_sw,ex_se,ex_s

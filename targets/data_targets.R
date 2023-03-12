@@ -25,8 +25,13 @@ tar_plan(
   crashes = readxl::read_excel(crash_file),
   
   tar_target(trips_file, "data/tripgen.csv", format = "file"),
-  tripgen = read_csv(trips_file),
+  tripgen_base = read_csv(trips_file),
   
+  tar_target(trip_access_file, "data/trip_accesses.csv", format = "file"),
+  trip_access = read_csv(trip_access_file),
+  
+  tar_target(access_directions_file, "data/access_directions.csv", format = "file"),
+  access_directions = read_csv(access_directions_file),
   
   
   # Base images
