@@ -11,3 +11,4 @@
 /_freeze/
 /_book/
 /images/output/
+**/rosm.cache/

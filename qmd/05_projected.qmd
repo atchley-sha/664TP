@@ -78,3 +78,68 @@ tar_read(tripgen) %>%
 ## Modal Split
 
 This analysis will be done in full in the future, but a mode split reduction of 1% is assumed. This will be used to calculate trip numbers for trip assignment on new trips, but not pass-by trips as those are assumed (almost by definition) to all be vehicular.
+
+## Trip Distribution
+
+This section presents two methods for determining 
+
+### Analogy Method {#sec-analogy-method}
+
+
+
+### Gravity Method {#sec-gravity-method}
+
+The gravity method uses a modified gravity model to determine trip distribution. This model estimates the proportion of trips from each \acr{TAZ} in the vicinity of the study area based on the population of each \acr{TAZ} and the travel time from each \acr{TAZ} to the site. The model is of the form
+
+$$
+PT_i = \frac{A_i \times \frac{1}{tt_i^2}}{\sum{A_i \times \frac{1}{tt_i^2}}},
+$$
+
+where $PT_i$ is the proportion of trips from \acr{TAZ} $i$, $A_i$ is the population of \acr{TAZ} $i$, and $tt_i$ is the travel time to the site from \acr{TAZ} $i$. Note that this differs from a typical gravity model in two main ways: we are calculating a *proportion* of trips since all trips are going to the same \acr{TAZ}, and population, which is typically used in determining \acr{TAZ} trip productions, is instead used as a trip attraction value.
+
+It is not reasonable to analyze every \acr{TAZ} in Utah, and so a maximum travel time of `r tar_read time_threshold` minutes is enforced. Based on the land uses of the site and the proximity of similar/competing land uses, this threshold provides a good estimate of the travel behavior. Though there are other residential, retail, and office land uses within a smaller travel window than this, the retail is specific, and the office will attract its employees with little regard for other nearby offices.
+
+For reference, @fig-isochrone shows travel time contours from the site for 10-, 15-, and 20-minute thresholds to each \acr{TAZ}. Note that there are several \acr{TAZ}s "missing": these had a travel time of 0 and so were removed from the analysis.
+
+```{r}
+#| label: fig-isochrone
+#| fig-cap: "Isochrone map of travel times to the study site (in dark blue)."
+#| fig-width: 6.5
+#| fig-height: 10
+
+tar_read(isochrone_map)
+```
+
+@fig-access-dir shows the site access direction for each \acr{TAZ}. Several assumptions were made in this regard. The most significant of these is who accesses the site via I-15 north of Provo. This analysis assumes that west of Orem State Street (500W) and north of University Parkway, I-15 would be used, and east of Orem State Street and/or south of University Parkway, a combination of University Parkway, University Avenue, and Orem Center Street would be used to access the site from the north. North of Orem 800 N is assumed to have access via I-15 as well. Note that I-15 has an interchange directly south of the site on University Avenue, so it is assumed everyone using I-15 will access the site from the south. There are a handful of \acr{TAZ}s on the west of the site that are assumed to have western access due to I-15 under- and overpasses, but no access from the east is assumed due to the presence of the railroad.
+
+```{r}
+#| label: fig-access-dir
+#| fig-cap: "Access to site (in dark blue) by direction."
+#| fig-width: 6.5
+#| fig-height: 10
+
+tar_read(taz_access_map)
+```
+
+Combining this model with the information about access direction gives a proportion of trips from each direction. @tbl-trip-proportions presents a summary of this information. Note that this distribution is only for "new" trips; the distribution of pass-by trips is the same as in @sec-analogy-method (see @fig-analogy-distribution).
+
+```{r}
+#| label: tbl-trip-proportions
+#| tbl-cap: "Proportion of Trips by Access Direction (Gravity Model)"
+
+tar_read(grav_time) %>% 
+  select(-trip_prop) %>% 
+  flextable() %>% 
+  set_header_labels(access_dir = "Access\nDirection", n_taz = "Number\nof \acr{TAZ}s", trip_pct = "Proportion\nof Trips") %>% 
+  autofit() %>% 
+  align(align = "c", part = "a")
+
+```
+
+### Method Comparison
+
+
+
+## Trip Assignment
+
+### Non-site Traffic

@@ -3,6 +3,8 @@ acronyms:
   keys:
     - shortname: TIA
       longname: Traffic Impact Analysis
+    - shortname: TAZ
+      longname: Transportation Analysis Zone
     - shortname: UDOT
       longname: Utah Department of Transportation
     - shortname: ITE

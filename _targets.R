@@ -2,7 +2,7 @@ library(targets)
 library(tarchetypes)
 library(readr)
 
-package_list <- c("tidyverse", "magick")
+package_list <- c("tidyverse", "magick", "sf", "ggspatial")
 tar_option_set(packages = package_list)
 
 # Source all files in `R` directory

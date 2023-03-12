@@ -36,6 +36,9 @@ tar_plan(
   tar_target(access_directions_file, "data/access_directions.csv", format = "file"),
   access_directions = read_csv(access_directions_file),
   
+  taz_sf = sf::read_sf("data/GIS/TAZ_DATA.shp"),
+  tar_target(taz_access_dirs_file, "data/TAZ_access_dirs.csv", format = "file"),
+  taz_access_dirs = read_csv(taz_access_dirs_file),
   
   # Base images
   tar_target(site_traffic_base, "images/reference/site_traffic_base.png", format = "file"),
