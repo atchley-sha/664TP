@@ -19,9 +19,9 @@ assign_trip_directions <- function(trips, directions){
 
 
 
-summarise_trip_directions_primary <- function(trips){
+summarise_trip_directions <- function(trips){
   
-  trips %>% 
+  primary <- trips %>% 
     filter(!type %in% c("internal", "none")) %>% 
     group_by(external_dir) %>% 
     summarise(vol = sum(volume)) %>%
@@ -31,11 +31,8 @@ summarise_trip_directions_primary <- function(trips){
              round() %>% 
              paste0("%"))
   
-}
 
-summarise_trip_directions_passby <- function(trips){
-  
-  classified <- trips %>% 
+  passby_raw <- trips %>% 
     filter(str_detect(intersection, "UA")) %>% 
     transmute(intersection, direction, movement, volume,
               value = case_when(
@@ -57,19 +54,22 @@ summarise_trip_directions_passby <- function(trips){
     group_by(type, dir) %>% 
     summarise(vol = sum(volume))
   
-  dist <- classified %>% 
-    mutate(bound = case_when(
+  dist <- passby_raw %>% 
+    mutate(external_dir = case_when(
       type == "en" & dir == "s" ~ "nb",
       type == "ex" & dir == "n" ~ "nb",
       type == "en" & dir == "n" ~ "sb",
       type == "ex" & dir == "s" ~ "sb"
     )) %>% 
-    group_by(bound) %>% 
+    group_by(external_dir) %>% 
     summarise(mean_vol = mean(vol)) %>% 
     mutate(pct = mean_vol / sum(mean_vol),
            pct_char = (100*pct) %>% 
              round() %>% 
-             paste0("%"))
+             paste0("%")) %>% 
+    bind_rows(primary) %>% 
+    mutate(value = pct_char) %>% 
+    rename(direction = external_dir)
   
-  dist
+  list(passby_raw = passby_raw, distribution = dist)
 }

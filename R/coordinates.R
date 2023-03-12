@@ -19,3 +19,11 @@ assign_movement_coords <- function(data, coords){
   
   assigned
 }
+
+assign_distribution_coords <- function(data, coords){
+  
+  assigned <- left_join(
+    data, coords, by = "direction"
+  )
+  
+}

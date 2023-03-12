@@ -21,6 +21,9 @@ tar_plan(
   tar_target(intersection_coords_file, "data/intersection_coords.csv", format = "file"),
   intersection_coords = read_csv(intersection_coords_file),
   
+  tar_target(distribution_coords_file, "data/distribution_coords.csv", format = "file"),
+  distribution_coords = read_csv(distribution_coords_file),
+  
   tar_target(crash_file, "data/reference/2011-2013 Crashes (University Ave).xlsx", format = "file"),
   crashes = readxl::read_excel(crash_file),
   
@@ -38,6 +41,7 @@ tar_plan(
   tar_target(site_traffic_base, "images/reference/site_traffic_base.png", format = "file"),
   tar_target(site_bus_base, "images/reference/site_bus.png", format = "file"),
   tar_target(site_intersection_base, "images/reference/site_intersections.png", format = "file"),
+  tar_target(site_distribution_base, "images/reference/site_distribution.png", format = "file"),
   tar_target(lane_config_base, "images/reference/lane_diagram.png", format = "file"),
   tar_target(crash_diagram, "images/reference/crash_diagram.png", format = "file"),
   

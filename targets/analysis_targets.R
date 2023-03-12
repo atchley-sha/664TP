@@ -6,6 +6,9 @@ tar_plan(
   base_delay_coords = assign_movement_coords(base_delay, intersection_coords),
   base_los_coords = assign_movement_coords(base_los, intersection_coords),
   
+  yr5_counts = grow_traffic(base_traffic_counts, year = 5),
+  yr5_coords = assign_movement_coords(yr5_counts, intersection_coords),
+  
   crash_ranges = create_ranges(crash_range, intersections_mp, crash_influence_radius),
   sorted_crashes = sort_crashes(crashes, crash_ranges),
   crash_rates = get_crash_rates(sorted_crashes, crash_ranges, UA_AADT),
@@ -14,7 +17,10 @@ tar_plan(
   tripgen = tripgen_reductions(tripgen_base),
   site_trips = tripgen_sums(tripgen),
   
-  yr5_counts = grow_traffic(base_traffic_counts, year = 5),
-  yr5_coords = assign_movement_coords(yr5_counts, intersection_coords)
+  trip_dirs = assign_trip_directions(base_traffic_counts, access_directions),
+  full_analogy = summarise_trip_directions(trip_dirs),
+  raw_passby = full_analogy$passby_raw,
+  analogy_trip_dist = full_analogy$distribution,
+  analogy_dist_coords = assign_distribution_coords(analogy_trip_dist, distribution_coords)
   
 )
