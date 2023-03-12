@@ -12,6 +12,9 @@ tar_plan(
   crash_severity = get_crash_severity(sorted_crashes, crash_severity_table),
   
   tripgen = tripgen_reductions(tripgen_base),
-  site_trips = tripgen_sums(tripgen)
+  site_trips = tripgen_sums(tripgen),
+  
+  yr5_counts = grow_traffic(base_traffic_counts, year = 5),
+  yr5_coords = assign_movement_coords(yr5_counts, intersection_coords)
   
 )
