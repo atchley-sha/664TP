@@ -54,21 +54,21 @@ crossref:
 format:
   docx:
     reference-doc: reference.docx
-  pdf:
-    template: template.latex
-    titlepage: true
-    book: true
-    titlepage-background: title_page_background.pdf
-    float-placement-figure: htbp
-    toc-own-page: true
-    footer-left: \hfill
-    footer-right: \hfill
-    footer-center: \thepage
-    classoption: openany
-    top-level-division: chapter
-    mainfont: "Gentium Book Basic"
-    sansfont: "Alte Haas Grotesk"
-    monofont: "SauceCodePro NF"
+  # pdf:
+  #   template: template.latex
+  #   titlepage: true
+  #   book: true
+  #   titlepage-background: title_page_background.pdf
+  #   float-placement-figure: htbp
+  #   toc-own-page: true
+  #   footer-left: \hfill
+  #   footer-right: \hfill
+  #   footer-center: \thepage
+  #   classoption: openany
+  #   top-level-division: chapter
+  #   mainfont: "Gentium Book Basic"
+  #   sansfont: "Alte Haas Grotesk"
+  #   monofont: "SauceCodePro NF"
   # html:
   #   toc: true
 
