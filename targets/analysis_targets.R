@@ -12,6 +12,8 @@ tar_plan(
   yr5_counts = grow_traffic(base_traffic_counts, year = 6), #5 years after opening is 6 after base
   yr5_coords = assign_movement_coords(yr5_counts, intersection_coords),
   
+  access_fig_coords = assign_movement_coords(access_directions_fig, intersection_coords),
+  
   crash_ranges = create_ranges(crash_range, intersections_mp, crash_influence_radius),
   sorted_crashes = sort_crashes(crashes, crash_ranges),
   crash_rates = get_crash_rates(sorted_crashes, crash_ranges, UA_AADT),
@@ -24,9 +26,11 @@ tar_plan(
   full_analogy = summarise_trip_directions(trip_dirs),
   raw_passby = full_analogy$passby_raw,
   analogy_trip_dist = full_analogy$distribution,
+  analogy_for_comparison = full_analogy$comparison,
+  trip_dist_comparison = compare_trip_dist(analogy_for_comparison, grav_time),
   analogy_dist_coords = assign_distribution_coords(analogy_trip_dist, distribution_coords),
   
-  taz = filter_sf(taz_sf, max_time = 25),
+  taz = filter_sf(taz_sf, max_time = 23),
   access = assign_taz_access(taz, taz_access_dirs),
   site_sf = get_site_sf(taz, id = 2025),
   time_threshold = 20,

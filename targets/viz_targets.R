@@ -17,6 +17,8 @@ tar_plan(
   lane_config_map = plot_map(lane_config_base, development_name, "images/output/lane_diagram.png"),
   
   analogy_dist_map = plot_on_intersection_map(analogy_dist_coords, site_distribution_base, development_name, "images/output/analogy_dist.png", label_text_size = 5),
+  
+  access_directions_map = plot_on_intersection_map(access_fig_coords, site_traffic_base, development_name, "images/output/analogy_access_directions.png"),
 
   
   #### taz maps ####

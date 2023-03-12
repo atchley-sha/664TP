@@ -81,10 +81,63 @@ This analysis will be done in full in the future, but a mode split reduction of 
 
 ## Trip Distribution
 
-This section presents two methods for determining 
+This section presents two methods for determining the distribution of trips to {{< var devname >}}. The first is the analogy method, which assumes that the trip distribution will largely match the distribution of the existing background traffic. The second is the gravity method, which uses a gravity model to estimate trips based on population and travel time. These two analyses are presented and compared below.
 
 ### Analogy Method {#sec-analogy-method}
 
+The analogy method uses existing traffic volumes to determine the distribution of site trips. @fig-basevolumes shows the volumes used. Each of the intersection movements were assigned a direction and were designated as either an entering or exiting movement. Several movements, however, enter an intersection in the study area but leave on a road that doesn't ultimately pass the site, or are "internal" movements that do not show a clear direction away from the site. These movements are disregarded in this part of the analysis. Additionally, the eastern side of the University Ave. / 1200 South intersection leads directly to a parking lot, and these movements are disregarded as well. @fig-analogy-access-dirs shows a map of each movement's classification.
+
+```{r}
+#| label: fig-analogy-access-dirs
+#| fig-cap: "Assumed access directions for the analogy method analysis."
+
+knitr::include_graphics("../images/output/analogy_access_directions.png")
+```
+
+Based on these classifications and the movement volumes from @fig-basevolumes, the proportion of trips from each site access point is determined. Entering and exiting trips from each direction are averaged, since the new or primary trips this analysis applies to are assumed to return from where they came. These results are shown in @tbl-analogy-trips.
+
+```{r}
+#| label: tbl-analogy-trips
+#| tbl-cap: "Trip Distribution Based on the Analogy Method"
+
+analogy_dist <- tar_read(analogy_trip_dist) %>% 
+  filter(!direction %in% c("nb", "sb")) %>% 
+  select(direction, vol, pct_char) %>% 
+  arrange(direction) %>% 
+  mutate(direction = case_when(
+    direction == "n" ~ "North",
+    direction == "ne" ~ "Northeast",
+    direction == "nw" ~ "Northwest",
+    direction == "s" ~ "South",
+    direction == "se" ~ "Southeast",
+    direction == "sw" ~ "Southwest"
+  ))
+
+analogy_dist %>% 
+  flextable() %>% 
+  set_header_labels(direction = "Direction", vol = "Base Traffic\nVolume", pct_char = "Proportion\nof Trips") %>% 
+  autofit() %>% 
+  align(align = "c", part = "a")
+```
+
+Note however that these results only apply to "new" trips, i.e. trips made with the express purpose of visiting the site. "Pass-by" trips, or trips made as a stop-in en route to another destination, are determined based on the directional distribution of traffic on University Ave. alone. The movements considered here are the six that turn on to or off of University Ave. at each of its two intersections (including in this case the eastern side of the University Ave. / 1200 South intersection), and are categorized by travel direction (\acr{NB} or \acr{SB}). The \acr{NB} and \acr{SB} volumes differ slightly between entering and exiting due to the inherent inaccuracies of traffic counts, but are similar enough to not be a concern. The two volumes in each direction are averaged for this analysis. The pass-by distribution is given in @tbl-pass-by-dist.
+
+```{r}
+#| label: tbl-pass-by-dist
+#| tbl-cap: "Distribution of Pass-By Trips"
+
+tar_read(analogy_trip_dist) %>% 
+  filter(direction %in% c("nb", "sb")) %>% 
+  select(direction, mean_vol, pct_char) %>% 
+  mutate(direction = case_when(
+    direction == "nb" ~ "Northbound",
+    direction == "sb" ~ "Southbound"
+  )) %>% 
+  flextable() %>% 
+  set_header_labels(direction = "Direction", mean_vol = "Volume\n(mean)", pct_char = "Proportion\nof Trips") %>% 
+  autofit() %>% 
+  align(align = "c", part = "a")
+```
 
 
 ### Gravity Method {#sec-gravity-method}
@@ -97,17 +150,15 @@ $$
 
 where $PT_i$ is the proportion of trips from \acr{TAZ} $i$, $A_i$ is the population of \acr{TAZ} $i$, and $tt_i$ is the travel time to the site from \acr{TAZ} $i$. Note that this differs from a typical gravity model in two main ways: we are calculating a *proportion* of trips since all trips are going to the same \acr{TAZ}, and population, which is typically used in determining \acr{TAZ} trip productions, is instead used as a trip attraction value.
 
-It is not reasonable to analyze every \acr{TAZ} in Utah, and so a maximum travel time of `r tar_read time_threshold` minutes is enforced. Based on the land uses of the site and the proximity of similar/competing land uses, this threshold provides a good estimate of the travel behavior. Though there are other residential, retail, and office land uses within a smaller travel window than this, the retail is specific, and the office will attract its employees with little regard for other nearby offices.
+It is not reasonable to analyze every \acr{TAZ} in Utah, and so a maximum travel time of `r tar_read(time_threshold)` minutes is enforced. Based on the land uses of the site and the proximity of similar/competing land uses, this threshold provides a good estimate of the travel behavior. Though there are other residential, retail, and office land uses within a smaller travel window than this, the retail is specific, and the office will attract its employees with little regard for other nearby offices.
 
 For reference, @fig-isochrone shows travel time contours from the site for 10-, 15-, and 20-minute thresholds to each \acr{TAZ}. Note that there are several \acr{TAZ}s "missing": these had a travel time of 0 and so were removed from the analysis.
 
 ```{r}
 #| label: fig-isochrone
 #| fig-cap: "Isochrone map of travel times to the study site (in dark blue)."
-#| fig-width: 6.5
-#| fig-height: 10
 
-tar_read(isochrone_map)
+knitr::include_graphics("../images/output/isochrone.png")
 ```
 
 @fig-access-dir shows the site access direction for each \acr{TAZ}. Several assumptions were made in this regard. The most significant of these is who accesses the site via I-15 north of Provo. This analysis assumes that west of Orem State Street (500W) and north of University Parkway, I-15 would be used, and east of Orem State Street and/or south of University Parkway, a combination of University Parkway, University Avenue, and Orem Center Street would be used to access the site from the north. North of Orem 800 N is assumed to have access via I-15 as well. Note that I-15 has an interchange directly south of the site on University Avenue, so it is assumed everyone using I-15 will access the site from the south. There are a handful of \acr{TAZ}s on the west of the site that are assumed to have western access due to I-15 under- and overpasses, but no access from the east is assumed due to the presence of the railroad.
@@ -115,22 +166,22 @@ tar_read(isochrone_map)
 ```{r}
 #| label: fig-access-dir
 #| fig-cap: "Access to site (in dark blue) by direction."
-#| fig-width: 6.5
-#| fig-height: 10
 
-tar_read(taz_access_map)
+knitr::include_graphics("../images/output/taz_access_dirs.png")
 ```
 
-Combining this model with the information about access direction gives a proportion of trips from each direction. @tbl-trip-proportions presents a summary of this information. Note that this distribution is only for "new" trips; the distribution of pass-by trips is the same as in @sec-analogy-method (see @fig-analogy-distribution).
+Combining this model with the information about access direction gives a proportion of trips from each direction. @tbl-trip-proportions presents a summary of this information. Note that this distribution is only for "new" trips; the distribution of pass-by trips is the same as in @sec-analogy-method (see @tbl-pass-by-dist).
 
 ```{r}
 #| label: tbl-trip-proportions
 #| tbl-cap: "Proportion of Trips by Access Direction (Gravity Model)"
 
-tar_read(grav_time) %>% 
-  select(-trip_prop) %>% 
+grav_dist <- tar_read(grav_time) %>% 
+  select(-trip_prop)
+
+grav_dist %>% 
   flextable() %>% 
-  set_header_labels(access_dir = "Access\nDirection", n_taz = "Number\nof \acr{TAZ}s", trip_pct = "Proportion\nof Trips") %>% 
+  set_header_labels(access_dir = "Access\nDirection", n_taz = "Number\nof TAZs", trip_pct = "Proportion\nof Trips") %>% 
   autofit() %>% 
   align(align = "c", part = "a")
 
@@ -138,8 +189,50 @@ tar_read(grav_time) %>%
 
 ### Method Comparison
 
+The first point of comparison between the two methods is that the analogy method includes 6 directional distributions, and the gravity model only includes 3. This is due to the assumptions made in the gravity method analysis, one of which is the difficulty of assigning \acr{TAZ}s so granularly. Especially since Towne Centre Blvd. and University Ave. are so close to each other, it is hard to determine for example which of these roads a trip from the north would utilize. This is much easier when analyzing intersection movements, and so the analogy method includes this distinction. For comparison's sake, however, the analogy method's results are further summarized into the 3 directions used in the gravity method analysis (northwest and southwest are classified as "west", and southeast is classified as "south", with the remaining movements unchanged). This comparison is shown in @tbl-trip-dist-comparison.
+
+```{r}
+#| label: tbl-trip-dist-comparison
+#| tbl-cap: "Comparison of Trip Distribution Methods"
+
+tar_read(trip_dist_comparison) %>% 
+  flextable() %>% 
+  set_header_labels(dir = "Direction", a = "Analogy\nMethod", g = "Gravity\nMethod") %>% 
+  autofit() %>% 
+  align(align = "c", part = "a")
+```
+
+Due to the higher granularity and more reasonable distribution of the analogy method, this analysis is preferred. The gravity method seems to under-predict trips from the south, especially since these will be coming from I-15 and are likely to be many. @fig-trip-distribution shows the final trip distribution for both new and pass-by trips that will be used. This is the same result as given in @sec-analogy-method.
+
+```{r}
+#| label: fig-trip-distribution
+#| fig-cap: "Trip distribution as given by the analogy method."
+
+knitr::include_graphics("../images/output/analogy_dist.png")
+```
 
 
 ## Trip Assignment
 
 ### Non-site Traffic
+
+The background or non-site traffic was originally determined with traffic counts and estimations for the uncounted movements [@sec-existingtrafficvols]. In addition to this, opening-day and 5-year projections are needed to assess the impact of the development over time. Note that opening day is planned for Spring of 2024, and so the 5-year horizon date is 2029.
+
+The growth was determined by using an average rate of the form $vol = vol_0\times(1+rate)^{year}$, where $vol$ is the projected volume, $vol_0$ is the original volume, $rate$ is the growth rate, and $year$ is the number of years since the original volume was measured. This equation applies to all movements equally. The growth in this case is modeled as exponential; this is a reasonable assumption considering the relatively short horizons, but would need to be scrutinized further for longer horizons.
+
+In the pre-application meeting, a growth rate of 2% was determined, and so this rate is used here. @fig-opening-volumes shows the projected volumes at opening, and @fig-fiveyr-volumes shows the projected volumes 5 years after opening.
+
+```{r}
+#| label: fig-opening-volumes
+#| fig-cap: "Projected background traffic at opening (1 year)."
+
+knitr::include_graphics("../images/output/traffic_counts_yrop.png")
+```
+
+```{r}
+#| label: fig-fiveyr-volumes
+#| fig-cap: "Projected background traffic 5 years after opening."
+
+knitr::include_graphics("../images/output/traffic_counts_yr5.png")
+```
+
