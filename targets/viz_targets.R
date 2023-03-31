@@ -19,6 +19,10 @@ tar_plan(
   analogy_dist_map = plot_on_intersection_map(analogy_dist_coords, site_distribution_base, development_name, "images/output/analogy_dist.png", label_text_size = 5),
   
   access_directions_map = plot_on_intersection_map(access_fig_coords, site_traffic_base, development_name, "images/output/analogy_access_directions.png"),
+  
+  site_trips_map = plot_on_intersection_map(assigned_coords, site_traffic_access_base, development_name, "images/output/site_trips.png", include_site = TRUE),
+  all_trips_yrop_map = plot_on_intersection_map(all_trips_yrop_coords, site_traffic_access_base, development_name, "images/output/all_trips_yrop.png", include_site = TRUE),
+  all_trips_yr5_map = plot_on_intersection_map(all_trips_yr5_coords, site_traffic_access_base, development_name, "images/output/all_trips_yr5.png", include_site = TRUE),
 
   
   #### taz maps ####

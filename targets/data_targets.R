@@ -1,7 +1,7 @@
 tar_plan(
   # Data files
-  tar_target(traffic_counts_file, "data/traffic_counts.csv", format = "file"),
-  base_traffic_counts = read_csv(traffic_counts_file),
+  tar_target(traffic_counts_file, "data/traffic_counts.xlsx", format = "file"),
+  base_traffic_counts = readxl::read_excel(traffic_counts_file),
   
   tar_target(traffic_los_base_file, "data/traffic_los.csv", format = "file"),
   base_los = read_csv(traffic_los_base_file),
@@ -47,6 +47,7 @@ tar_plan(
   tar_target(site_intersection_base, "images/reference/site_intersections.png", format = "file"),
   tar_target(site_distribution_base, "images/reference/site_distribution.png", format = "file"),
   tar_target(lane_config_base, "images/reference/lane_diagram.png", format = "file"),
+  tar_target(site_traffic_access_base, "images/reference/site_traffic_access.png", format = "file"),
   tar_target(crash_diagram, "images/reference/crash_diagram.png", format = "file"),
   
   crash_severity_table = tribble(
@@ -58,7 +59,7 @@ tar_plan(
     1, "Property Damage Only"
   ),
   
-  ## trip assignment %s
+  ## trip assignment pcts
   UA_left = base_traffic_counts[15,'l'],
   UA_thru = base_traffic_counts[15,'t'],
   UA_Lpct = unlist((UA_left / 2) / (UA_left / 2 + UA_thru)),

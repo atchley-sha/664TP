@@ -40,6 +40,9 @@ tar_plan(
   
   access_intersections = select_access_intersections(access_XN, access_directions),
   assigned_trips = assign_trips(access_intersections, analogy_trip_dist, UA_Lpct, TCD_Tpct, site_trips),
-  assigned_coords = assign_movement_coords(assigned_trips, intersection_coords, long = TRUE)
+  assigned_coords = assign_movement_coords(assigned_trips, intersection_coords, long = TRUE),
+  
+  all_trips_yrop_coords = add_site_trips(yrop_coords, assigned_coords),
+  all_trips_yr5_coords = add_site_trips(yr5_coords, assigned_coords)
   
 )

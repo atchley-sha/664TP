@@ -80,7 +80,8 @@ assign_trips <- function(access, distribution, UA_Lpct, TCD_Tpct, site_trips){
     sum_trips3 <- tribble(
       ~NAME, ~sum_trips,
       "1200SITEnbr", sum(trips3["UA1200ebu"], trips3["UA1200ebl"], trips3["UA1200ebr"]),
-      "1200SITEebr", sum(trips3["TCB1200nbr"], trips3["TCB1200sbl"])
+      "1200SITEebr", sum(trips3["TCB1200nbr"], trips3["TCB1200sbl"]),
+      "UASITEsbt", trips3["UA1200ebr"]
     )
     
     sum_trips <- bind_rows(sum_trips1, sum_trips2, sum_trips3) %>% 
@@ -106,5 +107,6 @@ assign_trips <- function(access, distribution, UA_Lpct, TCD_Tpct, site_trips){
     add_pb_trips %>% 
       select(intersection, direction, movement, new_trips_all, pb_trips) %>% 
       mutate(across(.cols = everything(), .fns = ~(replace_na(.x,0)))) %>% 
-      mutate(total_count = new_trips_all + pb_trips)
+      mutate(total_count = new_trips_all + pb_trips,
+             value = total_count)
 }

@@ -19,14 +19,14 @@ assign_movement_coords <- function(data, coords, long = FALSE){
     pivot_wider(names_from = coord)
   
   assigned <- long_data %>% 
-    left_join(long_coords, by = c("intersection", "direction", "movement"))
+    full_join(long_coords, by = c("intersection", "direction", "movement"))
   
   assigned
 }
 
 assign_distribution_coords <- function(data, coords){
   
-  assigned <- left_join(
+  assigned <- full_join(
     data, coords, by = "direction"
   )
   
