@@ -100,3 +100,15 @@ compare_trip_dist <- function(analogy, gravity){
   joined
   
 }
+
+prune_access_directions <- function(raw_dirs){
+  raw_dirs %>% 
+    pivot_longer(-c(intersection, direction)) %>% 
+    separate(value, c("XN", "dir")) %>% 
+    mutate(value = ifelse(
+      !is.na(dir),
+      str_to_upper(dir),
+      "-")) %>% 
+    select(intersection, direction, name, value) %>% 
+    pivot_wider()
+}

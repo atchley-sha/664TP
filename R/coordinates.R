@@ -1,11 +1,15 @@
-assign_movement_coords <- function(data, coords){
+assign_movement_coords <- function(data, coords, long = FALSE){
   
+  if(long){
+    long_data <- data
+  } else{
   long_data <- data %>% 
     pivot_longer(
       -c(intersection, direction),
       names_to = "movement") %>% 
     filter(!is.na(value))
- 
+  }
+  
   long_coords <- coords %>% 
     pivot_longer(
       -c(intersection, direction),
@@ -26,4 +30,5 @@ assign_distribution_coords <- function(data, coords){
     data, coords, by = "direction"
   )
   
+  assigned
 }

@@ -85,7 +85,7 @@ This section presents two methods for determining the distribution of trips to {
 
 ### Analogy Method {#sec-analogy-method}
 
-The analogy method uses existing traffic volumes to determine the distribution of site trips. @fig-basevolumes shows the volumes used. Each of the intersection movements were assigned a direction and were designated as either an entering or exiting movement. Several movements, however, enter an intersection in the study area but leave on a road that doesn't ultimately pass the site, or are "internal" movements that do not show a clear direction away from the site. These movements are disregarded in this part of the analysis. Additionally, the eastern side of the University Ave. / 1200 South intersection leads directly to a parking lot, and these movements are disregarded as well. @fig-analogy-access-dirs shows a map of each movement's classification.
+The analogy method uses existing traffic volumes to determine the distribution of site trips. @fig-basevolumes shows the volumes used. Each of the intersection movements were assigned a direction and were designated as either an entering or exiting movement. Several movements, however, enter an intersection in the study area but leave on a road that doesn't ultimately pass the site, or are "internal" movements that do not show a clear direction toward or away from the site. These movements are disregarded in this part of the analysis. Additionally, the eastern side of the University Ave. / 1200 South intersection leads directly to a parking lot, and these movements are disregarded as well. @fig-analogy-access-dirs shows a map of each movement's classification.
 
 ```{r}
 #| label: fig-analogy-access-dirs
@@ -214,6 +214,8 @@ knitr::include_graphics("../images/output/analogy_dist.png")
 
 ## Trip Assignment
 
+This section discusses the assignment of trips to intersection movements.
+
 ### Non-site Traffic
 
 The background or non-site traffic was originally determined with traffic counts and estimations for the uncounted movements [@sec-existingtrafficvols]. In addition to this, opening-day and 5-year projections are needed to assess the impact of the development over time. Note that opening day is planned for Spring of 2024, and so the 5-year horizon date is 2029.
@@ -224,15 +226,33 @@ In the pre-application meeting, a growth rate of 2% was determined, and so this 
 
 ```{r}
 #| label: fig-opening-volumes
-#| fig-cap: "Projected background traffic at opening (1 year)."
+#| fig-cap: "Projected background traffic at opening (2024)."
 
 knitr::include_graphics("../images/output/traffic_counts_yrop.png")
 ```
 
 ```{r}
 #| label: fig-fiveyr-volumes
-#| fig-cap: "Projected background traffic 5 years after opening."
+#| fig-cap: "Projected background traffic 5 years after opening (2029)."
 
 knitr::include_graphics("../images/output/traffic_counts_yr5.png")
 ```
 
+### Site Traffic
+
+@fig-trip-distribution shows the distribution of site trips by entry/exit direction, but these trips need to be assigned to specific intersection movements. This depends substantially on the access layout of the site. There are two accesses to the site: one on 1200 South and one on University Ave.[^This access is shared with the development to the south.]---for a full discussion of access and site layout see @sec-site-layout.
+
+@fig-site-access shows the assumed site access routes from each access road. Several assumptions are made regarding this:
+
+- Because of the raised median on 1200 South, no left turns are possible into or out of this driveway. This primarily affects drivers entering the site from the northeast (\acr{SB} University Avenue) and exiting to the northwest (\acr{NB} Towne Centre Blvd.). The former are assumed to continue past 1200 South and use the University Ave. driveway, and the latter are assumed to exit on 1200 South \acr{EB}, then U-turn at the University Ave. intersection.
+- It is assumed that *all* vehicles exiting to the northwest (on Towne Centre Blvd.) use the above route, rather than using the University Ave. exit and looping around the site.
+- No vehicles for primary trips are assumed to turn left (\acr{NB}) from the University Ave. driveway. This is due to the difficulty of doing so combined with the ability to use the 1200 South driveway and turn left at the University Ave. intersection.
+- All pass-by trips are assumed to use the University Ave. driveway for both entering and exiting.
+- All vehicles exiting to the southwest (\acr{SB} Towne Centre Blvd.) are assumed to use the University Ave. driveway, rather than making the required U-turn and left turn via the 1200 South driveway.
+- Where multiple routes exist to enter/exit the site from the same direction, the assignment is split between them. This primarily affects the trips exiting to \acr{SB} University Ave. and the trips entering from \acr{NB} University Ave. and \acr{WB} Towne Centre Drive.
+  - The trips exiting to \acr{SB} University Ave. can exit the site from either driveway. Most drivers will likely use the University Ave. driveway, but the 1200 South driveway may be more convenient for vehicles near the northwest corner of the site. A 2/3-1/3 split is used for the University Ave. driveway and the 1200 South driveway, respectively.
+  - The trips entering from \acr{NB} University Ave. and \acr{WB} Towne Centre Drive can either turn left into the University Ave. driveway or loop around the site to use the 1200 South driveway. The latter option would generally be disregarded due to its complexity; however, since left turns off of University Ave. are difficult in this corridor (it is required to cross 3 lanes of opposing traffic), some drivers may elect to loop around the site. These trips are split proportionally according to background traffic distribution (see @fig-XXXX), but since the left turn off of University Ave. is assumed to still be the more prevalent route the proportion of vehicles using \acr{WB} Towne Centre Dr. is halved.
+
+
+
+### Total Traffic

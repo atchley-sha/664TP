@@ -35,5 +35,11 @@ tar_plan(
   site_sf = get_site_sf(taz, id = 2025),
   time_threshold = 20,
   taz_time = calculate_trip_proportions(access, time = time_threshold),
-  grav_time = trip_props(taz_time)
+  grav_time = trip_props(taz_time),
+  
+  
+  access_intersections = select_access_intersections(access_XN, access_directions),
+  assigned_trips = assign_trips(access_intersections, analogy_trip_dist, UA_Lpct, TCD_Tpct, site_trips),
+  assigned_coords = assign_movement_coords(assigned_trips, intersection_coords, long = TRUE)
+  
 )

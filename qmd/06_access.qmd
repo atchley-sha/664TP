@@ -1,3 +1,5 @@
-# Access and Parking Layout
+# Access and Parking Layout {#sec-site-layout}
 
 {{< include ../setup.qmd >}}
+
+ There is also a cross-access to/from the Exxon on the northeast of the site; since the Exxon has accesses on 1200 South and University Ave. already, this cross-access is not assumed to affect the trip/driveway assignment. Additionally, there is an existing access on University Ave. just south of the Exxon site, and this access is to be removed

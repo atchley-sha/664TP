@@ -30,14 +30,12 @@ tar_plan(
   tar_target(trips_file, "data/tripgen.csv", format = "file"),
   tripgen_base = read_csv(trips_file),
   
-  tar_target(trip_access_file, "data/trip_accesses.csv", format = "file"),
-  trip_access = read_csv(trip_access_file),
+  tar_target(access_XN_file, "data/access_XN.csv", format = "file"),
+  access_XN = read_csv(access_XN_file),
   
   tar_target(access_directions_file, "data/access_directions.csv", format = "file"),
   access_directions = read_csv(access_directions_file),
-  
-  tar_target(access_directions_fig_file, "data/access_directions_fig.csv", format = "file"),
-  access_directions_fig = read_csv(access_directions_fig_file),
+  access_directions_fig = prune_access_directions(access_directions),
   
   taz_sf = sf::read_sf("data/GIS/TAZ_DATA.shp"),
   tar_target(taz_access_dirs_file, "data/TAZ_access_dirs.csv", format = "file"),
@@ -58,5 +56,13 @@ tar_plan(
     3, "Non-incapacitating Injury",
     2, "Possible Injury",
     1, "Property Damage Only"
-  )
+  ),
+  
+  ## trip assignment %s
+  UA_left = base_traffic_counts[15,'l'],
+  UA_thru = base_traffic_counts[15,'t'],
+  UA_Lpct = unlist((UA_left / 2) / (UA_left / 2 + UA_thru)),
+  TCD_thru = base_traffic_counts[14, 't'],
+  TCD_right = base_traffic_counts[14, 'r'],
+  TCD_Tpct = unlist((TCD_thru / 2) / (TCD_thru / 2 + TCD_right))
 )
