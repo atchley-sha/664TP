@@ -240,7 +240,7 @@ knitr::include_graphics("../images/output/traffic_counts_yr5.png")
 
 ### Site Traffic {#sec-site-traffic}
 
-@fig-trip-distribution shows the distribution of site trips by entry/exit direction, but these trips need to be assigned to specific intersection movements. This depends substantially on the access layout of the site. There are two accesses to the site: one on 1200 South and one on University Ave.^[This access is shared with the development to the south.]---for a full discussion of access and site layout see @sec-site-layout.
+@fig-trip-distribution shows the distribution of site trips by entry/exit direction, but these trips need to be assigned to specific intersection movements. This depends substantially on the access layout of the site. There are two accesses to the site: one on 1200 South and one on University Ave.^[This access is shared with the development to the south.]---for a full discussion of access and site layout see @sec-access-and-parking-layout.
 
 ```{r}
 #| label: fig-site-access
@@ -256,7 +256,7 @@ knitr::include_graphics("../images/reference/site_access.png")
 - Because of the raised median on 1200 South, no left turns are possible into or out of this driveway. This primarily affects drivers entering the site from the northeast (\acr{SB} University Avenue) and exiting to the northwest (\acr{NB} Towne Centre Blvd.). The former are assumed to continue past 1200 South and use the University Ave. driveway, and the latter are assumed to exit on 1200 South \acr{EB}, then U-turn at the University Ave. intersection.
 - It is assumed that *all* vehicles exiting to the northwest (on Towne Centre Blvd.) use the above route, rather than using the University Ave. exit and looping around the site.
 - No vehicles for primary trips are assumed to turn left (\acr{NB}) from the University Ave. driveway. This is due to the difficulty of doing so combined with the ability to use the 1200 South driveway and turn left at the University Ave. intersection.
-- All pass-by trips are assumed to use the University Ave. driveway for both entering and exiting (this includes left turns onto University Ave. exiting the site).
+- All pass-by trips are assumed to use the University Ave. driveway for both entering and exiting (this includes left turns onto University Ave. exiting the site). Note that pass-by trips are considered to come from the existing background traffic, rather than new trips to the study area. These trips are therefore only added to the intersection movements into or out of the University Ave. driveway, and *not* to intersection movements upstream or downstream of the driveway.
 - All vehicles exiting to the southwest (\acr{SB} Towne Centre Blvd.) are assumed to use the University Ave. driveway, rather than making the required U-turn and left turn via the 1200 South driveway.
 - Where multiple routes exist to enter/exit the site from the same direction, the assignment is split between them. This primarily affects the trips exiting to \acr{SB} University Ave. and the trips entering from \acr{NB} University Ave. and \acr{WB} Towne Centre Drive.
   - The trips exiting to \acr{SB} University Ave. can exit the site from either driveway. Most drivers will likely use the University Ave. driveway, but the 1200 South driveway may be more convenient for vehicles near the northwest corner of the site. A 2/3-1/3 split is used for the University Ave. driveway and the 1200 South driveway, respectively.

@@ -1,4 +1,4 @@
 ﻿use,code,eqn,gfa,spaces
-Office,710,,,
-Restaurant,932,,,
-Retail,816,,,
+Office,710,\textstyle\frac{GFA}{1000} \times 2.39,18000,43
+Restaurant,932,\textstyle\frac{GFA}{1000} \times 9.44,8000,76
+Retail,816,interpolated,18000,7

@@ -1,0 +1,7 @@
+# ITE Parking Generation Reference {#sec-apdx-parkgen}
+
+This appendix contains the \acr{ITE} *Parking Generation* references used for parking generation. These are land use codes 710 (General Office Building), 816 (Hardware/Paint Store), and 932 (High-Turnover (Sit-Down) Restaurant).
+
+![](../../images/parking/parking_710.png) 
+![](../../images/parking/parking_816_interpolated.png)
+![](../../images/parking/parking_932.png)

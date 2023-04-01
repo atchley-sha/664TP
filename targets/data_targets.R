@@ -44,7 +44,7 @@ tar_plan(
   tar_target(ite_parkgen_file, "data/ite_parkgen.csv", format = "file"),
   ite_parkgen = read_csv(ite_parkgen_file),
   
-  # Base images
+  ## Base images
   tar_target(site_traffic_base, "images/reference/site_traffic_base.png", format = "file"),
   tar_target(site_bus_base, "images/reference/site_bus.png", format = "file"),
   tar_target(site_intersection_base, "images/reference/site_intersections.png", format = "file"),

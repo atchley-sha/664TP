@@ -30,6 +30,8 @@ book:
     - qmd/appendix/apdx_ex_synchro.qmd
     - qmd/appendix/apdx_signal_timings.qmd
     - qmd/appendix/apdx_tripgen.qmd
+    # - qmd/appendix/apdx_gravity_dist.qmd
+    - qmd/appendix/apdx_parkgen.qmd
 
 class: "CE 664"
 firm: "HSL Developers"
