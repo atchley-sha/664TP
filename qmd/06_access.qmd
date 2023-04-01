@@ -2,4 +2,69 @@
 
 {{< include ../setup.qmd >}}
 
- There is also a cross-access to/from the Exxon on the northeast of the site; since the Exxon has accesses on 1200 South and University Ave. already, this cross-access is not assumed to affect the trip/driveway assignment. Additionally, there is an existing access on University Ave. just south of the Exxon site, and this access is to be removed
+The impact of site traffic on the roadways and intersections in the study area is significantly affected by the design of the site, at least regarding the site access locations. This section discusses various access options and recommends specific access locations for the development. The access locations will also affect the layout of the site, including parking, so a discussion of parking requirements and a proposed site layout is presented
+
+## Access
+
+@fig-existing-access shows aerial imagery of the site location in its existing condition (2023). The site location is marked, as well as the existing external and cross-accesses. There is an existing access on University Ave. just to the south of the site, and a convenient cross-access between this development and {{< var devname >}}. There is also an existing access on University Ave. at the north of {{< var devname >}}, but this access is too close to the northern adjacent access for the Exxon and does not comply with \acr{UDOT} spacing guidelines. University Ave. is classified as an Access Category 5 roadway [@utahdepartmentoftransportation2023a], and as such requires 350-foot spacing between driveways per Utah rule R930-6-7 (3)(a) [@utahdepartmentoftransportation2019]. This access therefore will be removed. Even with this access removed, there is not enough space per rule R930-6-7 to put an additional access to {{< var devneme >}} on University Ave. (the distance between the nearest adjacent driveways is roughly 370 feet), so the only access from University Ave. will be via the cross-access with the development to the south.
+
+There is also an existing driveway on 1200 South, and this is proposed to be used in the site development, though with an updated design. This is critical to aid in \acr{NB} exiting trips, as turning left directly onto University Ave. is often difficult with even moderate traffic volumes. Since 1200 South is not a \acr{UDOT} road, the R930-6-7 spacing guidelines do not apply, so the current access location is valid. Additionally, there is a cross-access to/from the Exxon on the northeast of the site; since the Exxon has accesses on 1200 South and University Ave. already, this cross-access is not assumed to affect the trip/driveway assignment, and will remain in the site layout design. All of these proposals for access locations are noted in @fig-existing-access.
+
+```{r}
+#| label: fig-existing-access
+#| fig-cap: Existing site accesses and proposed changes.
+
+knitr::include_graphics("../images/reference/existing_site_access.png")
+```
+
+## Parking Requirements
+
+The three land uses in the development are a sit-down restaurant, office, and specialty retail. The office will likely have very low turnover, as most trips will be made by employees with few visitor trips. This would 8.5-foot stall widths for parking near the office. The restaurant and retail locations will have a higher turnover, though, and therefore 9.5-foot stall widths are recommended. However, since this is a multi-use development with a shared parking lot, and since the site is not very large, it would be more reasonable to have consistent stall widths. As such, 9-foot stalls are recommended as the average of the suggested widths.
+
+Because of the site's size and shape, typical one-way angled parking modules would unreasonably restrict vehicle movement. Therefore, 90^o^ parking is recommended. The stall lengths are recommended at 18 feet, with 12 feet of clearance to perform a parking maneuver, both based on common practice. Additionally, since the office, restaurant, and retail have different peak periods, some parking may be shared between the two. This is estimated at 10% of the total parking based on common practice and *Shared Parking* [@urbanlandinstitute2020].
+
+There are two relevant methods of calculating the number or required parking spaces for {{< var devname >}}: \acr{ITE} Parking Generation [@instituteoftransportationengineers2019] and Provo city code [@provocitycode]. These are presented and compared below.
+
+### ITE Parking Generation
+
+
+
+### Provo City Code
+
+```{r}
+#| label: parking-calcs
+
+parking <- tibble(
+  use = c("office", "rest", "retl"),
+  gfa = c(18000, 8000, 18000),
+  per = c(250, 100, 600),
+  spaces = (gfa/per) %>% ceiling()
+) %>% 
+  column_to_rownames("use")
+
+shared_pct <- 0.1
+
+tot_spaces_raw <- sum(parking$spaces)
+tot_spaces <- ((1-shared_pct)*tot_spaces_raw) %>% ceiling()
+
+handicap_tot <- 6
+```
+
+
+Provo city code &#167;14.37.060 [@provocitycode] outlines the following requirements for the land uses in {{< var devname >}}:
+
+- **Office:** 1 space per `r parking["office","per"]` ft^2^ of \acr{GFA}
+- **Restaurants:** 1 space per `r parking["rest","per"]` ft^2^ of \acr{GFA}
+- **Retail (hardware, etc.):** 1 space per `r parking["retl","per"]` ft^2^ of \acr{GFA}
+
+The gross floor area and required parking of the three land uses is:
+
+- **Office:** `r parking["office","gfa"] %>% as.character()` ft^2^; `r parking["office","spaces"]` spaces
+- **Restaurant:** `r parking["rest","gfa"] %>% as.character()` ft^2^; `r parking["rest","spaces"]` spaces
+- **Hardware store:** `r parking["retl","gfa"] %>% as.character()` ft^2^; `r parking["retl","spaces"]` spaces
+
+This gives `r tot_spaces_raw` parking spaces required, but this is reduced by `r (shared_pct*100) %>% round(1)`% due to the mixed land use. This gives a total number of `r tot_spaces` required parking spaces. Note that per Provo city code §14.37.110 [@provocitycode] `r handicap_tot` total handicap parking spaces are required for a parking lot of this size. Since the buildings will be placed adjacent to each other (see @sec-site-layout), these spaces are spread out against the building.
+
+### Method Comparison
+
+## Proposed Site Layout

@@ -41,6 +41,9 @@ tar_plan(
   tar_target(taz_access_dirs_file, "data/TAZ_access_dirs.csv", format = "file"),
   taz_access_dirs = read_csv(taz_access_dirs_file),
   
+  tar_target(ite_parkgen_file, "data/ite_parkgen.csv", format = "file"),
+  ite_parkgen = read_csv(ite_parkgen_file),
+  
   # Base images
   tar_target(site_traffic_base, "images/reference/site_traffic_base.png", format = "file"),
   tar_target(site_bus_base, "images/reference/site_bus.png", format = "file"),

@@ -33,4 +33,6 @@ acronyms:
       longname: all-way--stop-controlled
     - shortname: PDO
       longname: Property damage only
+    - shortname: GFA
+      longname: gross floor area
 ---
