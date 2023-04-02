@@ -284,6 +284,7 @@ knitr::include_graphics("../images/output/site_trips_pb.png")
 
 knitr::include_graphics("../images/output/site_trips_tot.png")
 ```
+
 ### Total Traffic
 
 The two horizon years of interest in this analysis are opening day (2024) and 5 years after opening (2029). The background traffic is expected to grow as determined in @sec-non-site-traffic; however, the site traffic is not assumed to change at any of the horizon times. Figures [-@fig-all-trips-yrop] and [-@fig-all-trips-yr5] show the total vehicles (background traffic plus site trips) at each intersection turning movement for the two horizon years.
