@@ -43,6 +43,11 @@ tar_plan(
   assigned_coords = assign_movement_coords(assigned_trips, intersection_coords, long = TRUE),
   
   all_trips_yrop_coords = add_site_trips(yrop_coords, assigned_coords),
-  all_trips_yr5_coords = add_site_trips(yr5_coords, assigned_coords)
+  all_trips_yr5_coords = add_site_trips(yr5_coords, assigned_coords),
+  
+  los_table_yrop_nobuild = make_delay_and_los_table(yrop_nobuild_los$delay, yrop_nobuild_los$los),
+  los_table_yrop_build = make_delay_and_los_table(yrop_build_los$delay, yrop_build_los$los),
+  los_table_yr5_nobuild = make_delay_and_los_table(yr5_nobuild_los$delay, yr5_nobuild_los$los),
+  los_table_yr5_build = make_delay_and_los_table(yr5_build_los$delay, yr5_build_los$los)
   
 )

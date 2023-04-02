@@ -2,11 +2,54 @@
 
 {{< include ../setup.qmd >}}
 
+```{r}
+delay_and_los_table_viz <- function(tbl){
+  
+  viz <- tbl %>%
+    flextable() %>% 
+    set_header_labels(
+      intersection = "Intersection",
+      direction = "Direction",
+      l_delay = "Left",
+      t_delay = "Thru",
+      r_delay = "Right",
+      i_delay = "Intersection",
+      l_los = "Left",
+      t_los = "Thru",
+      r_los = "Right",
+      i_los = "Intersection"
+    ) %>% 
+    add_header_row(values = c("Intersection", "Direction", "Control Delay (sec)", "Level of Service"), colwidths = c(1,1,4,4)) %>% 
+    merge_v(j = ~ intersection, target = ~intersection + i_delay + i_los) %>% 
+    merge_v(~ intersection + direction, part = "h") %>% 
+    fix_border_issues() %>% 
+    theme_box() %>%
+    align(align = "c", part = "a") %>% 
+    valign(part = "a") %>% 
+    autofit() %>%
+    fit_to_width(6)
+  
+  viz
+}
+```
 
 
-## Site Access
-
-
+This section analyzes the impact of {{< var devname >}} on the roadways and intersections in the study area. A \acr{LOS} analysis is performed for both opening day (2024) and the 5-year horizon (2029). The analysis is done for both the no-build and build scenarios at each horizon year.
 
 ## Level of Service
+
+```{r}
+#| label: tbl-los-yrop
+#| tbl-cap: Opening Year (2024) LOS Analysis
+#| tbl-subcap: 
+#|   - No-Build
+#|   - Build
+#| layout-ncol: 1
+
+tar_read(los_table_yrop_nobuild) %>% 
+  delay_and_los_table_viz()
+
+tar_read(los_table_yrop_build) %>% 
+  delay_and_los_table_viz()
+```
 

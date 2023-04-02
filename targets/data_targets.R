@@ -44,6 +44,16 @@ tar_plan(
   tar_target(ite_parkgen_file, "data/ite_parkgen.csv", format = "file"),
   ite_parkgen = read_csv(ite_parkgen_file),
   
+  tar_target(yrop_nobuild_los_file, "data/reference/future_los/yrop_nobuild_los.csv", format = "file"),
+  tar_target(yrop_build_los_file, "data/reference/future_los/yrop_build_los.csv", format = "file"),
+  tar_target(yr5_nobuild_los_file, "data/reference/future_los/yr5_nobuild_los.csv", format = "file"),
+  tar_target(yr5_build_los_file, "data/reference/future_los/yr5_build_los.csv", format = "file"),
+  
+  yrop_nobuild_los = list(delay = select(read_csv(yrop_nobuild_los_file, name_repair = "minimal"), 1:6), los = select(read_csv(yrop_nobuild_los_file, name_repair = "minimal"), 7:12)),
+  yrop_build_los = list(delay = select(read_csv(yrop_build_los_file, name_repair = "minimal"), 1:6), los = select(read_csv(yrop_build_los_file, name_repair = "minimal"), 7:12)),
+  yr5_nobuild_los = list(delay = select(read_csv(yr5_nobuild_los_file, name_repair = "minimal"), 1:6), los = select(read_csv(yr5_nobuild_los_file, name_repair = "minimal"), 7:12)),
+  yr5_build_los = list(delay = select(read_csv(yr5_build_los_file, name_repair = "minimal"), 1:6), los = select(read_csv(yr5_build_los_file, name_repair = "minimal"), 7:12)),
+  
   ## Base images
   tar_target(site_traffic_base, "images/reference/site_traffic_base.png", format = "file"),
   tar_target(site_bus_base, "images/reference/site_bus.png", format = "file"),
