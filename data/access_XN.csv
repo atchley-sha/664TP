@@ -9,7 +9,7 @@ TCBTCD,nb,,N,,
 TCBTCD,eb,,,,
 UA1200,sb,,N,,
 UA1200,wb,,,,
-UA1200,nb,,,,
+UA1200,nb,,X_sum,,
 UA1200,eb,X,,X_sum,X_sum
 UATCD,sb,X,X,X_sum,
 UATCD,wb,,N_dist,N_dist,

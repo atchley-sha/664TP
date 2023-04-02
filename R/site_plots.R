@@ -1,4 +1,4 @@
-plot_on_intersection_map <- function(data, image_file, development_name, out_file, dev_x = 975, dev_y = 950, intersection_text_size = 5, label_text_size = 3, include_site = FALSE){
+plot_on_intersection_map <- function(data, image_file, development_name, out_file, dev_x = 975, dev_y = 950, intersection_text_size = 5, label_text_size = 3, include_site = FALSE, value = value, zero_rm = FALSE){
   
   intersections <- data %>% 
     filter(direction == "intersection")
@@ -14,6 +14,11 @@ plot_on_intersection_map <- function(data, image_file, development_name, out_fil
       filter(direction != "intersection")
   }
   
+  if(zero_rm){
+    other <- other %>% 
+      filter({{value}} != 0)
+  }
+  
   p <- image_file %>% 
     image_read() %>% 
     image_ggplot(interpolate = TRUE) +
@@ -21,13 +26,13 @@ plot_on_intersection_map <- function(data, image_file, development_name, out_fil
     geom_label(
       data = intersections,
       size = intersection_text_size,
-      mapping = aes(x = x, y = y, label = value),
+      mapping = aes(x = x, y = y, label = {{value}}),
       fill = "black",
       color = "white") +
     geom_text(
       data = other,
       size = label_text_size,
-      mapping = aes(x = x, y = y, label = value))
+      mapping = aes(x = x, y = y, label = {{value}}))
   
   ggsave(out_file, plot = p, width = 6, units = "in")
   
