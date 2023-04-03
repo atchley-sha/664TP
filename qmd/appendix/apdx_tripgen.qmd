@@ -3,12 +3,18 @@
 This appendix contains the \acr{ITE} Trip Generation Manual references used for trip generation, including to determine the appropriate study level for this \acr{TIA}. These are land use codes 710 (General Office Building), 816 (Hardware/Paint Store), and 932 (High-Turnover (Sit-Down) Restaurant), for both the daily trips and the PM peak trips. It also contains a diagram of the multi-use trip reduction.
 
 ![](../../images/tripgen/710_pm.pdf)
+
 ![](../../images/tripgen/710_wkday.pdf)
 
+
 ![](../../images/tripgen/816_pm.pdf)
+
 ![](../../images/tripgen/816_wkday.pdf)
 
+
 ![](../../images/tripgen/932_pm.pdf)
+
 ![](../../images/tripgen/932_wkday.pdf)
+
 
 ![](../../images/tripgen/hand_scan_multiuse.pdf)

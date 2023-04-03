@@ -212,7 +212,7 @@ knitr::include_graphics("../images/output/analogy_dist.png")
 ```
 
 
-## Trip Assignment
+## Trip Assignment {#sec-trip-assignment}
 
 This section discusses the assignment of trips to intersection movements.
 
@@ -262,7 +262,7 @@ knitr::include_graphics("../images/reference/site_access.png")
   - The trips exiting to \acr{SB} University Ave. can exit the site from either driveway. Most drivers will likely use the University Ave. driveway, but the 1200 South driveway may be more convenient for vehicles near the northwest corner of the site. A 2/3-1/3 split is used for the University Ave. driveway and the 1200 South driveway, respectively.
   - The trips entering from \acr{NB} University Ave. and \acr{WB} Towne Centre Drive can either turn left into the University Ave. driveway or loop around the site to use the 1200 South driveway. The latter option would generally be disregarded due to its complexity; however, since left turns off of University Ave. are difficult in this corridor (it is required to cross 3 lanes of opposing traffic), some drivers may elect to loop around the site. These trips are split proportionally according to background traffic distribution (see @fig-basevolumes), but since the left turn off of University Ave. is assumed to still be the more prevalent route the proportion of vehicles using \acr{WB} Towne Centre Dr. is halved.
 
-Tables [-@tbl-base-tripgen]--[-@tbl-tripgen-passby] provide information on the total number of site trips generated (both primary and pass-by). Using this information and the above assumptions, the primary site trips are assigned to the intersection movements as shown in @fig-site-assignment-new, and the pass-by trips as shown in @fig-assignment-pb. These trips are added together to give an expected site impact as shown in @fig-site-assignment-tot.
+Tables [-@tbl-base-tripgen]--[-@tbl-tripgen-passby] provide information on the total number of site trips generated (both primary and pass-by). Using this information and the above assumptions, the primary site trips are assigned to the intersection movements as shown in @fig-site-assignment-new, and the pass-by trips as shown in @fig-site-assignment-pb. These trips are added together to give an expected site impact as shown in @fig-site-assignment-tot.
 
 ```{r}
 #| label: fig-site-assignment-new
@@ -285,7 +285,7 @@ knitr::include_graphics("../images/output/site_trips_pb.png")
 knitr::include_graphics("../images/output/site_trips_tot.png")
 ```
 
-### Total Traffic
+### Total Traffic {#sec-total-traffic}
 
 The two horizon years of interest in this analysis are opening day (2024) and 5 years after opening (2029). The background traffic is expected to grow as determined in @sec-non-site-traffic; however, the site traffic is not assumed to change at any of the horizon times. Figures [-@fig-all-trips-yrop] and [-@fig-all-trips-yr5] show the total vehicles (background traffic plus site trips) at each intersection turning movement for the two horizon years.
 

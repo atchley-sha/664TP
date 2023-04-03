@@ -44,7 +44,7 @@ tar_read(los_criteria) %>%
   align(align = "center", part = "all")
 ```
 
-The existing level of service was determined based on current traffic volumes [@sec-existingtrafficvols] and signal timings (obtained from \acr{UDOT}), using the Synchro software package [@trafficware2019]. Synchro performs a \acr{LOS} analysis using these and other inputs, including roadway and lane configuration. @fig-losbasenumbers shows the average control delay for each movement and intersection, and @fig-losbaseletters shows the \acr{LOS} of the same. The full results of the Synchro analysis are available in @sec-synchro-ex.
+The existing level of service was determined based on current traffic volumes [@sec-existingtrafficvols] and signal timings (obtained from \acr{UDOT}), using the Synchro software package [@trafficware2019]. Synchro performs a \acr{LOS} analysis using these and other inputs, including roadway and lane configuration. @fig-losbasenumbers shows the average control delay for each movement and intersection, and @fig-losbaseletters shows the \acr{LOS} of the same. The full results of the Synchro analysis are available in @sec-apdx-synchro-ex.
 
 ```{r}
 #| label: fig-losbasenumbers
@@ -113,7 +113,7 @@ tar_read(crash_rates) %>%
 
 ```
 
-For the purposes of this assignment, the critical crash rate for intersection analysis is assumed to be 2 crashes per MEV, and the critical crash rate for the roadway segment analysis is assumed to be 8 crashes per MVMT. None of the crash rates approach these values, and so this roadway segment is deemed to be safe. However, it is also important to examine the severity of the crashes. @tbl-crash-levels provides the \acr{UDOT} crash severity scale, and @tbl-count-crashes-by-level gives the number and proportion of crashes at each level. From @tbl-count-crashes-by-level it is clear that the vast majority of crashes are \acr{PDO} crashes, with around 10% with confirmed injury and none fatal. This gives further evidence for the safety of the roadway corridor.
+Based on common practice, the critical crash rate for intersection analysis is assumed to be 2 crashes per MEV, and the critical crash rate for the roadway segment analysis is assumed to be 8 crashes per MVMT. None of the crash rates approach these values, and so this roadway segment is deemed to be safe. However, it is also important to examine the severity of the crashes. @tbl-crash-levels provides the \acr{UDOT} crash severity scale, and @tbl-count-crashes-by-level gives the number and proportion of crashes at each level. From @tbl-count-crashes-by-level it is clear that the vast majority of crashes are \acr{PDO} crashes, with around 10% with confirmed injury and none fatal. This gives further evidence for the safety of the roadway corridor.
 
 ```{r}
 #| label: tbl-crash-levels

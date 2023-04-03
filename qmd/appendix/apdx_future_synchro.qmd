@@ -1,0 +1,51 @@
+# Synchro LOS Analysis (Future) {#sec-apdx-synchro-future}
+
+This appendix contains the results of the Synchro \acr{LOS} analysis for the road volumes, signal timings, and lane configurations at both the opening day (2024) and 5-year (2029) horizons.
+
+## Opening Day (no-build)
+
+![](../../data/reference/future_los/synchro_reports/op_nobuild_awsc/op_nobuild_awsc-1.png)
+
+![](../../data/reference/future_los/synchro_reports/op_build_sig/op_build_sig-1.png)
+
+![](../../data/reference/future_los/synchro_reports/op_build_sig/op_build_sig-2.png)
+
+![](../../data/reference/future_los/synchro_reports/op_build_sig/op_build_sig-3.png)
+
+## Opening Day (build)
+
+![](../../data/reference/future_los/synchro_reports/op_build_awsc/op_build_awsc-1.png)
+
+![](../../data/reference/future_los/synchro_reports/op_build_sig/op_build_sig-1.png)
+
+![](../../data/reference/future_los/synchro_reports/op_build_sig/op_build_sig-2.png)
+
+![](../../data/reference/future_los/synchro_reports/op_build_sig/op_build_sig-3.png)
+
+![](../../data/reference/future_los/synchro_reports/op_build_twsc/op_build_twsc-1.png)
+
+![](../../data/reference/future_los/synchro_reports/op_build_twsc/op_build_twsc-2.png)
+
+## Year 5 (no-build)
+
+![](../../data/reference/future_los/synchro_reports/yr5_nobuild_awsc/yr5_nobuild_awsc-1.png)
+
+![](../../data/reference/future_los/synchro_reports/yr5_build_sig/yr5_build_sig-1.png)
+
+![](../../data/reference/future_los/synchro_reports/yr5_build_sig/yr5_build_sig-2.png)
+
+![](../../data/reference/future_los/synchro_reports/yr5_build_sig/yr5_build_sig-3.png)
+
+## Year 5 (build)
+
+![](../../data/reference/future_los/synchro_reports/yr5_build_awsc/yr5_build_awsc-1.png)
+
+![](../../data/reference/future_los/synchro_reports/yr5_build_sig/yr5_build_sig-1.png)
+
+![](../../data/reference/future_los/synchro_reports/yr5_build_sig/yr5_build_sig-2.png)
+
+![](../../data/reference/future_los/synchro_reports/yr5_build_sig/yr5_build_sig-3.png)
+
+![](../../data/reference/future_los/synchro_reports/yr5_build_twsc/yr5_build_twsc-1.png)
+
+![](../../data/reference/future_los/synchro_reports/yr5_build_twsc/yr5_build_twsc-2.png)

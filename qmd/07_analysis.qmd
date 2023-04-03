@@ -20,6 +20,7 @@ delay_and_los_table_viz <- function(tbl){
       i_los = "Intersection"
     ) %>% 
     add_header_row(values = c("Intersection", "Direction", "Control Delay (sec)", "Level of Service"), colwidths = c(1,1,4,4)) %>% 
+    align(align = "c", part = "a") %>% 
     merge_v(j = ~ intersection, target = ~intersection + i_delay + i_los) %>% 
     merge_v(~ intersection + direction, part = "h") %>% 
     fix_border_issues() %>% 
@@ -38,18 +39,41 @@ This section analyzes the impact of {{< var devname >}} on the roadways and inte
 
 ## Level of Service
 
+Based on the traffic assignment as determined in @sec-trip-assignment, a \acr{LOS} analysis was performed to determine the average delay per vehicle, and assign a \acr{LOS} designation (see  @tbl-los-intersections). Both the no-build and build scenarios are analyzed, and these results are presented in Tables [-@tbl-los-yrop-nobuild]--[-@tbl-los-yr5-build]. The direct analysis reports are also provided in @sec-apdx-synchro-future.
+
+Note that because of limitations in the Synchro software used for this analysis [@trafficware2019], the U-turn movements at the University Ave./1200 South intersection could not be analyzed, so these were added to the left-turn movement.
+
 ```{r}
-#| label: tbl-los-yrop
-#| tbl-cap: Opening Year (2024) LOS Analysis
-#| tbl-subcap: 
-#|   - No-Build
-#|   - Build
-#| layout-ncol: 1
+#| label: tbl-los-yrop-nobuild
+#| tbl-cap: Opening Year (2024) LOS Analysis, no-build scenario
 
 tar_read(los_table_yrop_nobuild) %>% 
   delay_and_los_table_viz()
+```
 
+```{r}
+#| label: tbl-los-yrop-build
+#| tbl-cap: Opening Year (2024) LOS Analysis, build scenario
 tar_read(los_table_yrop_build) %>% 
   delay_and_los_table_viz()
 ```
+
+```{r}
+#| label: tbl-los-yr5-nobuild
+#| tbl-cap: 5-Year (2029) LOS Analysis, no-build scenario
+
+tar_read(los_table_yr5_nobuild) %>% 
+  delay_and_los_table_viz()
+```
+
+```{r}
+#| label: tbl-los-yr5-build
+#| tbl-cap: 5-Year (2029) LOS Analysis, build scenario
+tar_read(los_table_yr5_build) %>% 
+  delay_and_los_table_viz()
+```
+
+Based on these results, the {{< var devname >}} development has virtually no impact on the delay/\acr{LOS} of the intersections at either the opening day or 5-year horizons. While this analysis does show movements that perform poorly, these do so even with the background traffic alone, and in fact the delay does not substantially increase between the opening day and 5-year background traffic.
+
+## Roadway/Intersection Improvements
 

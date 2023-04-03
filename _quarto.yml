@@ -32,6 +32,7 @@ book:
     - qmd/appendix/apdx_tripgen.qmd
     # - qmd/appendix/apdx_gravity_dist.qmd
     - qmd/appendix/apdx_parkgen.qmd
+    - qmd/appendix/apdx_future_synchro.qmd
 
 class: "CE 664"
 firm: "HSL Developers"

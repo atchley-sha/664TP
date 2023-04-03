@@ -104,3 +104,4 @@ handicap_tot <- 6
 Provo city code requires more parking than *Parking Generation* predicts (`r tot_spaces_provo` vs. `r ite_parking` spaces), so this analysis will use the former. This value, however, should be reduced by `r (shared_pct*100) %>% round(1)`% due to the mixed land use. This gives a total number of `r tot_spaces` required parking spaces. Note that per Provo city code &#167;14.37.110 [@provocitycode] `r handicap_tot` total handicap parking spaces are required for a parking lot of this size. Since the buildings will be placed adjacent to each other (see @sec-site-layout), these spaces are spread out strategically along the length of the buildings.
 
 ## Proposed Site Layout {#sec-site-layout}
+
