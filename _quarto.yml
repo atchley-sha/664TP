@@ -18,21 +18,21 @@ book:
   chapters:
     - index.qmd
     - qmd/01_intro.qmd
-    - qmd/02_development.qmd
-    - qmd/03_study-area.qmd
-    - qmd/04_existing.qmd
-    - qmd/05_projected.qmd
-    - qmd/06_access.qmd
-    - qmd/07_analysis.qmd
-    # - qmd/08_conclusions.qmd
-    - qmd/references.qmd
-  appendices: 
-    - qmd/appendix/apdx_ex_synchro.qmd
-    - qmd/appendix/apdx_signal_timings.qmd
-    - qmd/appendix/apdx_tripgen.qmd
-    # - qmd/appendix/apdx_gravity_dist.qmd
-    - qmd/appendix/apdx_parkgen.qmd
-    - qmd/appendix/apdx_future_synchro.qmd
+  #   - qmd/02_development.qmd
+  #   - qmd/03_study-area.qmd
+  #   - qmd/04_existing.qmd
+  #   - qmd/05_projected.qmd
+  #   - qmd/06_access.qmd
+  #   - qmd/07_analysis.qmd
+  #   # - qmd/08_conclusions.qmd
+  #   - qmd/references.qmd
+  # appendices: 
+  #   - qmd/appendix/apdx_ex_synchro.qmd
+  #   - qmd/appendix/apdx_signal_timings.qmd
+  #   - qmd/appendix/apdx_tripgen.qmd
+  #   # - qmd/appendix/apdx_gravity_dist.qmd
+  #   - qmd/appendix/apdx_parkgen.qmd
+  #   - qmd/appendix/apdx_future_synchro.qmd
 
 class: "CE 664"
 firm: "HSL Developers"
@@ -55,20 +55,39 @@ crossref:
   appendix-delim: "."
 
 format:
-  docx:
-    reference-doc: reference.docx
-  pdf:
-    template: template.latex
-    titlepage: true
-    book: true
-    titlepage-background: title_page_background.pdf
-    float-placement-figure: htbp
+  # docx:
+  #   reference-doc: reference.docx
+  # pdf:
+  #   template: template.latex
+  #   titlepage: true
+  #   book: true
+  #   titlepage-background: title_page_background.pdf
+  #   float-placement-figure: htbp
+  #   toc-own-page: true
+  #   footer-left: \hfill
+  #   footer-right: \hfill
+  #   footer-center: \thepage
+  #   classoption: openany
+  #   top-level-division: chapter
+  #   mainfont: "Gentium Book Basic"
+  #   sansfont: "Alte Haas Grotesk"
+  #   monofont: "SauceCodePro NF"
+  titlepage-pdf:
+    titlepage: false
+    coverpage: true
+    coverpage-bg-image: title_page_background.pdf
+    documentclass: scrbook
     toc-own-page: true
-    footer-left: \hfill
-    footer-right: \hfill
-    footer-center: \thepage
-    classoption: openany
-    top-level-division: chapter
+    number-sections: true
+    coverpage-header: "Traffic Impact Analysis"
+    coverpage-footer: "HSL Developers (CE 664)"
+    # coverpage-theme:
+      # - coverpage-fontfamily: "Arial"
+    # footer-left: \hfill
+    # footer-right: \hfill
+    # footer-center: \thepage
+    # classoption: ["oneside", "open=any"]
+    # top-level-division: chapter
     mainfont: "Gentium Book Basic"
     sansfont: "Alte Haas Grotesk"
     monofont: "SauceCodePro NF"
