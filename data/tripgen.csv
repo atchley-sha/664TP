@@ -1,4 +1,4 @@
 desc,pad,code,xval,xvar,eqn,trips_enter,trips_exit,trips_tot,mu_enter,mu_exit,mu_tot
-Sit-Down Restaurant,A,932,8,1000 ft^2^,T = 9.05 \times x,44,28,72,44,28,72
-General Office Building,B,710,18,1000 ft^2^,\ln(T) = 0.83 \times \ln(x) + 1.29,7,33,40,6,32,38
-Hardware/Paint Store,B,816,18,1000 ft^2^,T = 2.98 \times x,25,29,54,24,28,52
+Sit-Down Restaurant,A,932,8,"8,000 ft^2^",T = 9.05 \times \textstyle\frac{GFA}{1000},44,28,72,44,28,72
+General Office Building,B,710,18,"18,000 ft^2^",\ln(T) = 1.29 + \\ 0.83 \times \ln(\textstyle\frac{GFA}{1000}),7,33,40,6,32,38
+Hardware/Paint Store,B,816,18,"18,000 ft^2^",T = 2.98 \times \textstyle\frac{GFA}{1000},25,29,54,24,28,52

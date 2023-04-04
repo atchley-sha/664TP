@@ -2,6 +2,10 @@
 
 {{< include ../setup.qmd >}}
 
+This section presents a description and preliminary analysis of the study area. This includes a physical description of the site, a discussion of existing traffic volumes, and a base \acr{LOS} analysis. The current traffic safety of the study area is also discussed.
+
+## Physical Characteristics
+
 The study area contains four intersections: 1200 South / Towne Centre Blvd., a 3-way stop-controlled intersection; 1200 South / University Ave., a 4-way signalized intersection; Towne Centre Dr. / Towne Centre Blvd., a 3-way signalized intersection; and Towne Centre Dr. / University Ave., a 4-way signalized intersection (see @fig-intersections).
 
 Much of the information regarding lane striping and turning movements for these intersections is given in @tbl-streetconfig. It is additionally worth noting that the east leg of the 1200 South / University Ave. intersection is a parking lot access, and the \acr{WB} lane has a designated left-turn lane and a shared right/through lane. For reference, a lane configuration diagram of these intersections is provided in @fig-lanediagram, and timings for the signalized intersections are provided in @sec-apdx-signal-timings.
@@ -29,7 +33,7 @@ knitr::include_graphics("../images/output/traffic_counts_base.png")
 
 ## Level of Service
 
-A \acr{LOS} measure was used to determine the traffic performance of each intersection (and each movement within each intersection). This \acr{LOS} is a measurement of average control delay per vehicle, and bins the amount of delay into groups designated by the letters A--F. These designations differ between signalized and unsignalized intersections, and are provided in the \acr{HCM} [@highway2022]. @tbl-los-intersections summarizes these criteria. This analysis assumes a \acr{LOS} of `D` or better represents acceptable conditions.
+A \acr{LOS} measure was used to determine the traffic performance of each intersection (and each movement within each intersection). This \acr{LOS} is a measurement of average control delay per vehicle, and bins the amount of delay into groups designated by the letters A--F. These designations differ between signalized and unsignalized intersections, and are provided in the \acr{HCM} [@highway2022]. @tbl-los-intersections summarizes these criteria. This analysis assumes a \acr{LOS} of 'D' or better represents acceptable conditions.
 
 ```{r}
 #| label: tbl-los-intersections
@@ -41,7 +45,8 @@ tar_read(los_criteria) %>%
   add_header_row(values = c("LOS\nDesignation", "Average Control Delay (sec/veh)"), colwidths = c(1,2)) %>% 
   merge_v(j = 1, part = "header") %>% 
   autofit() %>% 
-  align(align = "center", part = "all")
+  align(align = "center", part = "all") %>% 
+  fit_to_width(6)
 ```
 
 The existing level of service was determined based on current traffic volumes [@sec-existingtrafficvols] and signal timings (obtained from \acr{UDOT}), using the Synchro software package [@trafficware2019]. Synchro performs a \acr{LOS} analysis using these and other inputs, including roadway and lane configuration. @fig-losbasenumbers shows the average control delay for each movement and intersection, and @fig-losbaseletters shows the \acr{LOS} of the same. The full results of the Synchro analysis are available in @sec-apdx-synchro-ex.
@@ -70,7 +75,7 @@ The overall \acr{LOS} is generally good, though there are several movements with
 
 As part of the analysis for this proposed development, a crash analysis was performed for University Ave. near the site. Recent crash data (obtained from \acr{UDOT} for 2019--2022) was used, and crashes between mileposts 0.5 and 1.0 were included in the analysis. This includes the intersections of University Ave. with both Towne Center Dr. and 1200 South, as well as the roadway segments between and either side of the intersections. Crashes occurring within `r tar_read(crash_influence_radius)` miles of an intersection are considered as "belonging" to that intersection, and all other crashes are counted on their respective roadway segments.
 
-@eq-intersection-crash-rate gives the crash rate of an intersection, and @eq-segment-crash-rate gives the crash rate of a segment, where `VEH` is the number of vehicles entering the intersection or segment, `MEV` is million entering vehicles, and `MVMT` is million vehicle-miles traveled. The AADT was provided by \acr{UDOT} for this stretch of University Ave., and is given as 30550 vehicles per day.
+@eq-intersection-crash-rate gives the crash rate of an intersection, and @eq-segment-crash-rate gives the crash rate of a segment, where `AADT` is Annual Average Daily Traffic (the number of vehicles entering the intersection or segment), `MEV` is million entering vehicles, and `MVMT` is million vehicle-miles traveled. The AADT was provided by \acr{UDOT} for this stretch of University Ave., and is given as 30550 vehicles per day.
 
 $$
 Crash\ Rate_{Intersection} = \frac{1000000 \times crashes}{365 \times years \times VEH}\ \text{crashes per MEV}
@@ -93,8 +98,8 @@ tar_read(crash_rates) %>%
   set_header_labels(name = "Intersection", mp = "Milepost", n = "Number of\nCrashes", rate = "Crash Rate\n(per MEV)") %>% 
   colformat_double(j = "rate", digits = 2) %>% 
   autofit() %>% 
-  align(j = -1, align = "center", part = "all")
-
+  align(j = -1, align = "center", part = "all") %>% 
+  fit_to_width(6)
 ```
 
 ```{r}
@@ -109,8 +114,8 @@ tar_read(crash_rates) %>%
   colformat_double(j = "rate", digits = 2) %>% 
   colformat_md(j = 1) %>% 
   autofit() %>% 
-  align(j = -1, align = "center", part = "all")
-
+  align(j = -1, align = "center", part = "all") %>% 
+  fit_to_width(6)
 ```
 
 Based on common practice, the critical crash rate for intersection analysis is assumed to be 2 crashes per MEV, and the critical crash rate for the roadway segment analysis is assumed to be 8 crashes per MVMT. None of the crash rates approach these values, and so this roadway segment is deemed to be safe. However, it is also important to examine the severity of the crashes. @tbl-crash-levels provides the \acr{UDOT} crash severity scale, and @tbl-count-crashes-by-level gives the number and proportion of crashes at each level. From @tbl-count-crashes-by-level it is clear that the vast majority of crashes are \acr{PDO} crashes, with around 10% with confirmed injury and none fatal. This gives further evidence for the safety of the roadway corridor.
@@ -123,7 +128,8 @@ tar_read(crash_severity_table) %>%
   flextable() %>% 
   set_header_labels(level = "Crash Severity\nLevel", type = "Description") %>%
   autofit() %>% 
-  align(align = "center", part = "all")
+  align(align = "center", part = "all") %>% 
+  fit_to_width(6)
 ```
 
 ```{r}
@@ -135,6 +141,7 @@ tar_read(crash_severity) %>%
   set_header_labels(level = "Crash Severity\nLevel", type = "Description", n = "Number of\nCrashes", pct = "Proportion of\nCrashes") %>% 
   colformat_double(j = "pct", digits = 3) %>% 
   autofit() %>% 
-  align(align = "center", part = "all")
+  align(align = "center", part = "all") %>% 
+  fit_to_width(6)
 ```
 

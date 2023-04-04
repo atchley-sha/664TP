@@ -82,7 +82,7 @@ summarise_trip_directions <- function(trips){
     summarise(vol = sum(vol)) %>% 
     mutate(pct = vol / sum(vol),
            pct_char = (100*pct) %>% 
-             round(1) %>% 
+             round() %>% 
              paste0("%"))
   
   list(passby_raw = passby_raw, distribution = dist, comparison = comparison)

@@ -2,11 +2,41 @@
 
 {{< include ../setup.qmd >}}
 
+
 ```{r}
-delay_and_los_table_viz <- function(tbl){
+rt <- 2
+max_val <- 5
+min_val <- -max_val
+color_scale <- scales::gradient_n_pal(c("blue", "white", "red"), values = c(-abs(min_val)^(1/rt), 0, max_val^(1/rt)))
+
+delay_and_los_table_viz <- function(tbl, comparison = NULL){
   
-  viz <- tbl %>%
-    flextable() %>% 
+  if(!is.null(comparison)){
+    full_tbl <- tbl %>% 
+      left_join(comparison %>% select(-c(l_los:i_los)), by = c("intersection", "direction"), suffix = c("", "_old")) %>% 
+      mutate(across(contains("delay"), \(x) as.numeric(x))) %>% 
+      transmute(
+        diff_l = l_delay - l_delay_old,
+        diff_t = t_delay - t_delay_old,
+        diff_r = r_delay - r_delay_old,
+        diff_i = i_delay - i_delay_old,
+        # diff = pick(l_delay:i_delay) - pick(l_delay_old:i_delay_old),
+        intersection, direction) %>% 
+      mutate(across(contains("diff"), \(x) replace_na(x, 0)),
+             across(contains("diff"), \(x) case_when(
+               x < 0 ~ -abs(pmax(x, min_val))^(1/rt),
+               x >= 0 ~ pmin(x, max_val)^(1/rt)
+             ))) %>% 
+      left_join(tbl, by = c("intersection", "direction"))
+  } else {
+    full_tbl <- tbl
+  }
+  
+  
+  viz <- full_tbl %>%
+    flextable(
+      col_keys = colnames(full_tbl)[!str_detect(colnames(full_tbl), "diff")]
+      ) %>% 
     set_header_labels(
       intersection = "Intersection",
       direction = "Direction",
@@ -18,20 +48,61 @@ delay_and_los_table_viz <- function(tbl){
       t_los = "Thru",
       r_los = "Right",
       i_los = "Intersection"
-    ) %>% 
-    add_header_row(values = c("Intersection", "Direction", "Control Delay (sec)", "Level of Service"), colwidths = c(1,1,4,4)) %>% 
-    align(align = "c", part = "a") %>% 
-    merge_v(j = ~ intersection, target = ~intersection + i_delay + i_los) %>% 
-    merge_v(~ intersection + direction, part = "h") %>% 
-    fix_border_issues() %>% 
+    ) %>%
+    add_header_row(values = c("Intersection", "Direction", "Control Delay (sec)", "Level of Service"), colwidths = c(1,1,4,4)) %>%
+    align(align = "c", part = "a") %>%
+    merge_v(j = ~ intersection, target = ~intersection + i_delay + i_los) %>%
+    merge_v(~ intersection + direction, part = "h") %>%
+    fix_border_issues() %>%
     theme_box() %>%
-    align(align = "c", part = "a") %>% 
-    valign(part = "a") %>% 
+    align(align = "c", part = "a") %>%
+    valign(part = "a") %>%
     autofit() %>%
     fit_to_width(6)
   
-  viz
+  if(!is.null(comparison)){
+    viz %>% 
+      bg(j = ~l_delay + t_delay + r_delay + i_delay, bg = color_scale, source = ~diff_l + diff_t + diff_r + diff_i) %>% 
+      bg(j = ~l_los + t_los + r_los + i_los, bg = color_scale, source = ~diff_l + diff_t + diff_r + diff_i)
+  } else {
+    viz
+  }
 }
+
+# get_delay_difference <- function(new, old, max_val = 5){
+#   new_delay <- new %>% 
+#     filter(intersection %in% old$intersection) %>% 
+#     select(l_delay:i_delay) %>% 
+#     mutate(across(everything(), as.numeric))
+#   old_delay <- old %>% 
+#     select(l_delay:i_delay) %>% 
+#     mutate(across(everything(), as.numeric))
+#   
+#   new_rows <- nrow(new) - nrow(old)
+#   
+#     color_scale <- scales::gradient_n_pal(c("blue", "white", "red"), values = c(-max_val, 0, max_val))
+#   
+#   diff <- (new_delay - old_delay) %>% 
+#     mutate(across(everything(), \(x) replace_na(x, 0)))
+#   
+#   color_diff <- diff %>% 
+#     mutate(across(everything(), \(x) case_when(
+#       x < 0 ~ pmax(x, -max_val),
+#       x >= 0 ~ pmin(x, max_val)
+#     )),
+#     across(everything(), \(x) color_scale(x))) %>% 
+#     add_ro
+#   
+#   all_colors <- cbind(
+#     color_diff,
+#     color_diff %>%
+#       `colnames<-`(str_replace(
+#         colnames(color_diff), "delay", "los"))) %>% 
+#     mutate(intersection = "#FFFFFF", direction = "#FFFFFF", .before = 1)
+#   
+#   # all_colors
+#   color_diff
+# }
 ```
 
 
@@ -39,13 +110,13 @@ This section analyzes the impact of {{< var devname >}} on the roadways and inte
 
 ## Level of Service
 
-Based on the traffic assignment as determined in @sec-trip-assignment, a \acr{LOS} analysis was performed to determine the average delay per vehicle, and assign a \acr{LOS} designation (see  @tbl-los-intersections). Both the no-build and build scenarios are analyzed, and these results are presented in Tables [-@tbl-los-yrop-nobuild]--[-@tbl-los-yr5-build]. The direct analysis reports are also provided in @sec-apdx-synchro-future.
+Based on the traffic assignment as determined in @sec-trip-assignment, a \acr{LOS} analysis was performed to determine the average delay per vehicle, and assign a \acr{LOS} designation (see  @tbl-los-intersections). Both the no-build and build scenarios are analyzed, and these results are presented in Tables [-@tbl-los-yrop-nobuild]--[-@tbl-los-yr5-build]. The direct analysis reports are also provided in @sec-apdx-synchro-future. In the build scenarios, the tables are colored according to the effect of site traffic on the delay value: bright blue indicates a decrease in delay of `r -min_val` or more seconds, and bright red indicates an increase in delay of `r max_val` or more seconds, with a color gradient for effects in-between.
 
 Note that because of limitations in the Synchro software used for this analysis [@trafficware2019], the U-turn movements at the University Ave./1200 South intersection could not be analyzed, so these were added to the left-turn movement.
 
 ```{r}
 #| label: tbl-los-yrop-nobuild
-#| tbl-cap: Opening Year (2024) LOS Analysis, no-build scenario
+#| tbl-cap: Opening Year (2024) LOS Analysis, No-Build scenario
 
 tar_read(los_table_yrop_nobuild) %>% 
   delay_and_los_table_viz()
@@ -53,14 +124,14 @@ tar_read(los_table_yrop_nobuild) %>%
 
 ```{r}
 #| label: tbl-los-yrop-build
-#| tbl-cap: Opening Year (2024) LOS Analysis, build scenario
+#| tbl-cap: Opening Year (2024) LOS Analysis, Build Scenario
 tar_read(los_table_yrop_build) %>% 
-  delay_and_los_table_viz()
+  delay_and_los_table_viz(tar_read(los_table_yrop_nobuild))
 ```
 
 ```{r}
 #| label: tbl-los-yr5-nobuild
-#| tbl-cap: 5-Year (2029) LOS Analysis, no-build scenario
+#| tbl-cap: 5-Year (2029) LOS Analysis, No-Build Scenario
 
 tar_read(los_table_yr5_nobuild) %>% 
   delay_and_los_table_viz()
@@ -68,12 +139,13 @@ tar_read(los_table_yr5_nobuild) %>%
 
 ```{r}
 #| label: tbl-los-yr5-build
-#| tbl-cap: 5-Year (2029) LOS Analysis, build scenario
+#| tbl-cap: 5-Year (2029) LOS Analysis, Build Scenario
 tar_read(los_table_yr5_build) %>% 
-  delay_and_los_table_viz()
+  delay_and_los_table_viz(tar_read(los_table_yr5_nobuild))
 ```
 
-Based on these results, the {{< var devname >}} development has virtually no impact on the delay/\acr{LOS} of the intersections at either the opening day or 5-year horizons. While this analysis does show movements that perform poorly, these do so even with the background traffic alone, and in fact the delay does not substantially increase between the opening day and 5-year background traffic.
+Based on these results, the {{< var devname >}} development has virtually no impact on the delay/\acr{LOS} of the intersections at either the opening day or 5-year horizons. While some movements perform worse with the site trips added, many perform better, and in any case the difference in delay is minimal. However, this analysis *does* show movements that perform poorly, but these do so even with the background traffic alone, and in fact the delay does not substantially increase between the opening day and 5-year background traffic.
 
 ## Roadway/Intersection Improvements
+
 

@@ -4,7 +4,7 @@
 
 The impact of site traffic on the roadways and intersections in the study area is significantly affected by the design of the site, at least regarding the site access locations. This section discusses various access options and recommends specific access locations for the development. The access locations will also affect the layout of the site, including parking, so a discussion of parking requirements and a proposed site layout is presented
 
-## Access
+## Access {#sec-site-access}
 
 @fig-existing-access shows aerial imagery of the site location in its existing condition (2023). The site location is marked, as well as the existing external and cross-accesses. There is an existing access on University Ave. just to the south of the site, and a convenient cross-access between this development and {{< var devname >}}. There is also an existing access on University Ave. at the north of {{< var devname >}}, but this access is too close to the northern adjacent access for the Exxon and does not comply with \acr{UDOT} spacing guidelines. University Ave. is classified as an Access Category 5 roadway [@utahdepartmentoftransportation2023a], and as such requires 350-foot spacing between driveways per Utah rule R930-6-7 (3)(a) [@utahdepartmentoftransportation2019]. This access therefore will be removed. Even with this access removed, there is not enough space per rule R930-6-7 to put an additional access to {{< var devname >}} on University Ave. (the distance between the nearest adjacent driveways is roughly 370 feet), so the only access from University Ave. will be via the cross-access with the development to the south.
 
@@ -32,7 +32,7 @@ There are two relevant methods of calculating the number or required parking spa
 
 ### ITE Parking Generation
 
-There are several assumptions that need to be made when using *Parking Generation*. For many land uses, several different parking plots are provided based on setting/location, day of week, and choice of dependent variable.{{< var devname >}} is located in a "General Urban/Suburban" setting (as opposed to "Dense Multi-Use Urban"), and this study focuses on weekday parking demand. Additionally, the dependent variable used in all cases is \acr{GFA}.
+There are several assumptions that need to be made when using *Parking Generation*. For many land uses, several different parking plots are provided based on setting/location, day of week, and choice of dependent variable. {{< var devname >}} is located in a "General Urban/Suburban" setting (as opposed to "Dense Multi-Use Urban"), and this study focuses on weekday parking demand. Additionally, the dependent variable used in all cases is \acr{GFA}.
 
 Many plots in *Parking Generation* provide both a fitted curve equation and an average rate, either of which may be used to predict parking demand. For the office building (\acr{ITE} land use code 710), the fitted curve equation tends to over-predict parking demand for small \acr{GFA} values (less than about 80,000 ft^2^), and the average rate is more accurate, so the average rate is used. For the restaurant (code 932), no fitted curve equation is given, so the average rate is used. The hardware store (code 816) presents somewhat of a problem since the sample size is so small. There is an average rate provided; however, it is a very poor predictor of the observed data. However, it is fairly straightforward to interpolate from the observed data points, and a conservative interpolation is done here to estimate parking demand (see @sec-apdx-parkgen). All *Parking Generation* plots used can be found in @sec-apdx-parkgen, and @tbl-ite-parkgen presents the preliminary parking estimates for the site.
 
@@ -46,7 +46,8 @@ tar_read(ite_parkgen) %>%
   mk_par(j = 3, value = as_paragraph(as_equation(.)), use_dot = TRUE) %>% 
   autofit() %>% 
   align(j = -1, align = "c") %>% 
-  align(align = "c", part = "h")
+  align(align = "c", part = "h") %>% 
+  fit_to_width(6)
 ```
 
 ```{r}
@@ -101,7 +102,7 @@ tot_spaces <- ((1-shared_pct)*chosen_parking) %>% ceiling()
 handicap_tot <- 6
 ```
 
-Provo city code requires more parking than *Parking Generation* predicts (`r tot_spaces_provo` vs. `r ite_parking` spaces), so this analysis will use the former. This value, however, should be reduced by `r (shared_pct*100) %>% round(1)`% due to the mixed land use. This gives a total number of `r tot_spaces` required parking spaces. Note that per Provo city code &#167;14.37.110 [@provocitycode] `r handicap_tot` total handicap parking spaces are required for a parking lot of this size. Since the buildings will be placed adjacent to each other (see @sec-site-layout), these spaces are spread out strategically along the length of the buildings.
+Provo city code requires more parking than *Parking Generation* predicts (`r tot_spaces_provo` vs. `r ite_parking` spaces). Additionally, the estimate of `r tar_read(ite_parkgen)$spaces[3]` spaces for the retail in the \acr{ITE} method is far too low; this is not a reasonable value. For both of these reasons, this analysis will use the Provo city code requirements. This value, however, should be reduced by `r (shared_pct*100) %>% round(1)`% due to the mixed land use. This gives a total number of `r tot_spaces` required parking spaces. Note that per Provo city code &#167;14.37.110 [@provocitycode] `r handicap_tot` total handicap parking spaces are required for a parking lot of this size. Since the buildings will be placed adjacent to each other (see @sec-site-layout), these spaces are spread out strategically along the length of the buildings.
 
 ## Proposed Site Layout {#sec-site-layout}
 

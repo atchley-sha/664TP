@@ -145,6 +145,8 @@ assign_trips <- function(access, distribution, UA_Lpct, TCD_Tpct, site_trips){
       vctrs::vec_c(
         UA1200nbt = .["UASITEebl"] - .["UASITEnbl"],
         UATCDsbt = .["UASITEebr"] - .["UASITEsbr"],
+        UASITEnbt = -.["UASITEnbl"],
+        UASITEsbt = -.["UASITEsbr"],
         .name_spec = "{outer}") %>%
       enframe("NAME", "pb_trips")
     

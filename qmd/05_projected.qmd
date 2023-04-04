@@ -4,26 +4,44 @@
 
 Part of this analysis involves determining the number of trips that are expected to visit the site. This includes trips made with the express purpose of visiting a location in the development, as well as "pass-by" trips where the ultimate destination is somewhere else. Each of the separate land uses has distinct baseline trip rates, as well as different parameters for adjusting these rates to obtain final projected trips.
 
-## Trip Generation
+## Trip Generation {#sec-trip-generation}
 
 \acr{ITE} provides several resources for estimating trip generation of new developments. The primary of these is the Trip Generation Manual [@instituteoftransportationengineers2021], but these baseline trip generation rates do not account for trips internal to the site, or for "pass-by" trips. The following section discusses the baseline \acr{ITE}-provided trip rates along with the trip reductions due to these factors. @tbl-tripgen-passby provides the trip rates after the reductions.
 
 ### Base Trip Generation
 
-The initial estimates for trip generation are given from the \acr{ITE} Trip Generation Manual. For this report, only an analysis of the weekday PM peak period is performed, due to the scope of the assignment. @tbl-base-tripgen gives the baseline trip generation as provided by the Manual. These initial estimates seem reasonable, noting that these are the trips in the peak hour. See @sec-apdx-tripgen for the Manual references used in these calculations.
+The initial estimates for trip generation are given from the \acr{ITE} Trip Generation Manual. For this report, only an analysis of the weekday PM peak period is performed, due to the scope of the project. @tbl-base-tripgen gives the baseline trip generation for the PM peak hour and @tbl-base-daily gives the estimated daily trips as provided by the Manual. These initial estimates seem reasonable, noting that these are the trips in the peak hour. See @sec-apdx-tripgen for the Manual references used in these calculations.
+
+Many land uses in the Manual have both an average rate and fitted curve based on observed data points. For the both the PM peak and daily trips, only the office (\acr{ITE} land use code 710) had a fitted equation, and this appeared to fit the data better than the average rate so it was used. The other two land uses only had an average rate, so this was used.
 
 ```{r}
 #| label: tbl-base-tripgen
-#| tbl-cap: "ITE Trip Generation (Baseline)"
+#| tbl-cap: "ITE Baseline Trip Generation (PM Peak)"
 
 tar_read(tripgen) %>% 
-  select(-(mu_enter:last_col())) %>% 
+  select(-(mu_enter:last_col()), -xval) %>% 
   flextable() %>% 
   colformat_md(j = "xvar") %>% 
   mk_par(j = "eqn", value = as_paragraph(as_equation(.)), use_dot = TRUE) %>% 
-  set_header_labels(desc = "Description", pad = "Pad", code = "ITE Land\nUse Code", xval = "Variable\nValue", xvar = "Variable\nUnit", eqn = "Trip Generation\nEquation", trips_enter = "Entering\nTrips", trips_exit = "Exiting\nTrips", trips_tot = "Total\nTrips") %>% 
+  set_header_labels(desc = "Description", pad = "Pad", code = "ITE Land\nUse Code", xvar = "Gross Floor\nArea (GFA)", eqn = "Trip Generation\nEquation", trips_enter = "Entering\nTrips", trips_exit = "Exiting\nTrips", trips_tot = "Total\nTrips") %>% 
   autofit() %>% 
-  align(align = "c", part = "a")
+  align(align = "c", part = "a") %>% 
+  fit_to_width(6)
+```
+
+```{r}
+#| label: tbl-base-daily
+#| tbl-cap: "ITE Baseline Trip Generation (Daily Trips)"
+
+tar_read(tripgen_daily) %>% 
+  select(-xval) %>% 
+  flextable() %>% 
+  colformat_md(j = "xvar") %>% 
+  mk_par(j = "eqn", value = as_paragraph(as_equation(.)), use_dot = TRUE) %>% 
+  set_header_labels(desc = "Description", pad = "Pad", code = "ITE Land\nUse Code", xvar = "Gross Floor\nArea (GFA)", eqn = "Trip Generation\nEquation", trips_enter = "Entering\nTrips", trips_exit = "Exiting\nTrips", trips_tot = "Total\nTrips") %>% 
+  autofit() %>% 
+  align(align = "c", part = "a") %>% 
+  fit_to_width(6)
 ```
 
 ### Multi-use Reduction
@@ -152,23 +170,7 @@ where $PT_i$ is the proportion of trips from \acr{TAZ} $i$, $A_i$ is the populat
 
 It is not reasonable to analyze every \acr{TAZ} in Utah, and so a maximum travel time of `r tar_read(time_threshold)` minutes is enforced. Based on the land uses of the site and the proximity of similar/competing land uses, this threshold provides a good estimate of the travel behavior. Though there are other residential, retail, and office land uses within a smaller travel window than this, the retail is specific, and the office will attract its employees with little regard for other nearby offices.
 
-For reference, @fig-isochrone shows travel time contours from the site for 10-, 15-, and 20-minute thresholds to each \acr{TAZ}. Note that there are several \acr{TAZ}s "missing": these had a travel time of 0 and so were removed from the analysis.
-
-```{r}
-#| label: fig-isochrone
-#| fig-cap: "Isochrone map of travel times to the study site (in dark blue)."
-
-knitr::include_graphics("../images/output/isochrone.png")
-```
-
-@fig-access-dir shows the site access direction for each \acr{TAZ}. Several assumptions were made in this regard. The most significant of these is who accesses the site via I-15 north of Provo. This analysis assumes that west of Orem State Street (500W) and north of University Parkway, I-15 would be used, and east of Orem State Street and/or south of University Parkway, a combination of University Parkway, University Avenue, and Orem Center Street would be used to access the site from the north. North of Orem 800 N is assumed to have access via I-15 as well. Note that I-15 has an interchange directly south of the site on University Avenue, so it is assumed everyone using I-15 will access the site from the south. There are a handful of \acr{TAZ}s on the west of the site that are assumed to have western access due to I-15 under- and overpasses, but no access from the east is assumed due to the presence of the railroad.
-
-```{r}
-#| label: fig-access-dir
-#| fig-cap: "Access to site (in dark blue) by direction."
-
-knitr::include_graphics("../images/output/taz_access_dirs.png")
-```
+Additionally, each \acr{TAZ} must be assigned a direction. Several assumptions were made in this regard. The most significant of these is who accesses the site via I-15 north of Provo. This analysis assumes that west of Orem State Street (500W) and north of University Parkway, I-15 would be used, and east of Orem State Street and/or south of University Parkway, a combination of University Parkway, University Avenue, and Orem Center Street would be used to access the site from the north. North of Orem 800 N is assumed to have access via I-15 as well. Note that I-15 has an interchange directly south of the site on University Avenue, so it is assumed everyone using I-15 will access the site from the south. There are a handful of \acr{TAZ}s on the west of the site that are assumed to have western access due to I-15 under- and overpasses, but no access from the east is assumed due to the presence of the railroad. @sec-apdx-gravity-supplement provides reference maps for both the travel times to each \acr{TAZ} and the assigned direction for each \acr{TAZ}.
 
 Combining this model with the information about access direction gives a proportion of trips from each direction. @tbl-trip-proportions presents a summary of this information. Note that this distribution is only for "new" trips; the distribution of pass-by trips is the same as in @sec-analogy-method (see @tbl-pass-by-dist).
 
@@ -214,7 +216,7 @@ knitr::include_graphics("../images/output/analogy_dist.png")
 
 ## Trip Assignment {#sec-trip-assignment}
 
-This section discusses the assignment of trips to intersection movements.
+This section discusses the assignment of trips to intersection movements. This includes background traffic and its projected growth as well as site trips. Note that the new site trips are assigned differently than pass-by trips; this is due to both the differing distributions as well as the different nature of the trip types. New trips are made to the site and then return, whereas pass-by trips originate from the background traffic and "continue on", i.e. exit in the same direction as they entered. The total intersection movement volumes for each horizon year are then calculated and presented.
 
 ### Non-site Traffic {#sec-non-site-traffic}
 

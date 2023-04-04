@@ -29,6 +29,8 @@ tar_plan(
   
   tar_target(trips_file, "data/tripgen.csv", format = "file"),
   tripgen_base = read_csv(trips_file),
+  tar_target(tripgen_daily_file, "data/tripgen_daily.csv", format = "file"),
+  tripgen_daily = read_csv(tripgen_daily_file),
   
   tar_target(access_XN_file, "data/access_XN.csv", format = "file"),
   access_XN = read_csv(access_XN_file),

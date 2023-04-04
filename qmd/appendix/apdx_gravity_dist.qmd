@@ -1,0 +1,17 @@
+# Gravity Method Trip Distribution Supplement {#sec-apdx-gravity-supplement}
+
+This appendix provides a reference for the calculations and assumptions made in @sec-gravity-method regarding the gravity method of trip distribution.
+
+```{r}
+#| label: fig-isochrone
+#| fig-cap: "Isochrone map of travel times to the study site (in dark blue)."
+
+knitr::include_graphics("../../images/output/isochrone.png")
+```
+
+```{r}
+#| label: fig-access-dir
+#| fig-cap: "Access to site (in dark blue) by direction."
+
+knitr::include_graphics("../../images/output/taz_access_dirs.png")
+```
