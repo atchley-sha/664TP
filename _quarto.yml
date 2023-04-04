@@ -3,7 +3,7 @@ project:
 
 execute: 
   echo: false
-  freeze: auto
+  freeze: false
 
 # knitr:
 #   opts_chunk: 
@@ -57,40 +57,40 @@ crossref:
 format:
   # docx:
   #   reference-doc: reference.docx
-  # pdf:
-  #   template: template.latex
-  #   titlepage: true
-  #   book: true
-  #   titlepage-background: title_page_background.pdf
-  #   float-placement-figure: htbp
-  #   toc-own-page: true
-  #   footer-left: \hfill
-  #   footer-right: \hfill
-  #   footer-center: \thepage
-  #   classoption: openany
-  #   top-level-division: chapter
-  #   mainfont: "Gentium Book Basic"
-  #   sansfont: "Alte Haas Grotesk"
-  #   monofont: "SauceCodePro NF"
-  titlepage-pdf:
-    titlepage: false
-    coverpage: true
-    coverpage-bg-image: title_page_background.pdf
-    documentclass: scrbook
+  pdf:
+    template: eisv.latex
+    titlepage: true
+    book: true
+    titlepage-background: title_page_background.pdf
+    float-placement-figure: htbp
     toc-own-page: true
-    number-sections: true
-    coverpage-header: "Traffic Impact Analysis"
-    coverpage-footer: "HSL Developers (CE 664)"
-    # coverpage-theme:
-      # - coverpage-fontfamily: "Arial"
-    # footer-left: \hfill
-    # footer-right: \hfill
-    # footer-center: \thepage
-    # classoption: ["oneside", "open=any"]
-    # top-level-division: chapter
+    footer-left: \hfill
+    footer-right: \hfill
+    footer-center: \thepage
+    classoption: openany
+    top-level-division: chapter
     mainfont: "Gentium Book Basic"
     sansfont: "Alte Haas Grotesk"
     monofont: "SauceCodePro NF"
+  # titlepage-pdf:
+  #   titlepage: false
+  #   coverpage: true
+  #   coverpage-bg-image: title_page_background.pdf
+  #   documentclass: scrbook
+  #   toc-own-page: true
+  #   number-sections: true
+  #   coverpage-header: "Traffic Impact Analysis"
+  #   coverpage-footer: "HSL Developers (CE 664)"
+  #   # coverpage-theme:
+  #     # - coverpage-fontfamily: "Arial"
+  #   # footer-left: \hfill
+  #   # footer-right: \hfill
+  #   # footer-center: \thepage
+  #   classoption: ["oneside", "open=any"]
+  #   # top-level-division: chapter
+  #   mainfont: "Gentium Book Basic"
+  #   sansfont: "Alte Haas Grotesk"
+  #   monofont: "SauceCodePro NF"
   # html:
   #   toc: true
 

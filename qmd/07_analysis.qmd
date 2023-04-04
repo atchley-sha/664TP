@@ -119,14 +119,16 @@ Note that because of limitations in the Synchro software used for this analysis 
 #| tbl-cap: Opening Year (2024) LOS Analysis, No-Build scenario
 
 tar_read(los_table_yrop_nobuild) %>% 
-  delay_and_los_table_viz()
+  delay_and_los_table_viz() %>% 
+  fit_to_width(6)
 ```
 
 ```{r}
 #| label: tbl-los-yrop-build
 #| tbl-cap: Opening Year (2024) LOS Analysis, Build Scenario
 tar_read(los_table_yrop_build) %>% 
-  delay_and_los_table_viz(tar_read(los_table_yrop_nobuild))
+  delay_and_los_table_viz(tar_read(los_table_yrop_nobuild)) %>% 
+  fit_to_width(6)
 ```
 
 ```{r}
@@ -134,14 +136,16 @@ tar_read(los_table_yrop_build) %>%
 #| tbl-cap: 5-Year (2029) LOS Analysis, No-Build Scenario
 
 tar_read(los_table_yr5_nobuild) %>% 
-  delay_and_los_table_viz()
+  delay_and_los_table_viz() %>% 
+  fit_to_width(6)
 ```
 
 ```{r}
 #| label: tbl-los-yr5-build
 #| tbl-cap: 5-Year (2029) LOS Analysis, Build Scenario
 tar_read(los_table_yr5_build) %>% 
-  delay_and_los_table_viz(tar_read(los_table_yr5_nobuild))
+  delay_and_los_table_viz(tar_read(los_table_yr5_nobuild)) %>% 
+  fit_to_width(6)
 ```
 
 Based on these results, the {{< var devname >}} development has virtually no impact on the delay/\acr{LOS} of the intersections at either the opening day or 5-year horizons. While some movements perform worse with the site trips added, many perform better, and in any case the difference in delay is minimal. However, this analysis *does* show movements that perform poorly, but these do so even with the background traffic alone, and in fact the delay does not substantially increase between the opening day and 5-year background traffic.

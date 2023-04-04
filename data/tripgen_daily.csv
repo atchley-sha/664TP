@@ -1,4 +1,4 @@
 desc,pad,code,xval,xvar,eqn,trips_enter,trips_exit,trips_tot
 Sit-Down Restaurant,A,932,8,"8,000 ft^2^",T = 107.2 \times \textstyle\frac{GFA}{1000},429,429,858
-General Office Building,B,710,18,"18,000 ft^2^",\ln(T) = 3.05 + \\ 0.87 \times \ln(\textstyle\frac{GFA}{1000}),131,131,262
+General Office Building,B,710,18,"18,000 ft^2^",\ln(T) = 3.05 + 0.87 \times \ln(\textstyle\frac{GFA}{1000}),131,131,262
 Hardware/Paint Store,B,816,18,"18,000 ft^2^",T = 8.07 \times \textstyle\frac{GFA}{1000},73,73,146
