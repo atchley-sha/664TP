@@ -69,7 +69,7 @@ knitr::include_graphics("../images/output/traffic_los_base.png")
 
 It is unsurprising that the Towne Centre Blvd. intersections perform so well, since the traffic volumes at these intersections are relatively low (see @fig-basevolumes). It also makes sense that the through and right-turn movements on University Ave. perform well, as this is a major arterial and these movements have relatively long phase lengths (see @sec-apdx-signal-timings). The \acr{EB} and \acr{WB} movements at the University Ave. intersections, however, generally perform much worse. This is for the same reason: the phase lengths on these movements are significantly shorter compared to the conflicting phase lengths. However, these movements do not have an enormous impact on the overall intersection delay(s), as the volumes are much lower than those *on* University Ave.
 
-The overall \acr{LOS} is generally good, though there are several movements with worse than \acr{LOS} `D` (generally acceptable conditions) performance. However, these are relatively minor movements, and the intersections themselves perform much better, so this is not too much cause for concern. It is possible that something as simple as a change in signal timings may do much to improve these under-performing movements. However, further analysis into the coordination of signals on University Ave. is warranted before implementing any signal timing changes.
+The overall \acr{LOS} is generally good, though there are several movements with worse than \acr{LOS} 'D' (generally acceptable conditions) performance. However, these are relatively minor movements, and the intersections themselves perform much better, so this is not too much cause for concern. It is possible that something as simple as a change in signal timings may do much to improve these under-performing movements. However, further analysis into the coordination of signals on University Ave. is warranted before implementing any signal timing changes.
 
 ## Transportation Safety
 
@@ -78,11 +78,11 @@ As part of the analysis for this proposed development, a crash analysis was perf
 @eq-intersection-crash-rate gives the crash rate of an intersection, and @eq-segment-crash-rate gives the crash rate of a segment, where `AADT` is Annual Average Daily Traffic (the number of vehicles entering the intersection or segment), `MEV` is million entering vehicles, and `MVMT` is million vehicle-miles traveled. The AADT was provided by \acr{UDOT} for this stretch of University Ave., and is given as 30550 vehicles per day.
 
 $$
-Crash\ Rate_{Intersection} = \frac{1000000 \times crashes}{365 \times years \times VEH}\ \text{crashes per MEV}
+Crash\ Rate_{Intersection} = \frac{1000000 \times crashes}{365 \times years \times AADT}\ \text{crashes per MEV}
 $$ {#eq-intersection-crash-rate}
 
 $$
-Crash\ Rate_{Segment} = \frac{1000000 \times crashes}{365 \times years \times VEH \times length}\; \text{crashes per MVMT}
+Crash\ Rate_{Segment} = \frac{1000000 \times crashes}{365 \times years \times AADT \times length}\; \text{crashes per MVMT}
 $$ {#eq-segment-crash-rate}
 
 @tbl-crashes-intersections provides the two intersections and their crash rates, and @tbl-crashes-segments provides the crash rates on each segment of the roadway (as calculated by Equations [-@eq-intersection-crash-rate] and [-@eq-segment-crash-rate]).

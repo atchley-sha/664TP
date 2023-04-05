@@ -117,6 +117,7 @@ Note that because of limitations in the Synchro software used for this analysis 
 ```{r}
 #| label: tbl-los-yrop-nobuild
 #| tbl-cap: Opening Year (2024) LOS Analysis, No-Build scenario
+#| warning: false
 
 tar_read(los_table_yrop_nobuild) %>% 
   delay_and_los_table_viz() %>% 
@@ -126,6 +127,8 @@ tar_read(los_table_yrop_nobuild) %>%
 ```{r}
 #| label: tbl-los-yrop-build
 #| tbl-cap: Opening Year (2024) LOS Analysis, Build Scenario
+#| warning: false
+
 tar_read(los_table_yrop_build) %>% 
   delay_and_los_table_viz(tar_read(los_table_yrop_nobuild)) %>% 
   fit_to_width(6)
@@ -134,6 +137,7 @@ tar_read(los_table_yrop_build) %>%
 ```{r}
 #| label: tbl-los-yr5-nobuild
 #| tbl-cap: 5-Year (2029) LOS Analysis, No-Build Scenario
+#| warning: false
 
 tar_read(los_table_yr5_nobuild) %>% 
   delay_and_los_table_viz() %>% 
@@ -143,6 +147,8 @@ tar_read(los_table_yr5_nobuild) %>%
 ```{r}
 #| label: tbl-los-yr5-build
 #| tbl-cap: 5-Year (2029) LOS Analysis, Build Scenario
+#| warning: false
+
 tar_read(los_table_yr5_build) %>% 
   delay_and_los_table_viz(tar_read(los_table_yr5_nobuild)) %>% 
   fit_to_width(6)

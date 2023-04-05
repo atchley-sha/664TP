@@ -6,13 +6,13 @@ Part of this analysis involves determining the number of trips that are expected
 
 ## Trip Generation {#sec-trip-generation}
 
-\acr{ITE} provides several resources for estimating trip generation of new developments. The primary of these is the Trip Generation Manual [@instituteoftransportationengineers2021], but these baseline trip generation rates do not account for trips internal to the site, or for "pass-by" trips. The following section discusses the baseline \acr{ITE}-provided trip rates along with the trip reductions due to these factors. @tbl-tripgen-passby provides the trip rates after the reductions.
+\acr{ITE} provides several resources for estimating trip generation of new developments. The primary of these is the Trip Generation Manual [@instituteoftransportationengineers2021], but these baseline trip generation rates do not account for trips internal to the site, or for "pass-by" trips. This section provides preliminary estimates from the Manual as well as several applicable reductions. The final site trip predictions are given in @tbl-final-tripgen.
 
-### Base Trip Generation
+<!-- ### Base Trip Generation -->
 
-The initial estimates for trip generation are given from the \acr{ITE} Trip Generation Manual. For this report, only an analysis of the weekday PM peak period is performed, due to the scope of the project. @tbl-base-tripgen gives the baseline trip generation for the PM peak hour and @tbl-base-daily gives the estimated daily trips as provided by the Manual. These initial estimates seem reasonable, noting that these are the trips in the peak hour. See @sec-apdx-tripgen for the Manual references used in these calculations.
+The initial estimates for trip generation are given from the \acr{ITE} Trip Generation Manual for both PM peak hour and daily trips. For this report, however, further analysis of only the weekday PM peak period is performed. This is the time of day that is likely to have the greatest impact on local traffic (compared to the AM peak) due to the retail and restaurant land uses. @tbl-base-tripgen gives the baseline trip generation for the PM peak hour and @tbl-base-daily gives the estimated daily trips as provided by the Manual. These initial estimates seem reasonable, noting that these are the trips in the peak hour. See @sec-apdx-tripgen for the Manual references used in these calculations.
 
-Many land uses in the Manual have both an average rate and fitted curve based on observed data points. For the both the PM peak and daily trips, only the office (\acr{ITE} land use code 710) had a fitted equation, and this appeared to fit the data better than the average rate so it was used. The other two land uses only had an average rate, so this was used.
+Often there are several choices of independent variable that can be used in the Manual to estimate trip generation. These could include e.g. \acr{GFA}, number of employees, number of dining seats, etc. Since many of these metrics are uncertain in this development, \acr{GFA} will be used. Many land uses in the Manual also have both an average rate and fitted curve based on observed data points. For the both the PM peak and daily trips, only the office (\acr{ITE} land use code 710) had a fitted equation, and this appeared to fit the data better than the average rate so it was used. The other two land uses only had an average rate, so this was used.
 
 ```{r}
 #| label: tbl-base-tripgen
@@ -26,7 +26,7 @@ tar_read(tripgen) %>%
   set_header_labels(desc = "Description", pad = "Pad", code = "ITE Land\nUse Code", xvar = "Gross Floor\nArea (GFA)", eqn = "Trip Generation\nEquation", trips_enter = "Entering\nTrips", trips_exit = "Exiting\nTrips", trips_tot = "Total\nTrips") %>% 
   autofit() %>% 
   align(align = "c", part = "a") %>% 
-  fit_to_width(6)
+  fit_to_width(6.5)
 ```
 
 ```{r}
@@ -41,12 +41,12 @@ tar_read(tripgen_daily) %>%
   set_header_labels(desc = "Description", pad = "Pad", code = "ITE Land\nUse Code", xvar = "Gross Floor\nArea (GFA)", eqn = "Trip Generation\nEquation", trips_enter = "Entering\nTrips", trips_exit = "Exiting\nTrips", trips_tot = "Total\nTrips") %>% 
   autofit() %>% 
   align(align = "c", part = "a") %>% 
-  fit_to_width(6)
+  fit_to_width(6.5)
 ```
 
-### Multi-use Reduction
+<!-- ### Multi-use Reduction {#sec-multi-use-reduction} -->
 
-Since these land uses share a development site, a multi-use trip reduction may be applied. This accounts for trips that are made from one location in the development site to another, and thus do not use the adjacent roadways. Information on the multi-use capture rates was obtained from the \acr{ITE} Trip Generation Handbook [@instituteoftransportationengineers2014], and the relevant information is summarized in @tbl-ite-multi-use-rates. The reduced trip rates are given in @tbl-tripgen-multiuse, and @sec-apdx-tripgen contains more detailed calculations.
+Since these land uses share a development site, a multi-use trip reduction may be applied. This accounts for trips that are made from one location in the development site to another, and thus do not use the adjacent roadways. Information on the multi-use capture rates was obtained from the \acr{ITE} Trip Generation Handbook [@instituteoftransportationengineers2014], and the relevant information is summarized in @tbl-ite-multi-use-rates.
 
 ```{r}
 #| label: tbl-ite-multi-use-rates
@@ -66,36 +66,50 @@ tribble(
 ```
 
 ```{r}
-#| label: tbl-tripgen-multiuse
-#| tbl-cap: "Trips After Multi-use Reduction"
+mu <- tar_read(tripgen) %>% 
+  mutate(desc, code,
+         diff_enter = trips_enter-mu_enter,
+         diff_exit = trips_exit-mu_exit,
+         diff_tot = trips_tot-mu_tot,
+         .keep = "none"
+         )
 
-tar_read(tripgen) %>% 
-  select(desc, code, mu_enter, mu_exit, mu_tot) %>% 
-  flextable() %>% 
-  set_header_labels(desc = "Description", code = "ITE Land\nUse Code", mu_enter = "Entering\nTrips", mu_exit = "Exiting\nTrips", mu_tot = "Total\nTrips") %>% 
-  autofit() %>% 
-  align(align = "c", part = "a")
+mu_trips <- c(enter = sum(mu$diff_enter), exit = sum(mu$diff_exit))
 ```
 
-### Pass-by Reduction
+Applying these reductions to the estimates from @tbl-base-tripgen gives `r mu_trips["enter"]` entering and `r mu_trips["exit"]` exiting *internal* trips, and these are removed from the base trip generation. These internal trips are distributed between the three land uses based on @tbl-ite-multi-use-rates; for details see @sec-apdx-tripgen.
 
-The \acr{ITE} Trip Generation Manual also provides information on pass-by trip reductions. These indicate trips that otherwise would have passed the development, and are "stopping by" the site rather than making a dedicated "new" trip to the site. Two of the proposed land uses---the restaurant and the hardware store---are given pass-by reduction rates of 43% and 26%, respectively. The office land use has no pass-by reduction, which is logical as most office trips would be for employment and not leisure. @tbl-tripgen-passby presents the new calculated trips after these reductions.
+<!-- ### Pass-By Trips -->
+
+The \acr{ITE} Trip Generation Manual also provides information on pass-by trip rates. These indicate trips that otherwise would have passed the development, and are "stopping by" the site rather than making a dedicated "new" trip to the site. Two of the proposed land uses---the restaurant and the hardware store---are given pass-by reduction rates of 43% and 26%, respectively. The office land use has no pass-by reduction, which is logical as most office trips would be for employment and not leisure. These pass-by trips are calculated based on the total trips after the multi-use reduction. The remaining trips are considered "new" or "primary" trips, i.e. trips made with the express purpose of visiting the site.
+
+<!-- ### Modal Split -->
+
+An additional mode choice reduction may be applied to the estimated trips based on local transit usage. While there is local bus service nearby, the ridership estimates are currently quite low. This is especially true of the UVX station to the west, in part due to the infrequent schedule of this section of the route. Because of this, a mode split reduction of 1% is assumed. This will be used to calculate trip numbers for trip assignment on new trips, but not pass-by trips as those are assumed (almost by definition) to all be vehicular.
+
+@tbl-final-tripgen presents the results of these trip generation calculations, showing new, pass-by, and total trips for the PM peak hour. These are based on the preliminary trip generation [@tbl-base-tripgen], multi-use reduction, pass-by calculation, and mode choice reduction, and will be used in the remainder of the analysis.
 
 ```{r}
-#| label: tbl-tripgen-passby
-#| tbl-cap: "Pass-By Trips"
+#| label: tbl-final-tripgen
+#| tbl-cap: Final Predicted Trip Generation Values (PM Peak)
 
 tar_read(tripgen) %>% 
-  select(desc, code, pb_rate, pb_enter, pb_exit, pb_tot) %>% 
+  select(desc, code, mu_enter:mu_tot, pb_enter:new_tot) %>% 
+  pivot_longer(-c(desc:code), names_to = c("type", "direction"), names_sep = "_") %>% 
+  pivot_wider(names_from = "type") %>% 
+  relocate(new, pb, mu, .after = last_col()) %>% 
+  mutate(direction = case_when(
+    direction == "tot" ~ "Total",
+    .default = str_to_title(direction))) %>% 
   flextable() %>% 
-  set_header_labels(desc = "Description", code = "ITE Land\nUse Code", pb_rate = "Pass-by\nReduction Rate", pb_enter = "Entering\nTrips", pb_exit = "Exiting\nTrips", pb_tot = "Total\nTrips") %>% 
+  set_header_labels(desc = "Description", code = "ITE Land\nUse Code", direction = "Direction", new = "New\nTrips", pb = "Pass-By\nTrips", mu = "Total") %>% 
   autofit() %>% 
-  align(align = "c", part = "a")
+  align(align = "c", part = "a") %>% 
+  merge_v(j = ~ desc + code) %>% 
+  border_inner_h() %>% 
+  fix_border_issues() %>% 
+  fit_to_width(6)
 ```
-
-## Modal Split
-
-This analysis will be done in full in the future, but a mode split reduction of 1% is assumed. This will be used to calculate trip numbers for trip assignment on new trips, but not pass-by trips as those are assumed (almost by definition) to all be vehicular.
 
 ## Trip Distribution
 
@@ -103,7 +117,7 @@ This section presents two methods for determining the distribution of trips to {
 
 ### Analogy Method {#sec-analogy-method}
 
-The analogy method uses existing traffic volumes to determine the distribution of site trips. @fig-basevolumes shows the volumes used. Each of the intersection movements were assigned a direction and were designated as either an entering or exiting movement. Several movements, however, enter an intersection in the study area but leave on a road that doesn't ultimately pass the site, or are "internal" movements that do not show a clear direction toward or away from the site. These movements are disregarded in this part of the analysis. Additionally, the eastern side of the University Ave. / 1200 South intersection leads directly to a parking lot, and these movements are disregarded as well. @fig-analogy-access-dirs shows a map of each movement's classification.
+The analogy method [@schultz2021] uses existing traffic volumes to determine the distribution of site trips. @fig-basevolumes shows the volumes used. Each of the intersection movements were assigned a direction and were designated as either an entering or exiting movement. Several movements, however, enter an intersection in the study area but leave on a road that doesn't ultimately pass the site, or are "internal" movements that do not show a clear direction toward or away from the site. These movements are disregarded in this part of the analysis. Additionally, the eastern side of the University Ave. / 1200 South intersection leads directly to a parking lot, and these movements are disregarded as well. @fig-analogy-access-dirs shows a map of each movement's classification.
 
 ```{r}
 #| label: fig-analogy-access-dirs
@@ -135,7 +149,8 @@ analogy_dist %>%
   flextable() %>% 
   set_header_labels(direction = "Direction", vol = "Base Traffic\nVolume", pct_char = "Proportion\nof Trips") %>% 
   autofit() %>% 
-  align(align = "c", part = "a")
+  align(align = "c", part = "a") %>% 
+  fit_to_width(6)
 ```
 
 Note however that these results only apply to "new" trips, i.e. trips made with the express purpose of visiting the site. "Pass-by" trips, or trips made as a stop-in en route to another destination, are determined based on the directional distribution of traffic on University Ave. alone. The movements considered here are the six that turn on to or off of University Ave. at each of its two intersections (including in this case the eastern side of the University Ave. / 1200 South intersection), and are categorized by travel direction (\acr{NB} or \acr{SB}). The \acr{NB} and \acr{SB} volumes differ slightly between entering and exiting due to the inherent inaccuracies of traffic counts, but are similar enough to not be a concern. The two volumes in each direction are averaged for this analysis. The pass-by distribution is given in @tbl-pass-by-dist.
@@ -154,9 +169,9 @@ tar_read(analogy_trip_dist) %>%
   flextable() %>% 
   set_header_labels(direction = "Direction", mean_vol = "Volume\n(mean)", pct_char = "Proportion\nof Trips") %>% 
   autofit() %>% 
-  align(align = "c", part = "a")
+  align(align = "c", part = "a") %>% 
+  fit_to_width(6)
 ```
-
 
 ### Gravity Method {#sec-gravity-method}
 
@@ -185,8 +200,8 @@ grav_dist %>%
   flextable() %>% 
   set_header_labels(access_dir = "Access\nDirection", n_taz = "Number\nof TAZs", trip_pct = "Proportion\nof Trips") %>% 
   autofit() %>% 
-  align(align = "c", part = "a")
-
+  align(align = "c", part = "a") %>% 
+  fit_to_width(6)
 ```
 
 ### Method Comparison
@@ -201,7 +216,8 @@ tar_read(trip_dist_comparison) %>%
   flextable() %>% 
   set_header_labels(dir = "Direction", a = "Analogy\nMethod", g = "Gravity\nMethod") %>% 
   autofit() %>% 
-  align(align = "c", part = "a")
+  align(align = "c", part = "a") %>% 
+  fit_to_width(6)
 ```
 
 Due to the higher granularity and more reasonable distribution of the analogy method, this analysis is preferred. The gravity method seems to under-predict trips from the south, especially since these will be coming from I-15 and are likely to be many. @fig-trip-distribution shows the final trip distribution for both new and pass-by trips that will be used. This is the same result as given in @sec-analogy-method.
@@ -212,7 +228,6 @@ Due to the higher granularity and more reasonable distribution of the analogy me
 
 knitr::include_graphics("../images/output/analogy_dist.png")
 ```
-
 
 ## Trip Assignment {#sec-trip-assignment}
 
@@ -242,7 +257,9 @@ knitr::include_graphics("../images/output/traffic_counts_yr5.png")
 
 ### Site Traffic {#sec-site-traffic}
 
-@fig-trip-distribution shows the distribution of site trips by entry/exit direction, but these trips need to be assigned to specific intersection movements. This depends substantially on the access layout of the site. There are two accesses to the site: one on 1200 South and one on University Ave.^[This access is shared with the development to the south.]---for a full discussion of access and site layout see @sec-access-and-parking-layout.
+@fig-trip-distribution shows the distribution of site trips by entry/exit direction, but these trips need to be assigned to specific intersection movements. This depends substantially on the access layout of the site. There are two accesses to the site: one on 1200 South and one on University Ave.[^05_projected-1]---for a full discussion of access and site layout see @sec-access-and-parking-layout.
+
+[^05_projected-1]: This access is shared with the development to the south.
 
 ```{r}
 #| label: fig-site-access
@@ -252,19 +269,18 @@ knitr::include_graphics("../images/output/traffic_counts_yr5.png")
 knitr::include_graphics("../images/reference/site_access.png")
 ```
 
-
 @fig-site-access shows the assumed site access routes from each access road. Several assumptions are made regarding this:
 
-- Because of the raised median on 1200 South, no left turns are possible into or out of this driveway. This primarily affects drivers entering the site from the northeast (\acr{SB} University Avenue) and exiting to the northwest (\acr{NB} Towne Centre Blvd.). The former are assumed to continue past 1200 South and use the University Ave. driveway, and the latter are assumed to exit on 1200 South \acr{EB}, then U-turn at the University Ave. intersection.
-- It is assumed that *all* vehicles exiting to the northwest (on Towne Centre Blvd.) use the above route, rather than using the University Ave. exit and looping around the site.
-- No vehicles for primary trips are assumed to turn left (\acr{NB}) from the University Ave. driveway. This is due to the difficulty of doing so combined with the ability to use the 1200 South driveway and turn left at the University Ave. intersection.
-- All pass-by trips are assumed to use the University Ave. driveway for both entering and exiting (this includes left turns onto University Ave. exiting the site). Note that pass-by trips are considered to come from the existing background traffic, rather than new trips to the study area. These trips are therefore added to the intersection movements into or out of the University Ave. driveway, and only the *difference* between exiting and entering trips is added to the downstream intersection movements. Since there are so few pass-by trips, these differences are placed only on intersection through movements for simplicity.
-- All vehicles exiting to the southwest (\acr{SB} Towne Centre Blvd.) are assumed to use the University Ave. driveway, rather than making the required U-turn and left turn via the 1200 South driveway.
-- Where multiple routes exist to enter/exit the site from the same direction, the assignment is split between them. This primarily affects the trips exiting to \acr{SB} University Ave. and the trips entering from \acr{NB} University Ave. and \acr{WB} Towne Centre Drive.
-  - The trips exiting to \acr{SB} University Ave. can exit the site from either driveway. Most drivers will likely use the University Ave. driveway, but the 1200 South driveway may be more convenient for vehicles near the northwest corner of the site. A 2/3-1/3 split is used for the University Ave. driveway and the 1200 South driveway, respectively.
-  - The trips entering from \acr{NB} University Ave. and \acr{WB} Towne Centre Drive can either turn left into the University Ave. driveway or loop around the site to use the 1200 South driveway. The latter option would generally be disregarded due to its complexity; however, since left turns off of University Ave. are difficult in this corridor (it is required to cross 3 lanes of opposing traffic), some drivers may elect to loop around the site. These trips are split proportionally according to background traffic distribution (see @fig-basevolumes), but since the left turn off of University Ave. is assumed to still be the more prevalent route the proportion of vehicles using \acr{WB} Towne Centre Dr. is halved.
+-   Because of the raised median on 1200 South, no left turns are possible into or out of this driveway. This primarily affects drivers entering the site from the northeast (\acr{SB} University Avenue) and exiting to the northwest (\acr{NB} Towne Centre Blvd.). The former are assumed to continue past 1200 South and use the University Ave. driveway, and the latter are assumed to exit on 1200 South \acr{EB}, then U-turn at the University Ave. intersection.
+-   It is assumed that *all* vehicles exiting to the northwest (on Towne Centre Blvd.) use the above route, rather than using the University Ave. exit and looping around the site.
+-   No vehicles for primary trips are assumed to turn left (\acr{NB}) from the University Ave. driveway. This is due to the difficulty of doing so combined with the ability to use the 1200 South driveway and turn left at the University Ave. intersection.
+-   All pass-by trips are assumed to use the University Ave. driveway for both entering and exiting (this includes left turns onto University Ave. exiting the site). Note that pass-by trips are considered to come from the existing background traffic, rather than new trips to the study area. These trips are therefore added to the intersection movements into or out of the University Ave. driveway, and only the *difference* between exiting and entering trips is added to the downstream intersection movements. Since there are so few pass-by trips, these differences are placed only on intersection through movements for simplicity.
+-   All vehicles exiting to the southwest (\acr{SB} Towne Centre Blvd.) are assumed to use the University Ave. driveway, rather than making the required U-turn and left turn via the 1200 South driveway.
+-   Where multiple routes exist to enter/exit the site from the same direction, the assignment is split between them. This primarily affects the trips exiting to \acr{SB} University Ave. and the trips entering from \acr{NB} University Ave. and \acr{WB} Towne Centre Drive.
+    -   The trips exiting to \acr{SB} University Ave. can exit the site from either driveway. Most drivers will likely use the University Ave. driveway, but the 1200 South driveway may be more convenient for vehicles near the northwest corner of the site. A 2/3-1/3 split is used for the University Ave. driveway and the 1200 South driveway, respectively.
+    -   The trips entering from \acr{NB} University Ave. and \acr{WB} Towne Centre Drive can either turn left into the University Ave. driveway or loop around the site to use the 1200 South driveway. The latter option would generally be disregarded due to its complexity; however, since left turns off of University Ave. are difficult in this corridor (it is required to cross 3 lanes of opposing traffic), some drivers may elect to loop around the site. These trips are split proportionally according to background traffic distribution (see @fig-basevolumes), but since the left turn off of University Ave. is assumed to still be the more prevalent route the proportion of vehicles using \acr{WB} Towne Centre Dr. is halved.
 
-Tables [-@tbl-base-tripgen]--[-@tbl-tripgen-passby] provide information on the total number of site trips generated (both primary and pass-by). Using this information and the above assumptions, the primary site trips are assigned to the intersection movements as shown in @fig-site-assignment-new, and the pass-by trips as shown in @fig-site-assignment-pb. These trips are added together to give an expected site impact as shown in @fig-site-assignment-tot.
+@tbl-final-tripgen provides information on the total number of site trips generated (both primary and pass-by). Using this information and the above assumptions, the primary site trips are assigned to the intersection movements as shown in @fig-site-assignment-new, and the pass-by trips as shown in @fig-site-assignment-pb. These trips are added together to give an expected site impact as shown in @fig-site-assignment-tot.
 
 ```{r}
 #| label: fig-site-assignment-new
@@ -304,4 +320,3 @@ knitr::include_graphics("../images/output/all_trips_yrop.png")
 
 knitr::include_graphics("../images/output/all_trips_yr5.png")
 ```
-

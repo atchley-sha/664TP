@@ -15,7 +15,7 @@ A Level II application requires the following:
 - Analysis area includes intersection of site access drives with state highways and any signalized and un-signalized intersection within access category distance of property line
 - Design years are opening day and 5 years after project completion
 - Traffic is identified for weekday AM and PM peak, and special peak hour as necessary
-    - **N.B. This analysis only includes PM peak traffic due to the scope of the assignment**
+    - **N.B. This analysis only includes PM peak traffic due to the scope of the project**
 - Data collection includes:
 - Daily and turning movement counts
 - Site and adjacent roadway/intersection geometrics
