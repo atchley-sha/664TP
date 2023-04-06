@@ -6,9 +6,37 @@ The impact of site traffic on the roadways and intersections in the study area i
 
 ## Access {#sec-site-access}
 
-@fig-existing-access shows aerial imagery of the site location in its existing condition (2023). The site location is marked, as well as the existing external and cross-accesses. There is an existing access on University Ave. just to the south of the site, and a convenient cross-access between this development and {{< var devname >}}. There is also an existing access on University Ave. at the north of {{< var devname >}}, but this access is too close to the northern adjacent access for the Exxon and does not comply with \acr{UDOT} spacing guidelines. University Ave. is classified as an Access Category 5 roadway [@utahdepartmentoftransportation2023a], and as such requires 350-foot spacing between driveways per Utah rule R930-6-7 (3)(a) [@utahdepartmentoftransportation2019]. This access therefore will be removed. Even with this access removed, there is not enough space per rule R930-6-7 to put an additional access to {{< var devname >}} on University Ave. (the distance between the nearest adjacent driveways is roughly 370 feet), so the only access from University Ave. will be via the cross-access with the development to the south.
+@fig-existing-access shows aerial imagery of the site location in its existing
+condition (2023). The site location is marked, as well as the existing external
+and cross-accesses. There is an existing access on University Ave. just to the
+south of the site, and a convenient cross-access between this development and
+{{< var devname >}}. There is also an existing access on University Ave. at the
+north of {{< var devname >}}, but this access is too close to the northern
+adjacent access for the Exxon and does not comply with \acr{UDOT} spacing
+guidelines. University Ave. is classified as an Access Category 5 roadway
+[@utahdepartmentoftransportation2023a], and as such requires 350-foot spacing
+between driveways per Utah rule R930-6-7 (3)(a)
+[@utahdepartmentoftransportation2019]. This access therefore will be removed.
+Even with this access removed, there is not enough space per rule R930-6-7 to
+put an additional access to {{< var devname >}} on University Ave., so the only
+access from University Ave. will be via the cross-access with the development
+to the south. This development has an access on University Ave. which is
+roughly 370 feet south of the Exxon driveway(s), so this is in compliance with
+R930-6-7. This driveway has a dustpan design, with one entry and two exit lanes
+(a left- and right-turn lane respectively) and a throat length of 33 feet.
 
-There is also an existing driveway on 1200 South, and this is proposed to be used in the site development, though with an updated design. This is critical to aid in \acr{NB} exiting trips, as turning left directly onto University Ave. is often difficult with even moderate traffic volumes. Since 1200 South is not a \acr{UDOT} road, the R930-6-7 spacing guidelines do not apply, so the current access location is valid. Additionally, there is a cross-access to/from the Exxon on the northeast of the site; since the Exxon has accesses on 1200 South and University Ave. already, this cross-access is not assumed to affect the trip/driveway assignment, and will remain in the site layout design. There is also a pedestrian access to Towne Center Blvd. near the south of the site that will be used. All of these proposals for access locations are noted in @fig-existing-access.
+There is also an existing driveway on 1200 South, and this is proposed to be
+used in the site development, though with an updated design. This is critical
+to aid in \acr{NB} exiting trips, as turning left directly onto University Ave.
+is often difficult with even moderate traffic volumes. Since 1200 South is not
+a \acr{UDOT} road, the R930-6-7 spacing guidelines do not apply, so the current
+access location is valid. Additionally, there is a cross-access to/from the
+Exxon on the northeast of the site; since the Exxon has accesses on 1200 South
+and University Ave. already, this cross-access is not assumed to affect the
+trip/driveway assignment, and will remain in the site layout design. There is
+also a pedestrian access to Towne Center Blvd. near the south of the site that
+will be used. All of these proposals for access locations are noted in
+@fig-existing-access.
 
 ```{r}
 #| label: fig-existing-access
@@ -24,7 +52,15 @@ shared_pct <- 0.1
 ```
 
 
-The three land uses in the development are a sit-down restaurant, office, and specialty retail. The office will likely have very low turnover, as most trips will be made by employees with few visitor trips. This would 8.5-foot stall widths for parking near the office. The restaurant and retail locations will have a higher turnover, though, and therefore 9.5-foot stall widths are recommended. However, since this is a multi-use development with a shared parking lot, and since the site is not very large, it would be more reasonable to have consistent stall widths. As such, 9-foot stalls are recommended as the average of the suggested widths.
+The three land uses in the development are a sit-down restaurant, office, and
+specialty retail. The office will likely have very low turnover, as most trips
+will be made by employees with few visitor trips. This would 8.5-foot stall
+widths for parking near the office. The restaurant and retail locations will
+have a higher turnover, though, and therefore 9.5-foot stall widths are
+recommended. However, since this is a multi-use development with a shared
+parking lot, and since the site is not very large, it would be more reasonable
+to have consistent stall widths. As such, 9.5-foot stalls are recommended as
+the greater of the suggested widths.
 
 Because of the site's size and shape, typical one-way angled parking modules would unreasonably restrict vehicle movement. Therefore, 90^o^ parking is recommended. The stall lengths are recommended at 18 feet, with 12 feet of clearance to perform a parking maneuver, both based on common practice. Additionally, since the office, restaurant, and retail have different peak periods, some parking may be shared between the two. This is estimated at `r (shared_pct*100) %>% round(1)`% of the total parking based on common practice and *Shared Parking* [@urbanlandinstitute2020].
 

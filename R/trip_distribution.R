@@ -76,7 +76,8 @@ summarise_trip_directions <- function(trips){
     mutate(external_dir = case_when(
       external_dir %in% c("nw", "sw") ~ "W",
       external_dir %in% c("s", "se") ~ "S",
-      external_dir == "n" ~ "N"
+      external_dir == "n" ~ "N",
+      external_dir == "ne" ~ "E"
     )) %>% 
     group_by(external_dir) %>% 
     summarise(vol = sum(vol)) %>% 
@@ -91,7 +92,7 @@ summarise_trip_directions <- function(trips){
 
 compare_trip_dist <- function(analogy, gravity){
   
-  joined <- left_join(
+  joined <- full_join(
     analogy, gravity, by = c("external_dir" = "access_dir")
   ) %>% 
     select(external_dir, pct_char, trip_pct) %>% 
