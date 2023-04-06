@@ -16,7 +16,7 @@ The proposed Dream Town development is located in southern Provo, in Utah. The s
 ```{r}
 #| label: fig-sitemap
 #| fig-cap: "Map of the site location."
-#| out-width: 6
+#| out-width: 6in
 
 knitr::include_graphics("../images/site_map.png")
 ```

@@ -49,7 +49,7 @@ delay_and_los_table_viz <- function(tbl, comparison = NULL){
       r_los = "Right",
       i_los = "Intersection"
     ) %>%
-    add_header_row(values = c("Intersection", "Direction", "Control Delay (sec)", "Level of Service"), colwidths = c(1,1,4,4)) %>%
+    add_header_row(values = c("Intersection", "Direction", "Average Control Delay (sec)", "Level of Service"), colwidths = c(1,1,4,4)) %>%
     align(align = "c", part = "a") %>%
     merge_v(j = ~ intersection, target = ~intersection + i_delay + i_los) %>%
     merge_v(~ intersection + direction, part = "h") %>%
@@ -158,4 +158,31 @@ Based on these results, the {{< var devname >}} development has virtually no imp
 
 ## Roadway/Intersection Improvements
 
+Though the development of {{< var devname >}} is expected to have virtually no
+impact on the delay/\acr{LOS} of the study area, Tables
+[-@tbl-los-yrop-nobuild]--[-@tbl-los-yr5-build] show that especially left turns
+on University Ave. tend to perform poorly in the study area. An important note however is that \acr{LOS} measures *average* delay, and so movement volumes can significantly affect these results. For example, the University Ave./1200 South \acr{SB} direction has much better \acr{LOS} than the \acr{EB} movement, but also an order of magnitude more volume. The *total* delay is therefore much more comparable between the two directions (and in fact the total \acr{SB} delay is worse than the \acr{EB} delay despite having a better \acr{LOS}). Whether these poorly-performing movements present a problem at all then is a point of discussion. An \acr{LOS} of 'D' or better is usually considered acceptible, and these movements do not reach that goal, but this may be acceptible anyway due to their quite low volumes. If improvements are determined to be necessary, there are various potential options that could be effective:
 
+It is possible that a change in signal timings alone would increase performance. The
+through movements on University Ave. perform quite well, with \acr{LOS} 'A' or
+'B'. Increasing the length of the left-turn phase(s) in the University Ave.
+intersections would provide a more consistent \acr{LOS} across movements.
+However, this analysis only looks at the study area, and does not account for
+the rest of the University Ave. corridor. It is possible that changing the
+signal timings here may cause greater problems at downstream/upstream
+intersections, and so a full analysis of the corridor should be done before
+implementing any changes.
+
+Another possibility would be to remove or otherwise prohibit use of certain accesses on University Ave. from other developments. Several driveways are e.g. located directly adjacent to the University Ave./Towne Centre Dr. intersection (see @fig-uatcd-bad-access). These present many conflict points between vehicles using the intersection and vehicles using the driveway, especially for left-turning vehicles. A raised median or similar improvement would prevent many of these conflict points. It is not clear however that these driveways affect the delay at these intersections, so this solution may not be effective.
+
+```{r}
+#| label: fig-uatcd-bad-access
+#| fig.cap: Driveways located immediately adjacent to the University Ave./Towne Centre Dr. intersection.
+#| out.width: 6in
+
+knitr::include_graphics("../images/reference/bad_access_uatcb.png")
+```
+
+If the above solutions do not mitigate the problem, it may be necessary to decrease traffic volumes on University Ave. by providing other convenient routes or modes. Many of the failing movements already have dual left-turn lanes, and University Ave. itself has 3 through lanes in each direction, so increasing the number of lanes would be infeasible and ineffective. It is possible that a speed limit increase would improve intersection performance, but this would present safety concerns due to the increased speed differential at the driveways as well as the presence of a \acr{TWLTL} on University Ave. A raised median could fix the latter, but not the former. Additionally, it is worth noting that adding a raised median to University Ave. would increase safety regardless, and is recommended, but this is outside the scope of this project.
+
+While some of these solutions may improve performance, again it is important to note the scope of the effect. The performance improvements would be for a relatively small number of vehicles, and could decrease performance for a larger traffic volume. Additionally, the majority of the reasonable improvements to this section of University Ave. have already been made (with a raised median being the main exception), and so physical changes to the roadway or intersections would be expensive and complicated, with little impact on facility performance. Because of the small volumes affected by the poor \acr{LOS} movements, roadway improvemnts other than potential signal timing changes would not be worth the investment.
