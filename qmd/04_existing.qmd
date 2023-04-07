@@ -67,6 +67,8 @@ knitr::include_graphics("../images/output/traffic_delay_base.png")
 knitr::include_graphics("../images/output/traffic_los_base.png")
 ```
 
+\pagebreak
+
 It is unsurprising that the Towne Centre Blvd. intersections perform so well, since the traffic volumes at these intersections are relatively low (see @fig-basevolumes). It also makes sense that the through and right-turn movements on University Ave. perform well, as this is a major arterial and these movements have relatively long phase lengths (see @sec-apdx-signal-timings). The \acr{EB} and \acr{WB} movements at the University Ave. intersections, however, generally perform much worse. This is for the same reason: the phase lengths on these movements are significantly shorter compared to the conflicting phase lengths. However, these movements do not have an enormous impact on the overall intersection delay(s), as the volumes are much lower than those *on* University Ave.
 
 The overall \acr{LOS} is generally good, though there are several movements with worse than \acr{LOS} 'D' (generally acceptable conditions) performance. However, these are relatively minor movements, and the intersections themselves perform much better, so this is not too much cause for concern. It is possible that something as simple as a change in signal timings may do much to improve these under-performing movements. However, further analysis into the coordination of signals on University Ave. is warranted before implementing any signal timing changes.

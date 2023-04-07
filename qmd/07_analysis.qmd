@@ -156,7 +156,7 @@ tar_read(los_table_yr5_build) %>%
 
 Based on these results, the {{< var devname >}} development has virtually no impact on the delay/\acr{LOS} of the intersections at either the opening day or 5-year horizons. While some movements perform worse with the site trips added, many perform better, and in any case the difference in delay is minimal. However, this analysis *does* show movements that perform poorly, but these do so even with the background traffic alone, and in fact the delay does not substantially increase between the opening day and 5-year background traffic.
 
-## Roadway/Intersection Improvements
+## Roadway/Intersection Improvements {#sec-intersection-improvements}
 
 Though the development of {{< var devname >}} is expected to have virtually no
 impact on the delay/\acr{LOS} of the study area, Tables
@@ -183,6 +183,8 @@ Another possibility would be to remove or otherwise prohibit use of certain acce
 knitr::include_graphics("../images/reference/bad_access_uatcb.png")
 ```
 
+\pagebreak
+
 If the above solutions do not mitigate the problem, it may be necessary to decrease traffic volumes on University Ave. by providing other convenient routes or modes. Many of the failing movements already have dual left-turn lanes, and University Ave. itself has 3 through lanes in each direction, so increasing the number of lanes would be infeasible and ineffective. It is possible that a speed limit increase would improve intersection performance, but this would present safety concerns due to the increased speed differential at the driveways as well as the presence of a \acr{TWLTL} on University Ave. A raised median could fix the latter, but not the former. Additionally, it is worth noting that adding a raised median to University Ave. would increase safety regardless, and is recommended, but this is outside the scope of this project.
 
-While some of these solutions may improve performance, again it is important to note the scope of the effect. The performance improvements would be for a relatively small number of vehicles, and could decrease performance for a larger traffic volume. Additionally, the majority of the reasonable improvements to this section of University Ave. have already been made (with a raised median being the main exception), and so physical changes to the roadway or intersections would be expensive and complicated, with little impact on facility performance. Because of the small volumes affected by the poor \acr{LOS} movements, roadway improvemnts other than potential signal timing changes would not be worth the investment.
+While some of these solutions may improve performance, again it is important to note the scope of the effect. The performance improvements would be for a relatively small number of vehicles, and could decrease performance for a larger traffic volume. Additionally, the majority of the reasonable improvements to this section of University Ave. have already been made (with a raised median being the main exception), and so physical changes to the roadway or intersections would be expensive and complicated, with little impact on facility performance. Because of the small volumes affected by the poor \acr{LOS} movements, roadway improvements other than potential signal timing changes would not be worth the investment. No intersection has a failing level of service overall, so signal timing changes may not be worth pursuing either.

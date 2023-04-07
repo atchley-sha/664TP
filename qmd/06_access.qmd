@@ -26,7 +26,7 @@ R930-6-7. This driveway has a dustpan design, with one entry and two exit lanes
 (a left- and right-turn lane respectively) and a throat length of 33 feet.
 
 There is also an existing driveway on 1200 South, and this is proposed to be
-used in the site development, though with an updated design. This is critical
+used in the site development, though with an updated design (see @fig-site-plan). This is critical
 to aid in \acr{NB} exiting trips, as turning left directly onto University Ave.
 is often difficult with even moderate traffic volumes. Since 1200 South is not
 a \acr{UDOT} road, the R930-6-7 spacing guidelines do not apply, so the current
@@ -41,6 +41,7 @@ will be used. All of these proposals for access locations are noted in
 ```{r}
 #| label: fig-existing-access
 #| fig-cap: Existing site accesses and proposed changes.
+#| out-height: 6in
 
 knitr::include_graphics("../images/reference/existing_site_access.png")
 ```

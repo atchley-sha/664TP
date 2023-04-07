@@ -52,11 +52,12 @@ knitr::include_graphics("../images/zoning_map.png")
 
 ## Site Plan
 
-@fig-siteplan shows a site plan for the proposed development. Note that Pad C is not included in this analysis, as it has already been developed. This site map is still preliminary, and will be updated in a future draft of this report.
+@fig-site-plan shows a site plan for the proposed development. Further discussion, including on access/driveway and parking layout, is given in @sec-access-and-parking-layout.
 
 ```{r}
-#| label: fig-siteplan
+#| label: fig-site-plan
 #| fig-cap: "Site plan for proposed {{< var devname >}} development."
+#| out-height: 6in
 
 knitr::include_graphics("../images/site_plan_prelim.png")
 ```

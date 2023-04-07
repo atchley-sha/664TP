@@ -72,7 +72,17 @@ tar_read(tripgen_daily) %>%
   fit_to_width(6.5)
 ```
 
-<!-- ### Multi-use Reduction {#sec-multi-use-reduction} -->
+```{r}
+mu <- tar_read(tripgen) %>% 
+  mutate(desc, code,
+         diff_enter = trips_enter-mu_enter,
+         diff_exit = trips_exit-mu_exit,
+         diff_tot = trips_tot-mu_tot,
+         .keep = "none"
+         )
+
+mu_trips <- c(enter = sum(mu$diff_enter), exit = sum(mu$diff_exit))
+```
 
 Since these land uses share a development site, a multi-use trip reduction may
 be applied. This accounts for trips that are made from one location in the
@@ -98,25 +108,13 @@ tribble(
   align(align = "c", part = "a")
 ```
 
-```{r}
-mu <- tar_read(tripgen) %>% 
-  mutate(desc, code,
-         diff_enter = trips_enter-mu_enter,
-         diff_exit = trips_exit-mu_exit,
-         diff_tot = trips_tot-mu_tot,
-         .keep = "none"
-         )
+\pagebreak
 
-mu_trips <- c(enter = sum(mu$diff_enter), exit = sum(mu$diff_exit))
-```
-
-Applying these reductions to the estimates from @tbl-base-tripgen gives `r
-mu_trips["enter"]` entering and `r mu_trips["exit"]` exiting *internal* trips,
+Applying these reductions to the estimates from @tbl-base-tripgen gives 
+`r mu_trips["enter"]` entering and `r mu_trips["exit"]` exiting *internal* trips,
 and these are removed from the base trip generation. These internal trips are
 distributed between the three land uses based on @tbl-ite-multi-use-rates; for
 details see @sec-apdx-tripgen.
-
-<!-- ### Pass-By Trips -->
 
 The \acr{ITE} Trip Generation Manual also provides information on pass-by trip
 rates. These indicate trips that otherwise would have passed the development,
@@ -128,8 +126,6 @@ would be for employment and not leisure. These pass-by trips are calculated
 based on the total trips after the multi-use reduction. The remaining trips are
 considered "new" or "primary" trips, i.e. trips made with the express purpose
 of visiting the site.
-
-<!-- ### Modal Split -->
 
 An additional mode choice reduction may be applied to the estimated trips based
 on local transit usage. While there is local bus service nearby, the ridership
@@ -259,6 +255,8 @@ tar_read(analogy_trip_dist) %>%
   fit_to_width(6)
 ```
 
+\pagebreak
+
 ### Gravity Method {#sec-gravity-method}
 
 The gravity method uses a modified gravity model to determine trip
@@ -362,6 +360,8 @@ in @sec-analogy-method.
 
 knitr::include_graphics("../images/output/analogy_dist.png")
 ```
+
+\pagebreak
 
 ## Trip Assignment {#sec-trip-assignment}
 

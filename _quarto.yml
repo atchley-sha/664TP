@@ -17,6 +17,7 @@ book:
   date-format: "MMMM D, YYYY"
   chapters:
     - index.qmd
+    - executive_summary.qmd
     - qmd/01_intro.qmd
     - qmd/02_development.qmd
     - qmd/03_study-area.qmd

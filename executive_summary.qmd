@@ -1,0 +1,42 @@
+# Executive Summary {.unnumbered}
+
+{{< include /setup.qmd >}}
+
+{{< var devname >}} is a proposed development to be built near the southwest corner of 1200 South and University Avenue in Provo, Utah. This development includes 3 land uses: a 8,000-ft^2^ restaurant, a 18,000-ft^2^ office space, and a 18,000-ft^2^ hardware/paint store (see @tbl-landuse). Based on trip generation estimates (see @sec-trip-generation) and the proposed land uses, a Level II access application is necessary. This type of application requires a TIA with a study area including the intersection of site access drives with state highways and any signalized and un-signalized intersection within access category distance of property line. In this analysis, that is the intersections of University Ave. with 1200 South and Towne Centre Dr. The Towne Centre Blvd./1200 South and Towne Centre Blvd./Towne Centre Dr. intersections are also included in the study area. The site area is zoned as SC3, which is a Regional Shopping Center. The primary use of this land is for commercial and service uses to serve needs of people living in an entire region. It is located close to freeways & major arterials for easy access.
+
+Existing traffic volumes were obtained from counts and estimations (see @sec-existingtrafficvols), and these volumes were projected to the required analysis horizons of opening day (2024) and 5 years after opening (2029) based on an average growth rate of 2% (@sec-non-site-traffic). New and pass-by trips to {{< var devname >}} were predicted based on ITE's *Trip Generation Handbook*, with appropriate multi-use and mode choice reductions applied (@sec-site-traffic). The results of the trip generation for the PM peak hour are presented in @tbl-es-tripgen-results. Note that due to the scope of the assignment, the PM peak hour is the only analysis time period. This is the time of day that is likely to have the greatest impact on local traffic (compared to the AM peak) due to the retail and restaurant land uses. 
+
+```{r}
+#| label: tbl-es-tripgen-results
+#| tbl-cap: Predicted Trip Generation (PM Peak)
+
+tar_read(tripgen) %>% 
+  select(desc, code, mu_enter:mu_tot, pb_enter:new_tot) %>% 
+  pivot_longer(-c(desc:code), names_to = c("type", "direction"), names_sep = "_") %>% 
+  pivot_wider(names_from = "type") %>% 
+  relocate(new, pb, mu, .after = last_col()) %>% 
+  mutate(direction = case_when(
+    direction == "tot" ~ "Total",
+    .default = str_to_title(direction))) %>% 
+  flextable() %>% 
+  set_header_labels(desc = "Description", code = "ITE Land\nUse Code", direction = "Direction", new = "New\nTrips", pb = "Pass-By\nTrips", mu = "Total") %>% 
+  autofit() %>% 
+  align(align = "c", part = "a") %>% 
+  merge_v(j = ~ desc + code) %>% 
+  border_inner_h() %>% 
+  fix_border_issues() %>% 
+  fit_to_width(6)
+```
+
+The proposed site plan is given in @fig-es-site-plan, which includes an access on 1200 South and two cross accesses between the developments to the north and south of {{< var devname >}}. No direct access is provided on University Ave., and in fact the existing University Ave. access is removed, due to the driveway spacing guidelines of Utah rule R930-6-7 (3)(a). Based on Provo city code, 164 parking spaces are required for this development, 6 of which must be handicapped parking. See @sec-access-and-parking-layout for a full discussion of site layout and parking requirements.
+
+```{r}
+#| label: fig-es-site-plan
+#| fig-cap: "Site plan for proposed {{< var devname >}} development."
+
+# knitr::include_graphics("../images/site_plan_final.png")
+```
+
+\pagebreak
+
+A \acr{LOS} analysis was performed using Synchro for each of the horizon years (opening day and 5 years after opening), for both the background-only traffic and the total traffic including trips to {{< var devname >}}. The results of this analysis show that the added trips to/from {{< var devname >}} have very little impact on overall delay and \acr{LOS}, and so no improvements are required. There are several movements that perform poorly due to the background traffic alone, though, and so improvements may be considered. However, due to the relatively low volumes on these movements and impracticality of additional improvements to University Ave. (see @sec-intersection-improvements), as well as the fact that all intersections have a passing \acr{LOS} overall ('D' or better), no improvements are explicitly recommended.
