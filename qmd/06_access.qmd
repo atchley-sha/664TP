@@ -139,7 +139,17 @@ tot_spaces <- ((1-shared_pct)*chosen_parking) %>% ceiling()
 handicap_tot <- 6
 ```
 
-Provo city code requires more parking than *Parking Generation* predicts (`r tot_spaces_provo` vs. `r ite_parking` spaces). Additionally, the estimate of `r tar_read(ite_parkgen)$spaces[3]` spaces for the retail in the \acr{ITE} method is far too low; this is not a reasonable value. For both of these reasons, this analysis will use the Provo city code requirements. This value, however, should be reduced by `r (shared_pct*100) %>% round(1)`% due to the mixed land use. This gives a total number of `r tot_spaces` required parking spaces. Note that per Provo city code &#167;14.37.110 [@provocitycode] `r handicap_tot` total handicap parking spaces are required for a parking lot of this size. Since the buildings will be placed adjacent to each other (see @sec-site-layout), these spaces are spread out strategically along the length of the buildings.
+Provo city code requires more parking than *Parking Generation* predicts (`r tot_spaces_provo` vs. `r ite_parking` spaces). Additionally, the estimate of `r tar_read(ite_parkgen)$spaces[3]` spaces for the retail in the \acr{ITE} method is far too low; this is not a reasonable value. For both of these reasons, this analysis will use the Provo city code requirements. This value, however, should be reduced by `r (shared_pct*100) %>% round(1)`% due to the mixed land use. This gives a total number of `r tot_spaces` required parking spaces. Note that per Provo city code &#167;14.37.110 [@provocitycode] `r handicap_tot` total handicap parking spaces are required for a parking lot of this size. These spaces are spread out strategically along the length of the buildings (see @fig-parking-layout).
 
 ## Proposed Site Layout {#sec-site-layout}
+
+@fig-parking-layout shows the layout of the site, including parking stalls. `r tot_spaces` stalls are required by Provo city code; this layout includes 177 stalls due to the convenience of the geometries involved. 6 total handicap spaces are required, and 2 are placed along each of the three buildings (marked with an 'H').
+
+```{r}
+#| label: fig-parking-layout
+#| fig-cap: Proposed site layout, including parking
+
+knitr::include_graphics("../images/site_plan_final.png")
+```
+
 

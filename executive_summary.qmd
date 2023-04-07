@@ -34,7 +34,7 @@ The proposed site plan is given in @fig-es-site-plan, which includes an access o
 #| label: fig-es-site-plan
 #| fig-cap: "Site plan for proposed {{< var devname >}} development."
 
-# knitr::include_graphics("../images/site_plan_final.png")
+knitr::include_graphics("images/site_plan_final.png")
 ```
 
 \pagebreak
